@@ -27,3 +27,4 @@ int	map_verif(char *file)
 	close(cubed()->fd);
 	return (0);
 }
+

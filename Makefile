@@ -43,6 +43,7 @@ SRCS =	mandatory/main.c \
 		mandatory/map_verification.c \
 		mandatory/variable_struct.c \
 		mandatory/init.c \
+		mandatory/map_parsing.c \
 
 OBJS = $(SRCS:%.c=%.o)
 
@@ -81,6 +82,7 @@ fclean: clean
 	@$(MAKE) fclean -C ./libft
 	@$(MAKE) clean -C ./minilibx-linux
 	@$(RM) $(NAME)
+	clear
 	@echo "$(RED)Object and Executable files have been deleted!$(RESET)"
 
 re: fclean all

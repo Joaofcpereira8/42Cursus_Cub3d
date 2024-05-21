@@ -41,4 +41,8 @@ int			args_error(int c);
 //INIT
 void		cub_init(void);
 
+//PARSER
+int			map_par(char *file);
+int			map_coord(char *file);
+
 #endif
