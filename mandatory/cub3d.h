@@ -24,6 +24,8 @@ typedef struct s_cubed
 	int		x;
 	int		y;
 	int		fd;
+	void	*mlx_ptr;
+	void	*win_ptr;
 }			t_cubed;
 
 //VARIABLE_STRUCT
