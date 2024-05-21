@@ -17,7 +17,9 @@ int	main(int argc, char **argv)
 	cub_init();
 	if (argc == 2)
 	{
-		map_verif(argv[1]);
+		if (map_verif(argv[1]) == -1)
+			return (-1);
+
 	}
 	else
 		args_error(-1);
