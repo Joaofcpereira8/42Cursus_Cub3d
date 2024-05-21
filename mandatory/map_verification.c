@@ -21,8 +21,9 @@ int	map_verif(char *file)
 	while (file[i] != '.')
 		i--;
 	if (ft_strncmp(file + i, ".cub", 5) != 0)
-	{
-		return (error_msg('a'));
-	}
+		return (file_err_msg('a', cubed()->fd));
+	if (cubed()->fd < 0)
+		return (file_err_msg('b', cubed()->fd));
+	close(cubed()->fd);
 	return (0);
 }

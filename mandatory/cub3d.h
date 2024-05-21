@@ -35,6 +35,10 @@ t_cubed		*cubed(void);
 int			map_verif(char *file);
 
 //ERRORS
-int			error_msg(char c);
+int			file_err_msg(char c, int fd);
+int			args_error(int c);
+
+//INIT
+void		cub_init(void);
 
 #endif

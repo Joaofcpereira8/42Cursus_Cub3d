@@ -1,31 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/21 14:13:46 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/05/21 14:13:46 by jofilipe         ###   ########.fr       */
+/*   Created: 2024/05/20 18:31:13 by jofilipe          #+#    #+#             */
+/*   Updated: 2024/05/21 13:58:19 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int file_err_msg(char c, int fd)
+int	main(int argc, char **argv)
 {
-	if (c == 'a')
-		ft_putstr_fd("Error\nMap format is wrong. Use [executable] maps/[map_name].cub!\n", 2);
-	if (c == 'b')
+	cub_init();
+	if (argc == 2)
 	{
-		ft_putstr_fd("Error\nFile not found. Use [path]/[mapname].cub\n", 2);
-		close(fd);
+		map_verif(argv[1]);
 	}
-	exit(0);
-}
-
-int	args_error(int c)
-{
-	ft_putstr_fd("Invalid arguments! Use ./cub3D maps/[usable_map]", 2);
-	return (c);
+	else
+		args_error(-1);
+	return (0);
 }
