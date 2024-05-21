@@ -16,7 +16,7 @@ int	main(int argc, char **argv)
 {
 	if (argc == 2)
 	{
-
+		map_verif(argv[1]);
 	}
 	else
 		ft_printf("Insert a map after the execute file so that you can play!");
