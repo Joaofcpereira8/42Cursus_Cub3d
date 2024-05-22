@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:13:46 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/05/21 14:13:46 by jofilipe         ###   ########.fr       */
+/*   Updated: 2024/05/22 17:23:48 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,14 @@ int file_err_msg(char c, int fd)
 {
 	if (c == 'a')
 		ft_putstr_fd("Error\nMap format is wrong. Use [executable] maps/[map_name].cub!\n", 2);
-	if (c == 'b')
+	else if (c == 'b')
 	{
 		ft_putstr_fd("Error\nFile not found. Use [path]/[mapname].cub\n", 2);
+		close(fd);
+	}
+	else if (c == 'c')
+	{
+		ft_putstr_fd("Error\nWrong color attribution.\n", 2);
 		close(fd);
 	}
 	exit(0);

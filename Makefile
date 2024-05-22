@@ -44,6 +44,8 @@ SRCS =	mandatory/main.c \
 		mandatory/variable_struct.c \
 		mandatory/init.c \
 		mandatory/map_parsing.c \
+		mandatory/utils.c \
+		mandatory/free.c \
 
 OBJS = $(SRCS:%.c=%.o)
 

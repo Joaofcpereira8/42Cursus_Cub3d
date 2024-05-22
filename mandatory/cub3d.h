@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 18:31:28 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/05/20 18:31:28 by jofilipe         ###   ########.fr       */
+/*   Updated: 2024/05/22 15:45:00 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,23 +30,32 @@ typedef struct s_cubed
 	char	*SO;
 	char	*EA;
 	char	*WE;
+	int 	*F;
+	int 	*C;
 }			t_cubed;
 
-//VARIABLE_STRUCT
+// ------- VARIABLE_STRUCT -------
 t_cubed		*cubed(void);
 
-//MAP_VERIFICATION
+// ------- MAP_VERIFICATION -------
 int			map_verif(char *file);
 
-//ERRORS
+// ------- ERRORS -------
 int			file_err_msg(char c, int fd);
 int			args_error(int c);
 
-//INIT
+// ------- INIT -------
 void		cub_init(void);
 
-//PARSER
+// ------- PARSER -------
 int			map_par(char *file);
 int			map_settings(char *file);
+int			*get_value(char *str);
 
+// ------- UTILS -------
+int			ign_spaces(char *str, int i);
+int			check_overflow(char *str, int target);
+
+// ------- FREES -------
+void		free_arr(char **arr);
 #endif
