@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 18:50:20 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/05/22 17:23:53 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/05/22 17:49:34 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,23 @@ int	map_settings(char *file)
 			printf("encontROU!\n");
 		else if (ft_strncmp(temp, "F", 1) == 0)
 		{
-			cubed()->floor =  get_value(temp);
-			if (!cubed()->floor)
+			cubed()->flo =  get_value(temp);
+			if (!cubed()->flo)
 				return (file_err_msg('c', cubed()->fd));
 			printf("Floor: ");
-			printf("%i ", cubed()->floor[0]);
-			printf("%i ", cubed()->floor[1]);
-			printf("%i\n", cubed()->floor[2]);
+			printf("%i ", cubed()->flo[0]);
+			printf("%i ", cubed()->flo[1]);
+			printf("%i\n", cubed()->flo[2]);
 		}
 		else if (ft_strncmp(temp, "C", 1) == 0)
 		{
-			cubed()->ceiling =  get_value(temp);
-			if (!cubed()->ceiling)
+			cubed()->cei =  get_value(temp);
+			if (!cubed()->cei)
 				return (file_err_msg('c', cubed()->fd));
 			printf("Ceiling: ");
-			printf("%i ", cubed()->ceiling[0]);
-			printf("%i ", cubed()->ceiling[1]);
-			printf("%i\n", cubed()->ceiling[2]);
+			printf("%i ", cubed()->cei[0]);
+			printf("%i ", cubed()->cei[1]);
+			printf("%i\n", cubed()->cei[2]);
 		}
 		free(temp);
 	}
