@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:13:46 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/05/22 17:23:48 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/05/22 18:50:57 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,16 @@ int file_err_msg(char c, int fd)
 	else if (c == 'c')
 	{
 		ft_putstr_fd("Error\nWrong color attribution.\n", 2);
+		close(fd);
+	}
+	else if (c == 't')
+	{
+		ft_putstr_fd("Error\nWrong texture attribution.\n", 2);
+		close(fd);
+	}
+	else if (c == 'T')
+	{
+		ft_putstr_fd("Error\nTexture file not found.\n", 2);
 		close(fd);
 	}
 	exit(0);

@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 18:50:20 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/05/22 17:49:34 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/05/22 18:54:10 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,33 @@ int	map_settings(char *file)
 		if (!temp)
 			break ;
 		else if (ft_strncmp(temp, "NO", 2) == 0)
-			printf("encontrou!\n");
+		{
+			cubed()->north = get_path(temp);
+			if (!cubed()->north)
+				return (file_err_msg('t', cubed()->fd));
+			printf("North: %s\n", cubed()->north);
+		}
 		else if (ft_strncmp(temp, "SO", 2) == 0)
-			printf("encontroU!\n");
+		{
+			cubed()->south = get_path(temp);
+			if (!cubed()->south)
+				return (file_err_msg('t', cubed()->fd));
+			printf("South: %s\n", cubed()->south);
+		}
 		else if (ft_strncmp(temp, "EA", 2) == 0)
-			printf("encontrOU!\n");
+		{
+			cubed()->east = get_path(temp);
+			if (!cubed()->east)
+				return (file_err_msg('t', cubed()->fd));
+			printf("East: %s\n", cubed()->east);
+		}
 		else if (ft_strncmp(temp, "WE", 2) == 0)
-			printf("encontROU!\n");
+		{
+			cubed()->west = get_path(temp);
+			if (!cubed()->west)
+				return (file_err_msg('t', cubed()->fd));
+			printf("West: %s\n", cubed()->west);
+		}
 		else if (ft_strncmp(temp, "F", 1) == 0)
 		{
 			cubed()->flo = get_value(temp);
@@ -84,6 +104,7 @@ int	*get_value(char *str)
 		}
 		i++;
 	}
+	free_arr(aux);
 	return (res);
 }
 
@@ -94,14 +115,25 @@ char	*get_path(char *str)
 	char	*res;
 
 	res = NULL;
-	i = ign_spaces(str, 0) + 1;
+	i = ign_spaces(str, 0) + 2;
+	if (str && str[i] && (str[i] != ' ' && str[i] != '\t'))
+		return 0;
 	i = ign_spaces(str, i);
-
+	len = path_len(str + i);
+	if (len == -1)
+		return (0);
+	//res = malloc(sizeof(char) * (len + 1));
+	res = ft_substr(str, i, len);
+	if (!res)
+		return (0);
+	res[len + 1] = '\0';
+	return (res);
 }
 
 int	map_configure(char *file)
 {
-
+	(void)file;
+	return (0);
 }
 
 int	map_par(char *file)

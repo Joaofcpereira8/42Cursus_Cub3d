@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 18:31:28 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/05/22 15:45:00 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/05/22 18:27:46 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,14 +49,17 @@ void		cub_init(void);
 
 // ------- PARSER -------
 int			map_par(char *file);
-int			map_settings(char *file);
+char		*get_path(char *str);
 int			*get_value(char *str);
+int			map_settings(char *file);
 
 // ------- UTILS -------
+int			path_len(char *str);
 int			ign_spaces(char *str, int i);
 int			ign_map_spaces(char *str, int i);
 int			check_overflow(char *str, int target);
 
 // ------- FREES -------
 void		free_arr(char **arr);
+
 #endif

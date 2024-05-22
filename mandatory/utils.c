@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 14:29:44 by bbento-e          #+#    #+#             */
-/*   Updated: 2024/05/22 17:33:42 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/05/22 18:36:07 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,20 @@ int check_overflow(char *str, int target)
 	}
 	if (n_quo != 2)
 		return (-1);
+	return (i);
+}
+
+int	path_len(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str && str[i])
+	{
+		if (str[i] == ' ' || str[i] == '\t')
+			return (-1);
+		i++;
+	}
 	return (i);
 }
 
