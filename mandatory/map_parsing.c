@@ -32,7 +32,7 @@ int	map_settings(char *file)
 			printf("encontROU!\n");
 		else if (ft_strncmp(temp, "F", 1) == 0)
 		{
-			cubed()->flo =  get_value(temp);
+			cubed()->flo = get_value(temp);
 			if (!cubed()->flo)
 				return (file_err_msg('c', cubed()->fd));
 			printf("Floor: ");
@@ -42,7 +42,7 @@ int	map_settings(char *file)
 		}
 		else if (ft_strncmp(temp, "C", 1) == 0)
 		{
-			cubed()->cei =  get_value(temp);
+			cubed()->cei = get_value(temp);
 			if (!cubed()->cei)
 				return (file_err_msg('c', cubed()->fd));
 			printf("Ceiling: ");
@@ -71,7 +71,6 @@ int	*get_value(char *str)
 		free(res);
 		return 0;
 	}
-
 	aux = ft_split(ft_strtrim(str + i, "\n"), ',');
 	i = 0;
 	while (aux && aux[i])
@@ -94,12 +93,22 @@ char	*get_path(char *str)
 	int		len;
 	char	*res;
 
-	len = ft_strlen(str);
+	res = NULL;
+	i = ign_spaces(str, 0) + 1;
+	i = ign_spaces(str, i);
+
+}
+
+int	map_configure(char *file)
+{
+
 }
 
 int	map_par(char *file)
 {
 	if (map_settings(file) == -1)
+		return (-1);
+	if (map_configure(file) == -1)
 		return (-1);
 	return (0);
 }
