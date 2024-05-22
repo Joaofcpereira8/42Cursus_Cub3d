@@ -26,6 +26,10 @@ typedef struct s_cubed
 	int		fd;
 	void	*mlx_ptr;
 	void	*win_ptr;
+	char	*NO;
+	char	*SO;
+	char	*EA;
+	char	*WE;
 }			t_cubed;
 
 //VARIABLE_STRUCT
@@ -43,6 +47,6 @@ void		cub_init(void);
 
 //PARSER
 int			map_par(char *file);
-int			map_coord(char *file);
+int			map_settings(char *file);
 
 #endif
