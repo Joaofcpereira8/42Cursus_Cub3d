@@ -19,6 +19,13 @@ int	ign_spaces(char *str, int i)
 	return (i);
 }
 
+int	ign_map_spaces(char *str, int i)
+{
+	while (str[i] && str[i] == ' ')
+		i++;
+	return (i);
+}
+
 int check_overflow(char *str, int target)
 {
 	int i;

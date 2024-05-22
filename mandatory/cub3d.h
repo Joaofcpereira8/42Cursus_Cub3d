@@ -30,8 +30,8 @@ typedef struct s_cubed
 	char	*south;
 	char	*east;
 	char	*west;
-	int 	*floor;
-	int 	*ceiling;
+	int 	*flo;
+	int 	*cei;
 }			t_cubed;
 
 // ------- VARIABLE_STRUCT -------
@@ -54,6 +54,7 @@ int			*get_value(char *str);
 
 // ------- UTILS -------
 int			ign_spaces(char *str, int i);
+int			ign_map_spaces(char *str, int i);
 int			check_overflow(char *str, int target);
 
 // ------- FREES -------
