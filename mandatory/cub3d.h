@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 18:31:28 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/05/22 18:27:46 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/05/22 19:01:23 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,10 @@ typedef struct s_cubed
 
 // ------- VARIABLE_STRUCT -------
 t_cubed		*cubed(void);
+
+// ------- START GAME -------
+int	start();
+int	draw_textures();
 
 // ------- MAP_VERIFICATION -------
 int			map_verif(char *file);

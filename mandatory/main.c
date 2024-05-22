@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 18:31:13 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/05/21 13:58:19 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/05/22 19:00:47 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	main(int argc, char **argv)
 			return (-1);
 		if (map_par(argv[1]) == -1)
 			return (-1);
+		start();
 	}
 	else
 		args_error(-1);
