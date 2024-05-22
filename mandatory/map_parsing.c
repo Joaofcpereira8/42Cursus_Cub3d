@@ -14,10 +14,8 @@
 
 int	map_settings(char *file)
 {
-	int	i;
 	char	*temp;
 
-	i = 0;
 	cubed()->fd = open(file, O_RDONLY);
 	while (cubed()->fd)
 	{
@@ -34,23 +32,23 @@ int	map_settings(char *file)
 			printf("encontROU!\n");
 		else if (ft_strncmp(temp, "F", 1) == 0)
 		{
-			cubed()->F =  get_value(temp);
-			if (!cubed()->F)
+			cubed()->floor =  get_value(temp);
+			if (!cubed()->floor)
 				return (file_err_msg('c', cubed()->fd));
 			printf("Floor: ");
-			printf("%i ", cubed()->F[0]);
-			printf("%i ", cubed()->F[1]);
-			printf("%i\n", cubed()->F[2]);
+			printf("%i ", cubed()->floor[0]);
+			printf("%i ", cubed()->floor[1]);
+			printf("%i\n", cubed()->floor[2]);
 		}
 		else if (ft_strncmp(temp, "C", 1) == 0)
 		{
-			cubed()->C =  get_value(temp);
-			if (!cubed()->C)
+			cubed()->ceiling =  get_value(temp);
+			if (!cubed()->ceiling)
 				return (file_err_msg('c', cubed()->fd));
 			printf("Ceiling: ");
-			printf("%i ", cubed()->C[0]);
-			printf("%i ", cubed()->C[1]);
-			printf("%i\n", cubed()->C[2]);
+			printf("%i ", cubed()->ceiling[0]);
+			printf("%i ", cubed()->ceiling[1]);
+			printf("%i\n", cubed()->ceiling[2]);
 		}
 		free(temp);
 	}
@@ -90,17 +88,18 @@ int	*get_value(char *str)
 	return (res);
 }
 
-//char	*get_path(char *str)
-//{
-//	int		i;
-//	int		len;
-//	char	*res;
-//
-//	len = ft_strlen(str);
-//}
+char	*get_path(char *str)
+{
+	int		i;
+	int		len;
+	char	*res;
+
+	len = ft_strlen(str);
+}
 
 int	map_par(char *file)
 {
-	map_settings(file);
+	if (map_settings(file) == -1)
+		return (-1);
 	return (0);
 }

@@ -26,12 +26,12 @@ typedef struct s_cubed
 	int		fd;
 	void	*mlx_ptr;
 	void	*win_ptr;
-	char	*NO;
-	char	*SO;
-	char	*EA;
-	char	*WE;
-	int 	*F;
-	int 	*C;
+	char	*north;
+	char	*south;
+	char	*east;
+	char	*west;
+	int 	*floor;
+	int 	*ceiling;
 }			t_cubed;
 
 // ------- VARIABLE_STRUCT -------
