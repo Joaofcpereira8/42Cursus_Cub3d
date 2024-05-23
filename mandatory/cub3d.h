@@ -24,12 +24,14 @@ typedef struct s_cubed
 	int		x;
 	int		y;
 	int		fd;
+	int		temp_fd;
 	void	*mlx_ptr;
 	void	*win_ptr;
 	char	*north;
 	char	*south;
 	char	*east;
 	char	*west;
+	char	**map;
 	int 	*flo;
 	int 	*cei;
 }			t_cubed;
@@ -65,5 +67,6 @@ int			check_overflow(char *str, int target);
 
 // ------- FREES -------
 void		free_arr(char **arr);
+void		free_struct(void);
 
 #endif

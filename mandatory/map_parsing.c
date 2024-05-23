@@ -17,9 +17,8 @@ int	map_settings(char *file)
 	char	*temp;
 
 	cubed()->fd = open(file, O_RDONLY);
-	while (cubed()->fd)
+	while ((temp = get_next_line(cubed()->fd)) != NULL)
 	{
-		temp = get_next_line(cubed()->fd);
 		if (!temp)
 			break ;
 		else if (ft_strncmp(temp, "NO", 2) == 0)
@@ -80,6 +79,7 @@ int	*get_value(char *str)
 {
 	int		i;
 	int		*res;
+	char	*temp;
 	char	**aux;
 
 	aux = NULL;
@@ -88,7 +88,8 @@ int	*get_value(char *str)
 	if (check_overflow(str + i, 11) == -1)
 		return 0;
 	res = malloc(sizeof(int) * 3);
-	aux = ft_split(ft_strtrim(str + i, "\n"), ',');
+	temp = ft_strtrim(str + i, "\n");
+	aux = ft_split(temp, ',');
 	i = 0;
 	while (aux && aux[i])
 	{
@@ -96,11 +97,13 @@ int	*get_value(char *str)
 		if (i > 2 || res[i] > 255 || res[i] < 0)
 		{
 			free(res);
+			free(temp);
 			free_arr(aux);
-			return 0;
+			return (NULL);
 		}
 		i++;
 	}
+	free(temp);
 	free_arr(aux);
 	return (res);
 }
@@ -112,32 +115,99 @@ char	*get_path(char *str)
 	char	*res;
 
 	res = NULL;
-	i = ign_spaces(str, 0) + 2;
+	if (!str)
+		return (NULL);
+	i = (ign_spaces(str, 0)) + 2;
 	if (str && str[i] && (str[i] != ' ' && str[i] != '\t'))
-		return 0;
+		return (0);
 	i = ign_spaces(str, i);
 	len = path_len(str + i);
 	if (len == -1)
 		return (0);
 	//res = malloc(sizeof(char) * (len + 1));
-	res = ft_substr(str, i, len);
+	res = ft_substr(str, i, len + 1);
 	if (!res)
-		return (0);
-	res[len + 1] = '\0';
+		return (NULL);
 	return (res);
 }
 
-int	map_configure(char *file)
+int	count_map_lines(char *file)
 {
-	(void)file;
+	int		count;
+	char	*line;
+	char	*trimmed;
+
+	count = 0;
+	cubed()->temp_fd = open(file, O_RDONLY);
+	while ((line = get_next_line(cubed()->temp_fd)) != NULL)
+	{
+		trimmed = line;
+		while (*trimmed == ' ' || *trimmed == '\t')
+			trimmed++;
+		if (*trimmed == '1')
+			count++;
+		free(line);
+	}
+	close(cubed()->temp_fd);
+	return (count);
+}
+
+void	read_map_lines(int line_count)
+{
+	char	*line;
+	int		line_index;
+	char	*trimmed;
+
+	cubed()->map = malloc(sizeof(char *) * (line_count + 1));
+	if (!cubed()->map)
+		return ;
+	line_index = 0;
+	while ((line = get_next_line(cubed()->fd)) != NULL)
+	{
+		trimmed = line;
+		cubed()->map[line_index++] = ft_strdup(trimmed);
+		free(trimmed);
+	}
+	cubed()->map[line_index] = NULL;
+}
+
+int map_configure(char *file)
+{
+	char	*line;
+	char	*trimmed;
+	// Count map lines first to allocate memory
+	int map_lines = count_map_lines(file);
+	cubed()->fd = open(file, O_RDONLY);
+	while ((line = get_next_line(cubed()->fd)) != NULL)
+	{
+		trimmed = line;
+		while (*trimmed == ' ' || *trimmed == '\t')
+			trimmed++;
+		if (*trimmed == '1')
+		{
+			// Reached the start of the map, handle it
+			free(line); // Free the line that started the map section
+			break;
+		}
+		free(line);
+	}
+	// Read the map lines
+	read_map_lines(map_lines);
+	close(cubed()->fd);
 	return (0);
 }
 
 int	map_par(char *file)
 {
+	int i = 0;
 	if (map_settings(file) == -1)
 		return (-1);
-//	if (map_configure(file) == -1)
-//		return (-1);
+	map_configure(file);
+	if (cubed()->map == NULL)
+		return -1;
+	while (cubed()->map[i])
+	{
+		printf("%s", cubed()->map[i++]);
+	}
 	return (0);
 }

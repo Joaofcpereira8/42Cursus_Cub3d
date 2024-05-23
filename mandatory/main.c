@@ -21,7 +21,8 @@ int	main(int argc, char **argv)
 			return (-1);
 		if (map_par(argv[1]) == -1)
 			return (-1);
-		start();
+		//start();
+		free_struct();
 	}
 	else
 		args_error(-1);

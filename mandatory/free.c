@@ -17,10 +17,23 @@ void	free_arr(char **arr)
 	int i;
 
 	i = 0;
-	while (arr && arr[i])
+	if (!arr)
+		return ;
+	while (arr[i])
 	{
 		free(arr[i]);
 		i++;
 	}
-	arr = NULL;
+	free(arr);
+}
+
+void	free_struct(void)
+{
+	free(cubed()->north);
+	free(cubed()->south);
+	free(cubed()->east);
+	free(cubed()->west);
+	free(cubed()->cei);
+	free(cubed()->flo);
+	free_arr(cubed()->map);
 }

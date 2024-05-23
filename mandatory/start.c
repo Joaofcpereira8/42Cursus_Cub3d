@@ -19,27 +19,25 @@ int	start()
 
 int	draw_textures()
 {
-	int fd;
-
-	fd = open(cubed()->north, O_RDONLY);
-	if (fd < 0)
+	cubed()->fd = open(cubed()->north, O_RDONLY);
+	if (cubed()->fd < 0)
 		return (file_err_msg('T', 0));
 	else
-		close(fd);
-	fd = open(cubed()->south, O_RDONLY);
-	if (fd < 0)
+		close(cubed()->fd);
+	cubed()->fd = open(cubed()->south, O_RDONLY);
+	if (cubed()->fd < 0)
 		return (file_err_msg('T', 0));
 	else
-		close(fd);
-	fd = open(cubed()->east, O_RDONLY);
-	if (fd < 0)
+		close(cubed()->fd);
+	cubed()->fd = open(cubed()->east, O_RDONLY);
+	if (cubed()->fd < 0)
 		return (file_err_msg('T', 0));
 	else
-		close(fd);
-	fd = open(cubed()->west, O_RDONLY);
-	if (fd < 0)
+		close(cubed()->fd);
+	cubed()->fd = open(cubed()->west, O_RDONLY);
+	if (cubed()->fd < 0)
 		return (file_err_msg('T', 0));
 	else
-		close(fd);
+		close(cubed()->fd);
 	return (1);
 }
