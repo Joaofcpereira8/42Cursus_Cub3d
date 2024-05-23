@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 18:50:20 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/05/22 18:54:10 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/05/23 11:23:02 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ int	map_settings(char *file)
 			cubed()->east = get_path(temp);
 			if (!cubed()->east)
 				return (file_err_msg('t', cubed()->fd));
-			printf("East: %s\n", cubed()->east);
+			printf("East : %s\n", cubed()->east);
 		}
 		else if (ft_strncmp(temp, "WE", 2) == 0)
 		{
 			cubed()->west = get_path(temp);
 			if (!cubed()->west)
 				return (file_err_msg('t', cubed()->fd));
-			printf("West: %s\n", cubed()->west);
+			printf("West : %s\n", cubed()->west);
 		}
 		else if (ft_strncmp(temp, "F", 1) == 0)
 		{
@@ -83,14 +83,11 @@ int	*get_value(char *str)
 	char	**aux;
 
 	aux = NULL;
-	res = malloc(sizeof(int) * 3);
 	i = ign_spaces(str, 0) + 1;
 	i = ign_spaces(str, i);
 	if (check_overflow(str + i, 11) == -1)
-	{
-		free(res);
 		return 0;
-	}
+	res = malloc(sizeof(int) * 3);
 	aux = ft_split(ft_strtrim(str + i, "\n"), ',');
 	i = 0;
 	while (aux && aux[i])
@@ -140,7 +137,7 @@ int	map_par(char *file)
 {
 	if (map_settings(file) == -1)
 		return (-1);
-	if (map_configure(file) == -1)
-		return (-1);
+//	if (map_configure(file) == -1)
+//		return (-1);
 	return (0);
 }

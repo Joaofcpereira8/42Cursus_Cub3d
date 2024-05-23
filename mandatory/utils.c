@@ -62,7 +62,14 @@ int	path_len(char *str)
 	return (i);
 }
 
-int	create_trgb(int t, int r, int g, int b)
+int	create_trgb(int *rgb, int t)
 {
+	int	r;
+	int	g;
+	int	b;
+
+	r = rgb[0];
+	g = rgb[1];
+	b = rgb[2];
 	return (t << 24 | r << 16 | g << 8 | b);
 }
