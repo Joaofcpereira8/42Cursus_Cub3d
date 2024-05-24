@@ -41,6 +41,7 @@ MINILIBX = ./minilibx-linux/libmlx.a
 SRCS =	mandatory/main.c \
 		mandatory/errors.c \
 		mandatory/map_verification.c \
+		mandatory/file_verification.c \
 		mandatory/variable_struct.c \
 		mandatory/init.c \
 		mandatory/map_parsing.c \

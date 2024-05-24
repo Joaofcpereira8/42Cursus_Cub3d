@@ -21,7 +21,9 @@ int	map_settings(char *file)
 	{
 		if (!temp)
 			break ;
-		else if (ft_strncmp(temp, "NO", 2) == 0)
+		while (*temp == ' ')
+			temp++;
+		if (ft_strncmp(temp, "NO", 2) == 0)
 		{
 			cubed()->north = get_path(temp);
 			if (!cubed()->north)
@@ -69,8 +71,8 @@ int	map_settings(char *file)
 			printf("%i ", cubed()->cei[1]);
 			printf("%i\n", cubed()->cei[2]);
 		}
-		free(temp);
 	}
+	//free(temp);
 	close(cubed()->fd);
 	return (0);
 }
@@ -86,7 +88,7 @@ int	*get_value(char *str)
 	i = ign_spaces(str, 0) + 1;
 	i = ign_spaces(str, i);
 	if (check_overflow(str + i, 11) == -1)
-		return 0;
+		return (0);
 	res = malloc(sizeof(int) * 3);
 	temp = ft_strtrim(str + i, "\n");
 	aux = ft_split(temp, ',');
@@ -124,7 +126,6 @@ char	*get_path(char *str)
 	len = path_len(str + i);
 	if (len == -1)
 		return (0);
-	//res = malloc(sizeof(char) * (len + 1));
 	res = ft_substr(str, i, len + 1);
 	if (!res)
 		return (NULL);
@@ -152,7 +153,7 @@ int	count_map_lines(char *file)
 	return (count);
 }
 
-void	read_map_lines(int line_count)
+void	read_map_lines(char *frst_line, int line_count)
 {
 	char	*line;
 	int		line_index;
@@ -162,21 +163,28 @@ void	read_map_lines(int line_count)
 	if (!cubed()->map)
 		return ;
 	line_index = 0;
+	cubed()->map[line_index++] = frst_line;
 	while ((line = get_next_line(cubed()->fd)) != NULL)
 	{
-		trimmed = line;
-		cubed()->map[line_index++] = ft_strdup(trimmed);
-		free(trimmed);
+		if (*line != '\n')
+		{
+			trimmed = line;
+			cubed()->map[line_index++] = ft_strdup(trimmed);
+			free(trimmed);
+		}
+		else
+			free(line);
 	}
 	cubed()->map[line_index] = NULL;
 }
 
-int map_configure(char *file)
+int	map_configure(char *file)
 {
 	char	*line;
 	char	*trimmed;
-	// Count map lines first to allocate memory
-	int map_lines = count_map_lines(file);
+	int		map_lines;
+
+	map_lines = count_map_lines(file);
 	cubed()->fd = open(file, O_RDONLY);
 	while ((line = get_next_line(cubed()->fd)) != NULL)
 	{
@@ -185,29 +193,20 @@ int map_configure(char *file)
 			trimmed++;
 		if (*trimmed == '1')
 		{
-			// Reached the start of the map, handle it
-			free(line); // Free the line that started the map section
+			read_map_lines(line, map_lines);
 			break;
 		}
 		free(line);
 	}
-	// Read the map lines
-	read_map_lines(map_lines);
 	close(cubed()->fd);
 	return (0);
 }
 
 int	map_par(char *file)
 {
-	int i = 0;
 	if (map_settings(file) == -1)
 		return (-1);
 	map_configure(file);
-	if (cubed()->map == NULL)
-		return -1;
-	while (cubed()->map[i])
-	{
-		printf("%s", cubed()->map[i++]);
-	}
+	map_verif();
 	return (0);
 }

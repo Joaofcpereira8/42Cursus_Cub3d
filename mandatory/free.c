@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 15:41:55 by bbento-e          #+#    #+#             */
-/*   Updated: 2024/05/22 15:54:45 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/05/23 18:59:43 by jofilipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,5 @@ void	free_struct(void)
 	free(cubed()->cei);
 	free(cubed()->flo);
 	free_arr(cubed()->map);
+	free_arr(cubed()->map_dup);
 }

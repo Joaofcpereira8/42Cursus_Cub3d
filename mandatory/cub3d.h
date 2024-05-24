@@ -32,6 +32,7 @@ typedef struct s_cubed
 	char	*east;
 	char	*west;
 	char	**map;
+	char	**map_dup;
 	int 	*flo;
 	int 	*cei;
 }			t_cubed;
@@ -43,8 +44,8 @@ t_cubed		*cubed(void);
 int	start();
 int	draw_textures();
 
-// ------- MAP_VERIFICATION -------
-int			map_verif(char *file);
+// ------- FILE_VERIFICATION -------
+int			file_verif(char *file);
 
 // ------- ERRORS -------
 int			file_err_msg(char c, int fd);
@@ -58,6 +59,13 @@ int			map_par(char *file);
 char		*get_path(char *str);
 int			*get_value(char *str);
 int			map_settings(char *file);
+int			count_map_lines(char *file);
+void		read_map_lines(char *frst_line, int line_count);
+int			map_configure(char *file);
+
+// ------- MAP_VERIFICATION -------
+void		map_verif(void);
+
 
 // ------- UTILS -------
 int			path_len(char *str);
