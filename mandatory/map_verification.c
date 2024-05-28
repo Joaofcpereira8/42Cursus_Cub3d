@@ -95,7 +95,7 @@ void	height_y(void)
 	cubed()->x = (int)ft_strlen(cubed()->map[i]);
 	if (cubed()->x == 0)
 	{
-		ft_putstr_fd("errrrrrrou", 2);
+		ft_putstr_fd("EEERRRRRRROU O Y", 2);
 		return ;
 	}
 	while (1)
