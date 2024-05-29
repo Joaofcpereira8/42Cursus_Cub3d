@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 18:50:20 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/05/23 11:23:02 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/05/29 15:44:19 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ int	map_settings(char *file)
 			temp++;
 		if (ft_strncmp(temp, "NO", 2) == 0)
 		{
+			if (cubed()->north)
+				return (file_err_msg('t', cubed()->fd));
 			cubed()->north = get_path(temp);
 			if (!cubed()->north)
 				return (file_err_msg('t', cubed()->fd));
@@ -32,6 +34,8 @@ int	map_settings(char *file)
 		}
 		else if (ft_strncmp(temp, "SO", 2) == 0)
 		{
+			if (cubed()->south)
+				return (file_err_msg('t', cubed()->fd));
 			cubed()->south = get_path(temp);
 			if (!cubed()->south)
 				return (file_err_msg('t', cubed()->fd));
@@ -39,6 +43,8 @@ int	map_settings(char *file)
 		}
 		else if (ft_strncmp(temp, "EA", 2) == 0)
 		{
+			if (cubed()->east)
+				return (file_err_msg('t', cubed()->fd));
 			cubed()->east = get_path(temp);
 			if (!cubed()->east)
 				return (file_err_msg('t', cubed()->fd));
@@ -46,6 +52,8 @@ int	map_settings(char *file)
 		}
 		else if (ft_strncmp(temp, "WE", 2) == 0)
 		{
+			if (cubed()->west)
+				return (file_err_msg('t', cubed()->fd));
 			cubed()->west = get_path(temp);
 			if (!cubed()->west)
 				return (file_err_msg('t', cubed()->fd));
@@ -53,6 +61,8 @@ int	map_settings(char *file)
 		}
 		else if (ft_strncmp(temp, "F", 1) == 0)
 		{
+			if (cubed()->flo)
+				return (file_err_msg('c', cubed()->fd));
 			cubed()->flo = get_value(temp);
 			if (!cubed()->flo)
 				return (file_err_msg('c', cubed()->fd));
@@ -63,6 +73,8 @@ int	map_settings(char *file)
 		}
 		else if (ft_strncmp(temp, "C", 1) == 0)
 		{
+			if (cubed()->cei)
+				return (file_err_msg('c', cubed()->fd));
 			cubed()->cei = get_value(temp);
 			if (!cubed()->cei)
 				return (file_err_msg('c', cubed()->fd));

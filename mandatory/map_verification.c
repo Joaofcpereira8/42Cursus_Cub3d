@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 15:15:54 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/05/24 15:15:54 by jofilipe         ###   ########.fr       */
+/*   Updated: 2024/05/29 15:03:27 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ void	height_y(void)
 
 void	map_verif(void)
 {
+
 	height_y();
 	width_x();
 }
