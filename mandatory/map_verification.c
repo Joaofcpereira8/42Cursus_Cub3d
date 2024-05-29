@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 15:15:54 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/05/29 15:03:27 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/05/29 17:54:54 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,18 +74,14 @@ int	width_x(void)
 		if (!cubed()->map_dup[y])
 			break ;
 		if (cubed()->x <= 0)
-		{
-			free_arr(cubed()->map_dup);
-			ft_putstr_fd("EEERRRRRRROU O X", 2);
 			return (-1);
-		}
 		y++;
 		i++;
 	}
 	return (0);
 }
 
-void	height_y(void)
+int	height_y(void)
 {
 	char	*line;
 	int		i;
@@ -94,10 +90,7 @@ void	height_y(void)
 	i = 0;
 	cubed()->x = (int)ft_strlen(cubed()->map[i]);
 	if (cubed()->x == 0)
-	{
-		ft_putstr_fd("EEERRRRRRROU O Y", 2);
-		return ;
-	}
+		return (-1);
 	while (1)
 	{
 		line = cubed()->map[i];
@@ -109,11 +102,73 @@ void	height_y(void)
 		cubed()->y++;
 		i++;
 	}
+	return (0);
 }
 
-void	map_verif(void)
+/*int	check_walls()
 {
+	int	i;
+	int	j;
 
-	height_y();
-	width_x();
+	i = 0;
+	while (i <= cubed()->line_no)
+	{
+		j = 0;
+		if (i == 0 || i == cubed()->line_no)
+		{
+			j = ign_map_spaces(cubed()->map_dup[i], j);
+			while (cubed()->map_dup[i][j])
+			{
+				if (cubed()->map_dup[i][j] != '1')
+				{
+
+				}
+			}
+		}
+		else
+		{
+
+		}
+		i++;
+	}
+}
+*/
+
+int plyr_check()
+{
+	return 0;
+}
+
+void	floodfill(int x, int y)
+{
+	if (cubed()->map_dup[y][x] == '1' || cubed()->map_dup[y][x] == 'X'
+		|| cubed()->map_dup[y][x] == ' ' || !cubed()->map_dup[y][x])
+		return ;
+	else
+	{
+		if (cubed()->map_dup[y][x] == 'N')
+			plyr_check();
+		cubed()->map_dup[y][x] = 'X';
+		floodfill((x + 1), y);
+		floodfill((x - 1), y);
+		floodfill(x, (y + 1));
+		floodfill(x, (y - 1));
+	}
+}
+
+int	map_verif(void)
+{
+	if (height_y() == -1)
+		return (args_error('y'));
+	if (width_x() == -1)
+		return (args_error('x'));
+/*	if (check_walls() == -1)
+		return (args_error('w'));*/
+	floodfill(5, 10);
+
+	printf("\n"); // DEBUG
+	int i = -1; // DEBUG
+	while (++i < cubed()->line_no) // DEBUG
+		printf("%s\n", cubed()->map_dup[i]); // DEBUG
+	return (0);
 }

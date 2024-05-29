@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 18:50:20 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/05/29 16:37:21 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/05/29 16:42:48 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,6 +163,7 @@ int	count_map_lines(char *file)
 		free(line);
 	}
 	close(cubed()->temp_fd);
+	cubed()->line_no = count;
 	return (count);
 }
 
