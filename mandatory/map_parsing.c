@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 18:50:20 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/05/29 15:44:19 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/05/29 16:37:21 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,9 @@ int	map_settings(char *file)
 	char	*temp;
 
 	cubed()->fd = open(file, O_RDONLY);
-	while ((temp = get_next_line(cubed()->fd)) != NULL)
+	temp = get_next_line(cubed()->fd);
+	while (temp != NULL && !check_attr('A'))
 	{
-		if (!temp)
-			break ;
-		while (*temp == ' ')
-			temp++;
 		if (ft_strncmp(temp, "NO", 2) == 0)
 		{
 			if (cubed()->north)
@@ -30,7 +27,7 @@ int	map_settings(char *file)
 			cubed()->north = get_path(temp);
 			if (!cubed()->north)
 				return (file_err_msg('t', cubed()->fd));
-			printf("North: %s\n", cubed()->north);
+			printf("North: %s\n", cubed()->north); // DEBUG
 		}
 		else if (ft_strncmp(temp, "SO", 2) == 0)
 		{
@@ -39,7 +36,7 @@ int	map_settings(char *file)
 			cubed()->south = get_path(temp);
 			if (!cubed()->south)
 				return (file_err_msg('t', cubed()->fd));
-			printf("South: %s\n", cubed()->south);
+			printf("South: %s\n", cubed()->south); // DEBUG
 		}
 		else if (ft_strncmp(temp, "EA", 2) == 0)
 		{
@@ -48,7 +45,7 @@ int	map_settings(char *file)
 			cubed()->east = get_path(temp);
 			if (!cubed()->east)
 				return (file_err_msg('t', cubed()->fd));
-			printf("East : %s\n", cubed()->east);
+			printf("East : %s\n", cubed()->east); // DEBUG
 		}
 		else if (ft_strncmp(temp, "WE", 2) == 0)
 		{
@@ -57,7 +54,7 @@ int	map_settings(char *file)
 			cubed()->west = get_path(temp);
 			if (!cubed()->west)
 				return (file_err_msg('t', cubed()->fd));
-			printf("West : %s\n", cubed()->west);
+			printf("West : %s\n", cubed()->west); // DEBUG
 		}
 		else if (ft_strncmp(temp, "F", 1) == 0)
 		{
@@ -66,10 +63,10 @@ int	map_settings(char *file)
 			cubed()->flo = get_value(temp);
 			if (!cubed()->flo)
 				return (file_err_msg('c', cubed()->fd));
-			printf("Floor: ");
-			printf("%i ", cubed()->flo[0]);
-			printf("%i ", cubed()->flo[1]);
-			printf("%i\n", cubed()->flo[2]);
+			printf("Floor: "); // DEBUG
+			printf("%i ", cubed()->flo[0]); // DEBUG
+			printf("%i ", cubed()->flo[1]); // DEBUG
+			printf("%i\n", cubed()->flo[2]); // DEBUG
 		}
 		else if (ft_strncmp(temp, "C", 1) == 0)
 		{
@@ -78,11 +75,15 @@ int	map_settings(char *file)
 			cubed()->cei = get_value(temp);
 			if (!cubed()->cei)
 				return (file_err_msg('c', cubed()->fd));
-			printf("Ceiling: ");
-			printf("%i ", cubed()->cei[0]);
-			printf("%i ", cubed()->cei[1]);
-			printf("%i\n", cubed()->cei[2]);
+			printf("Ceiling: "); // DEBUG
+			printf("%i ", cubed()->cei[0]); // DEBUG
+			printf("%i ", cubed()->cei[1]); // DEBUG
+			printf("%i\n", cubed()->cei[2]); // DEBUG
 		}
+		else
+			if (ign_spaces(temp, 0) <= 0)
+				return (file_err_msg('A', cubed()->fd));
+		temp = get_next_line(cubed()->fd);
 	}
 	//free(temp);
 	close(cubed()->fd);
@@ -176,11 +177,13 @@ void	read_map_lines(char *frst_line, int line_count)
 		return ;
 	line_index = 0;
 	cubed()->map[line_index++] = frst_line;
+	printf("\n\n%s", frst_line); // DEBUG
 	while ((line = get_next_line(cubed()->fd)) != NULL)
 	{
 		if (*line != '\n')
 		{
 			trimmed = line;
+			printf("%s", trimmed); // DEBUG
 			cubed()->map[line_index++] = ft_strdup(trimmed);
 			free(trimmed);
 		}

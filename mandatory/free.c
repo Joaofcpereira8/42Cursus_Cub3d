@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 15:41:55 by bbento-e          #+#    #+#             */
-/*   Updated: 2024/05/23 18:59:43 by jofilipe         ###   ########.fr       */
+/*   Updated: 2024/05/29 15:53:12 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,18 @@ void	free_arr(char **arr)
 
 void	free_struct(void)
 {
-	free(cubed()->north);
-	free(cubed()->south);
-	free(cubed()->east);
-	free(cubed()->west);
-	free(cubed()->cei);
-	free(cubed()->flo);
+	if (cubed()->north)
+		free(cubed()->north);
+	if (cubed()->south)
+		free(cubed()->south);
+	if (cubed()->east)
+		free(cubed()->east);
+	if (cubed()->west)
+		free(cubed()->west);
+	if (cubed()->cei)
+		free(cubed()->cei);
+	if (cubed()->flo)
+		free(cubed()->flo);
 	free_arr(cubed()->map);
 	free_arr(cubed()->map_dup);
 }

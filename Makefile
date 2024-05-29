@@ -48,6 +48,7 @@ SRCS =	mandatory/main.c \
 		mandatory/utils.c \
 		mandatory/free.c \
 		mandatory/start.c \
+		mandatory/prog_info.c \
 
 OBJS = $(SRCS:%.c=%.o)
 

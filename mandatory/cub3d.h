@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 18:31:28 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/05/22 19:01:23 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/05/29 16:29:02 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <fcntl.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
+# include <stdbool.h>
 
 typedef struct s_cubed
 {
@@ -66,6 +67,8 @@ int			map_configure(char *file);
 // ------- MAP_VERIFICATION -------
 void		map_verif(void);
 
+// ------- PROGRAM INFO -------
+bool		check_attr(char c);
 
 // ------- UTILS -------
 int			path_len(char *str);
