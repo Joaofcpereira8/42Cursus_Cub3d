@@ -20,8 +20,12 @@ int	main(int argc, char **argv)
 		if (file_verif(argv[1]) == -1)
 			return (-1);
 		if (map_par(argv[1]) == -1)
+		{
+			free_struct();
 			return (-1);
-		//start();
+		}
+		/*if (start() == -1)
+			return (-1);*/
 		free_struct();
 	}
 	else

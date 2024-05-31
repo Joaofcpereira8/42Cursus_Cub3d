@@ -17,8 +17,7 @@ int	map_settings(char *file)
 	char	*temp;
 
 	cubed()->fd = open(file, O_RDONLY);
-	temp = get_next_line(cubed()->fd);
-	while (temp != NULL && !check_attr('A'))
+	while (((temp = get_next_line(cubed()->fd)) != NULL) && !check_attr('A'))
 	{
 		if (ft_strncmp(temp, "NO", 2) == 0)
 		{
@@ -26,7 +25,10 @@ int	map_settings(char *file)
 				return (file_err_msg('t', cubed()->fd));
 			cubed()->north = get_path(temp);
 			if (!cubed()->north)
+			{
+				free(temp);
 				return (file_err_msg('t', cubed()->fd));
+			}
 			printf("North: %s\n", cubed()->north); // DEBUG
 		}
 		else if (ft_strncmp(temp, "SO", 2) == 0)
@@ -35,7 +37,10 @@ int	map_settings(char *file)
 				return (file_err_msg('t', cubed()->fd));
 			cubed()->south = get_path(temp);
 			if (!cubed()->south)
+			{
+				free(temp);
 				return (file_err_msg('t', cubed()->fd));
+			}
 			printf("South: %s\n", cubed()->south); // DEBUG
 		}
 		else if (ft_strncmp(temp, "EA", 2) == 0)
@@ -44,7 +49,10 @@ int	map_settings(char *file)
 				return (file_err_msg('t', cubed()->fd));
 			cubed()->east = get_path(temp);
 			if (!cubed()->east)
+			{
+				free(temp);
 				return (file_err_msg('t', cubed()->fd));
+			}
 			printf("East : %s\n", cubed()->east); // DEBUG
 		}
 		else if (ft_strncmp(temp, "WE", 2) == 0)
@@ -53,7 +61,10 @@ int	map_settings(char *file)
 				return (file_err_msg('t', cubed()->fd));
 			cubed()->west = get_path(temp);
 			if (!cubed()->west)
+			{
+				free(temp);
 				return (file_err_msg('t', cubed()->fd));
+			}
 			printf("West : %s\n", cubed()->west); // DEBUG
 		}
 		else if (ft_strncmp(temp, "F", 1) == 0)
@@ -62,7 +73,10 @@ int	map_settings(char *file)
 				return (file_err_msg('c', cubed()->fd));
 			cubed()->flo = get_value(temp);
 			if (!cubed()->flo)
+			{
+				free(temp);
 				return (file_err_msg('c', cubed()->fd));
+			}
 			printf("Floor: "); // DEBUG
 			printf("%i ", cubed()->flo[0]); // DEBUG
 			printf("%i ", cubed()->flo[1]); // DEBUG
@@ -74,7 +88,10 @@ int	map_settings(char *file)
 				return (file_err_msg('c', cubed()->fd));
 			cubed()->cei = get_value(temp);
 			if (!cubed()->cei)
+			{
+				free(temp);
 				return (file_err_msg('c', cubed()->fd));
+			}
 			printf("Ceiling: "); // DEBUG
 			printf("%i ", cubed()->cei[0]); // DEBUG
 			printf("%i ", cubed()->cei[1]); // DEBUG
@@ -83,9 +100,9 @@ int	map_settings(char *file)
 		else
 			if (ign_spaces(temp, 0) <= 0)
 				return (file_err_msg('A', cubed()->fd));
-		temp = get_next_line(cubed()->fd);
+		free(temp);
 	}
-	//free(temp);
+	free(temp);
 	close(cubed()->fd);
 	return (0);
 }
@@ -109,6 +126,8 @@ int	*get_value(char *str)
 	while (aux && aux[i])
 	{
 		res[i] = ft_atoi(aux[i]);
+		while (res[i] == ' ')
+			i++;
 		if (i > 2 || res[i] > 255 || res[i] < 0)
 		{
 			free(res);
@@ -133,7 +152,7 @@ char	*get_path(char *str)
 	if (!str)
 		return (NULL);
 	i = (ign_spaces(str, 0)) + 2;
-	if (str && str[i] && (str[i] != ' ' && str[i] != '\t'))
+	if (str[i] && (str[i] != ' ' && str[i] != '\t'))
 		return (0);
 	i = ign_spaces(str, i);
 	len = path_len(str + i);

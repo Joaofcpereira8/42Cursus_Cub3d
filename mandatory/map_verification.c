@@ -12,52 +12,6 @@
 
 #include "cub3d.h"
 
-//void	floodfill(void)
-//{
-//	if (map_dup[y][x] == '1' || map_dup[y][x] == 'X'
-//		|| !map_dup[y][x])
-//		return ;
-//	else
-//	{
-//		if (map_dup[y][x] == 'E' && info->cltb_ch == info->cltb_av)
-//			exit_checker(info, x, y);
-//		map_dup[y][x] = 'X';
-//		floodfill(map_dup, info, (x + 1), y);
-//		floodfill(map_dup, info, (x - 1), y);
-//		floodfill(map_dup, info, x, (y + 1));
-//		floodfill(map_dup, info, x, (y - 1));
-//	}
-//}
-//
-//int	checker(void)
-//{
-//	int	x;
-//	int	y;
-//
-//	y = 0;
-//	while (y <= data->y)
-//	{
-//		x = 0;
-//		while (x < data->x)
-//		{
-//			if ((y == 0 || y == data->y) || (x == 0 || x == data->x - 1))
-//				wall_checker(info, data, x, y);
-//			else if (data->map_dup[y][x] == 'C')
-//				info->cltb_av++;
-//			else if (data->map_dup[y][x] == 'E')
-//				info->ext_av++;
-//			else if (data->map_dup[y][x] == 'P')
-//				player_checker(info, data, x, y);
-//			else
-//				char_checker(info, data->map_dup[y][x]);
-//			x++;
-//		}
-//		y++;
-//	}
-//	data->to_collect = info->cltb_av;
-//	return (error_print(info, data));
-//}
-
 int	width_x(void)
 {
 	char	*temp;
@@ -105,35 +59,6 @@ int	height_y(void)
 	return (0);
 }
 
-/*int	check_walls()
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i <= cubed()->line_no)
-	{
-		j = 0;
-		if (i == 0 || i == cubed()->line_no)
-		{
-			j = ign_map_spaces(cubed()->map_dup[i], j);
-			while (cubed()->map_dup[i][j])
-			{
-				if (cubed()->map_dup[i][j] != '1')
-				{
-
-				}
-			}
-		}
-		else
-		{
-
-		}
-		i++;
-	}
-}
-*/
-
 void	floodfill(int x, int y)
 {
 	if (cubed()->map_dup[y][x] == '1' || cubed()->map_dup[y][x] == 'X'
@@ -171,15 +96,12 @@ void	wall_check()
 	}
 }
 
-
 int	map_verif(void)
 {
 	if (height_y() == -1)
 		return (args_error('y'));
 	if (width_x() == -1)
 		return (args_error('x'));
-/*	if (check_walls() == -1)
-		return (args_error('w'));*/
 	wall_check();
 
 	printf("\n"); // DEBUG
