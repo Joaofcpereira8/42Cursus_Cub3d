@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 15:15:54 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/05/29 17:54:54 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/05/31 14:26:52 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,20 +134,15 @@ int	height_y(void)
 }
 */
 
-int plyr_check()
-{
-	return 0;
-}
-
 void	floodfill(int x, int y)
 {
 	if (cubed()->map_dup[y][x] == '1' || cubed()->map_dup[y][x] == 'X'
-		|| cubed()->map_dup[y][x] == ' ' || !cubed()->map_dup[y][x])
+		|| !cubed()->map_dup[y][x])
 		return ;
+	else if (cubed()->map_dup[y][x] == ' ')
+		file_err_msg('d', 0);
 	else
 	{
-		if (cubed()->map_dup[y][x] == 'N')
-			plyr_check();
 		cubed()->map_dup[y][x] = 'X';
 		floodfill((x + 1), y);
 		floodfill((x - 1), y);
@@ -155,6 +150,27 @@ void	floodfill(int x, int y)
 		floodfill(x, (y - 1));
 	}
 }
+
+void	wall_check()
+{
+	int	y;
+	int	x;
+
+	y = 0;
+	while (cubed()->map_dup[y])
+	{
+		x = 0;
+		while (cubed()->map_dup[y][x])
+		{
+			if (cubed()->map_dup[y][x] == '0' || cubed()->map_dup[y][x] == 'N' || cubed()->map_dup[y][x] == 'S'
+				 || cubed()->map_dup[y][x] == 'E'|| cubed()->map_dup[y][x] == 'W')
+				floodfill(x, y);
+			x++;
+		}
+		y++;
+	}
+}
+
 
 int	map_verif(void)
 {
@@ -164,7 +180,7 @@ int	map_verif(void)
 		return (args_error('x'));
 /*	if (check_walls() == -1)
 		return (args_error('w'));*/
-	floodfill(5, 10);
+	wall_check();
 
 	printf("\n"); // DEBUG
 	int i = -1; // DEBUG
