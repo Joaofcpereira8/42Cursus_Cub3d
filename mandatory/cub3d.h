@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 18:31:28 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/05/29 16:45:18 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/05/31 16:52:45 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_cubed
 	int		y;
 	int		fd;
 	int		temp_fd;
+	int		flagfill;
 	void	*mlx_ptr;
 	void	*win_ptr;
 	char	*north;
@@ -70,6 +71,7 @@ int			map_verif(void);
 
 // ------- PROGRAM INFO -------
 bool		check_attr(char c);
+void		flag_change();
 
 // ------- UTILS -------
 int			path_len(char *str);

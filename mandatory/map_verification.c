@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 15:15:54 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/05/31 14:26:52 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/05/31 16:57:07 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,11 +61,11 @@ int	height_y(void)
 
 void	floodfill(int x, int y)
 {
-	if (cubed()->map_dup[y][x] == '1' || cubed()->map_dup[y][x] == 'X'
-		|| !cubed()->map_dup[y][x])
+	if (!cubed()->map_dup[y][x] || cubed()->map_dup[y][x] == '1'
+		|| cubed()->map_dup[y][x] == 'X')
 		return ;
 	else if (cubed()->map_dup[y][x] == ' ')
-		file_err_msg('d', 0);
+		return flag_change();
 	else
 	{
 		cubed()->map_dup[y][x] = 'X';
@@ -76,7 +76,7 @@ void	floodfill(int x, int y)
 	}
 }
 
-void	wall_check()
+int	wall_check()
 {
 	int	y;
 	int	x;
@@ -94,15 +94,17 @@ void	wall_check()
 		}
 		y++;
 	}
+	return cubed()->flagfill;
 }
 
 int	map_verif(void)
 {
 	if (height_y() == -1)
-		return (args_error('y'));
+		return (file_err_msg('y', 0));
 	if (width_x() == -1)
-		return (args_error('x'));
-	wall_check();
+		return (file_err_msg('x', 0));
+	if (wall_check() == -1)
+		return (file_err_msg('d', 0));
 
 	printf("\n"); // DEBUG
 	int i = -1; // DEBUG

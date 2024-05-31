@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 16:20:09 by bbento-e          #+#    #+#             */
-/*   Updated: 2024/05/29 16:28:11 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/05/31 16:54:45 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,9 @@ bool check_attr(char c)
 			|| !cubed()->west || !cubed()->flo || !cubed()->cei))
 		return (false);
 	return (true);
+}
+
+void flag_change()
+{
+	cubed()->flagfill = -1;
 }
