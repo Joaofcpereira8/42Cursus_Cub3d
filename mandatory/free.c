@@ -29,18 +29,18 @@ void	free_arr(char **arr)
 
 void	free_struct(void)
 {
-	if (cubed()->north)
-		free(cubed()->north);
-	if (cubed()->south)
-		free(cubed()->south);
-	if (cubed()->east)
-		free(cubed()->east);
-	if (cubed()->west)
-		free(cubed()->west);
-	if (cubed()->cei)
-		free(cubed()->cei);
-	if (cubed()->flo)
-		free(cubed()->flo);
-	free_arr(cubed()->map);
-	free_arr(cubed()->map_dup);
+	if (cub()->north)
+		free(cub()->north);
+	if (cub()->south)
+		free(cub()->south);
+	if (cub()->east)
+		free(cub()->east);
+	if (cub()->west)
+		free(cub()->west);
+	if (cub()->cei)
+		free(cub()->cei);
+	if (cub()->flo)
+		free(cub()->flo);
+	free_arr(cub()->map);
+	free_arr(cub()->map_dup);
 }

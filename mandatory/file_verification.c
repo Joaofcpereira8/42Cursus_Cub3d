@@ -16,15 +16,15 @@ int	file_verif(char *file)
 {
 	int	i;
 
-	cubed()->fd = open(file, O_RDONLY);
+	cub()->fd = open(file, O_RDONLY);
 	i = ft_strlen(file) - 1;
 	while (file[i] != '.')
 		i--;
 	if (ft_strncmp(file + i, ".cub", 5) != 0)
-		return (file_err_msg('a', cubed()->fd));
-	if (cubed()->fd < 0)
-		return (file_err_msg('b', cubed()->fd));
-	close(cubed()->fd);
+		return (file_err_msg('a', cub()->fd));
+	if (cub()->fd < 0)
+		return (file_err_msg('b', cub()->fd));
+	close(cub()->fd);
 	return (0);
 }
 

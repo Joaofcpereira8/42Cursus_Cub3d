@@ -16,94 +16,94 @@ int	map_settings(char *file)
 {
 	char	*temp;
 
-	cubed()->fd = open(file, O_RDONLY);
-	while (((temp = get_next_line(cubed()->fd)) != NULL) && !check_attr('A'))
+	cub()->fd = open(file, O_RDONLY);
+	while (((temp = get_next_line(cub()->fd)) != NULL) && !check_attr('A'))
 	{
 		if (ft_strncmp(temp, "NO", 2) == 0)
 		{
-			if (cubed()->north)
-				return (file_err_msg('t', cubed()->fd));
-			cubed()->north = get_path(temp);
-			if (!cubed()->north)
+			if (cub()->north)
+				return (file_err_msg('t', cub()->fd));
+			cub()->north = get_path(temp);
+			if (!cub()->north)
 			{
 				free(temp);
-				return (file_err_msg('t', cubed()->fd));
+				return (file_err_msg('t', cub()->fd));
 			}
-			printf("North: %s\n", cubed()->north); // DEBUG
+			printf("North: %s\n", cub()->north); // DEBUG
 		}
 		else if (ft_strncmp(temp, "SO", 2) == 0)
 		{
-			if (cubed()->south)
-				return (file_err_msg('t', cubed()->fd));
-			cubed()->south = get_path(temp);
-			if (!cubed()->south)
+			if (cub()->south)
+				return (file_err_msg('t', cub()->fd));
+			cub()->south = get_path(temp);
+			if (!cub()->south)
 			{
 				free(temp);
-				return (file_err_msg('t', cubed()->fd));
+				return (file_err_msg('t', cub()->fd));
 			}
-			printf("South: %s\n", cubed()->south); // DEBUG
+			printf("South: %s\n", cub()->south); // DEBUG
 		}
 		else if (ft_strncmp(temp, "EA", 2) == 0)
 		{
-			if (cubed()->east)
-				return (file_err_msg('t', cubed()->fd));
-			cubed()->east = get_path(temp);
-			if (!cubed()->east)
+			if (cub()->east)
+				return (file_err_msg('t', cub()->fd));
+			cub()->east = get_path(temp);
+			if (!cub()->east)
 			{
 				free(temp);
-				return (file_err_msg('t', cubed()->fd));
+				return (file_err_msg('t', cub()->fd));
 			}
-			printf("East : %s\n", cubed()->east); // DEBUG
+			printf("East : %s\n", cub()->east); // DEBUG
 		}
 		else if (ft_strncmp(temp, "WE", 2) == 0)
 		{
-			if (cubed()->west)
-				return (file_err_msg('t', cubed()->fd));
-			cubed()->west = get_path(temp);
-			if (!cubed()->west)
+			if (cub()->west)
+				return (file_err_msg('t', cub()->fd));
+			cub()->west = get_path(temp);
+			if (!cub()->west)
 			{
 				free(temp);
-				return (file_err_msg('t', cubed()->fd));
+				return (file_err_msg('t', cub()->fd));
 			}
-			printf("West : %s\n", cubed()->west); // DEBUG
+			printf("West : %s\n", cub()->west); // DEBUG
 		}
 		else if (ft_strncmp(temp, "F", 1) == 0)
 		{
-			if (cubed()->flo)
-				return (file_err_msg('c', cubed()->fd));
-			cubed()->flo = get_value(temp);
-			if (!cubed()->flo)
+			if (cub()->flo)
+				return (file_err_msg('c', cub()->fd));
+			cub()->flo = get_value(temp);
+			if (!cub()->flo)
 			{
 				free(temp);
-				return (file_err_msg('c', cubed()->fd));
+				return (file_err_msg('c', cub()->fd));
 			}
 			printf("Floor: "); // DEBUG
-			printf("%i ", cubed()->flo[0]); // DEBUG
-			printf("%i ", cubed()->flo[1]); // DEBUG
-			printf("%i\n", cubed()->flo[2]); // DEBUG
+			printf("%i ", cub()->flo[0]); // DEBUG
+			printf("%i ", cub()->flo[1]); // DEBUG
+			printf("%i\n", cub()->flo[2]); // DEBUG
 		}
 		else if (ft_strncmp(temp, "C", 1) == 0)
 		{
-			if (cubed()->cei)
-				return (file_err_msg('c', cubed()->fd));
-			cubed()->cei = get_value(temp);
-			if (!cubed()->cei)
+			if (cub()->cei)
+				return (file_err_msg('c', cub()->fd));
+			cub()->cei = get_value(temp);
+			if (!cub()->cei)
 			{
 				free(temp);
-				return (file_err_msg('c', cubed()->fd));
+				return (file_err_msg('c', cub()->fd));
 			}
 			printf("Ceiling: "); // DEBUG
-			printf("%i ", cubed()->cei[0]); // DEBUG
-			printf("%i ", cubed()->cei[1]); // DEBUG
-			printf("%i\n", cubed()->cei[2]); // DEBUG
+			printf("%i ", cub()->cei[0]); // DEBUG
+			printf("%i ", cub()->cei[1]); // DEBUG
+			printf("%i\n", cub()->cei[2]); // DEBUG
 		}
 		else
 			if (ign_spaces(temp, 0) <= 0)
-				return (file_err_msg('A', cubed()->fd));
+				return (file_err_msg('A', cub()->fd));
 		free(temp);
 	}
 	free(temp);
-	close(cubed()->fd);
+	close(cub()->fd);
 	return (0);
 }
 
@@ -171,8 +171,8 @@ int	count_map_lines(char *file)
 	char	*trimmed;
 
 	count = 0;
-	cubed()->temp_fd = open(file, O_RDONLY);
-	while ((line = get_next_line(cubed()->temp_fd)) != NULL)
+	cub()->temp_fd = open(file, O_RDONLY);
+	while ((line = get_next_line(cub()->temp_fd)) != NULL)
 	{
 		trimmed = line;
 		while (*trimmed == ' ' || *trimmed == '\t')
@@ -181,8 +181,8 @@ int	count_map_lines(char *file)
 			count++;
 		free(line);
 	}
-	close(cubed()->temp_fd);
-	cubed()->line_no = count;
+	close(cub()->temp_fd);
+	cub()->line_no = count;
 	return (count);
 }
 
@@ -192,25 +192,25 @@ void	read_map_lines(char *frst_line, int line_count)
 	int		line_index;
 	char	*trimmed;
 
-	cubed()->map = malloc(sizeof(char *) * (line_count + 1));
-	if (!cubed()->map)
+	cub()->map = malloc(sizeof(char *) * (line_count + 1));
+	if (!cub()->map)
 		return ;
 	line_index = 0;
-	cubed()->map[line_index++] = frst_line;
+	cub()->map[line_index++] = frst_line;
 	printf("\n\n%s", frst_line); // DEBUG
-	while ((line = get_next_line(cubed()->fd)) != NULL)
+	while ((line = get_next_line(cub()->fd)) != NULL)
 	{
 		if (*line != '\n')
 		{
 			trimmed = line;
 			printf("%s", trimmed); // DEBUG
-			cubed()->map[line_index++] = ft_strdup(trimmed);
+			cub()->map[line_index++] = ft_strdup(trimmed);
 			free(trimmed);
 		}
 		else
 			free(line);
 	}
-	cubed()->map[line_index] = NULL;
+	cub()->map[line_index] = NULL;
 }
 
 int	map_configure(char *file)
@@ -220,8 +220,8 @@ int	map_configure(char *file)
 	int		map_lines;
 
 	map_lines = count_map_lines(file);
-	cubed()->fd = open(file, O_RDONLY);
-	while ((line = get_next_line(cubed()->fd)) != NULL)
+	cub()->fd = open(file, O_RDONLY);
+	while ((line = get_next_line(cub()->fd)) != NULL)
 	{
 		trimmed = line;
 		while (*trimmed == ' ' || *trimmed == '\t')
@@ -233,7 +233,7 @@ int	map_configure(char *file)
 		}
 		free(line);
 	}
-	close(cubed()->fd);
+	close(cub()->fd);
 	return (0);
 }
 

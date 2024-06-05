@@ -14,18 +14,18 @@
 
 bool check_attr(char c)
 {
-	if (c == 'T' && (!cubed()->north || !cubed()->south || !cubed()->east
-		|| !cubed()->west))
+	if (c == 'T' && (!cub()->north || !cub()->south || !cub()->east
+					 || !cub()->west))
 		return (false);
-	else if (c == 'C' && (!cubed()->flo || !cubed()->cei))
+	else if (c == 'C' && (!cub()->flo || !cub()->cei))
 		return (false);
-	else if (c == 'A' && (!cubed()->north || !cubed()->south || !cubed()->east
-			|| !cubed()->west || !cubed()->flo || !cubed()->cei))
+	else if (c == 'A' && (!cub()->north || !cub()->south || !cub()->east
+						  || !cub()->west || !cub()->flo || !cub()->cei))
 		return (false);
 	return (true);
 }
 
 void flag_change()
 {
-	cubed()->flagfill = -1;
+	cub()->flagfill = -1;
 }

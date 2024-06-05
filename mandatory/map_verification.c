@@ -20,14 +20,14 @@ int	width_x(void)
 
 	i = 0;
 	y = 0;
-	cubed()->map_dup = ft_calloc(cubed()->y + 1, sizeof(char *));
-	while (y <= cubed()->y)
+	cub()->map_dup = ft_calloc(cub()->y + 1, sizeof(char *));
+	while (y <= cub()->y)
 	{
-		temp = cubed()->map[i];
-		cubed()->map_dup[y] = ft_strtrim(temp, "\n");
-		if (!cubed()->map_dup[y])
+		temp = cub()->map[i];
+		cub()->map_dup[y] = ft_strtrim(temp, "\n");
+		if (!cub()->map_dup[y])
 			break ;
-		if (cubed()->x <= 0)
+		if (cub()->x <= 0)
 			return (-1);
 		y++;
 		i++;
@@ -42,18 +42,18 @@ int	height_y(void)
 	int		comp;
 
 	i = 0;
-	cubed()->x = (int)ft_strlen(cubed()->map[i]);
-	if (cubed()->x == 0)
+	cub()->x = (int)ft_strlen(cub()->map[i]);
+	if (cub()->x == 0)
 		return (-1);
 	while (1)
 	{
-		line = cubed()->map[i];
+		line = cub()->map[i];
 		if (!line)
 			break ;
 		comp = ft_strlen(line);
-		if (comp > cubed()->x)
-			cubed()->x = comp;
-		cubed()->y++;
+		if (comp > cub()->x)
+			cub()->x = comp;
+		cub()->y++;
 		i++;
 	}
 	return (0);
@@ -61,14 +61,14 @@ int	height_y(void)
 
 void	floodfill(int x, int y)
 {
-	if (!cubed()->map_dup[y][x] || cubed()->map_dup[y][x] == '1'
-		|| cubed()->map_dup[y][x] == 'X')
+	if (!cub()->map_dup[y][x] || cub()->map_dup[y][x] == '1'
+		|| cub()->map_dup[y][x] == 'X')
 		return ;
-	else if (cubed()->map_dup[y][x] == ' ')
+	else if (cub()->map_dup[y][x] == ' ')
 		return flag_change();
 	else
 	{
-		cubed()->map_dup[y][x] = 'X';
+		cub()->map_dup[y][x] = 'X';
 		floodfill((x + 1), y);
 		floodfill((x - 1), y);
 		floodfill(x, (y + 1));
@@ -82,19 +82,19 @@ int	wall_check()
 	int	x;
 
 	y = 0;
-	while (cubed()->map_dup[y])
+	while (cub()->map_dup[y])
 	{
 		x = 0;
-		while (cubed()->map_dup[y][x])
+		while (cub()->map_dup[y][x])
 		{
-			if (cubed()->map_dup[y][x] == '0' || cubed()->map_dup[y][x] == 'N' || cubed()->map_dup[y][x] == 'S'
-				 || cubed()->map_dup[y][x] == 'E'|| cubed()->map_dup[y][x] == 'W')
+			if (cub()->map_dup[y][x] == '0' || cub()->map_dup[y][x] == 'N' || cub()->map_dup[y][x] == 'S'
+				|| cub()->map_dup[y][x] == 'E' || cub()->map_dup[y][x] == 'W')
 				floodfill(x, y);
 			x++;
 		}
 		y++;
 	}
-	return cubed()->flagfill;
+	return cub()->flagfill;
 }
 
 int	map_verif(void)
@@ -108,7 +108,7 @@ int	map_verif(void)
 
 	printf("\n"); // DEBUG
 	int i = -1; // DEBUG
-	while (++i < cubed()->line_no) // DEBUG
-		printf("%s\n", cubed()->map_dup[i]); // DEBUG
+	while (++i < cub()->line_no) // DEBUG
+		printf("%s\n", cub()->map_dup[i]); // DEBUG
 	return (0);
 }

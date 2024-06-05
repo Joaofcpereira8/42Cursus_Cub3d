@@ -14,5 +14,5 @@
 
 void	cub_init(void)
 {
-	cubed()->win_ptr = 0;
+	cub()->win_ptr = 0;
 }

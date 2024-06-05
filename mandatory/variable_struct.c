@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-t_cubed	*cubed(void)
+t_cubed	*cub(void)
 {
 	static t_cubed	cubed;
 

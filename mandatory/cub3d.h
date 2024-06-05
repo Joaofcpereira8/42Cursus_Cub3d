@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 18:31:28 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/05/31 16:52:45 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/05 18:53:38 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,20 @@
 # include "../minilibx-linux/mlx.h"
 # include <fcntl.h>
 # include <X11/X.h>
-# include <X11/keysym.h>
 # include <stdbool.h>
+# include <X11/keysym.h>
+
+# define HEIGHT 1080
+# define WIDTH 1920
+
+typedef struct s_img
+{
+	void	*img_bg;
+	void	*img_n;
+	void	*img_s;
+	void	*img_e;
+	void	*img_w;
+}			t_img;
 
 typedef struct s_cubed
 {
@@ -27,21 +39,22 @@ typedef struct s_cubed
 	int		fd;
 	int		temp_fd;
 	int		flagfill;
+	int 	line_no;
+	int 	*flo;
+	int 	*cei;
+	int 	color;
 	void	*mlx_ptr;
 	void	*win_ptr;
+	t_img 	*img;
 	char	*north;
 	char	*south;
 	char	*east;
 	char	*west;
 	char	**map;
 	char	**map_dup;
-	int 	line_no;
-	int 	*flo;
-	int 	*cei;
 }			t_cubed;
-
 // ------- VARIABLE_STRUCT -------
-t_cubed		*cubed(void);
+t_cubed		*cub(void);
 
 // ------- START GAME -------
 int	start();
