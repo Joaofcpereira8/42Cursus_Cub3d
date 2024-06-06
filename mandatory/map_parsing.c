@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 18:50:20 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/05/31 15:18:29 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/06 18:15:20 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	map_settings(char *file)
 	char	*temp;
 
 	cub()->fd = open(file, O_RDONLY);
-	while (((temp = get_next_line(cub()->fd)) != NULL) && !check_attr('A'))
+	while (((temp = get_next_line(cub()->fd)) != NULL) && !is_map(temp))
 	{
 		if (ft_strncmp(temp, "NO", 2) == 0)
 		{
@@ -102,6 +102,8 @@ int	map_settings(char *file)
 				return (file_err_msg('A', cub()->fd));
 		free(temp);
 	}
+	if (!check_attr('A') && is_map(NULL))
+		return (file_err_msg('A', cub()->fd));
 	free(temp);
 	close(cub()->fd);
 	return (0);

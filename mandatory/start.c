@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 18:59:12 by bbento-e          #+#    #+#             */
-/*   Updated: 2024/06/06 15:00:04 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/06 17:16:48 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	my_mlx_pixel_put(int x, int y, int color)
 {
 	char	*dst;
 
-	dst = cub()->bg.addr + (y * cub()->bg.llen + x * (cub()->bg.bpp / 8));
+	dst = cub()->bg->addr + (y * cub()->bg->llen + x * (cub()->bg->bpp / 8));
 	*(unsigned int *)dst = color;
 }
 
@@ -26,32 +26,25 @@ void draw_bkgnd(int ceil, int flr)
 	int	y;
 
 	x = 0;
-	while (x <= HEIGHT / 2)
+	while (x < WIDTH)
 	{
 		y = 0;
-		while (y < WIDTH)
+		while (y < HEIGHT)
 		{
-			my_mlx_pixel_put(x, y, ceil);
+			if (y <= (HEIGHT / 2))
+				my_mlx_pixel_put(x, y, ceil);
+			if (y > (HEIGHT / 2))
+				my_mlx_pixel_put(x, y, flr);
 			y++;
 		}
 		x++;
 	}
-	while (x <= HEIGHT)
-	{
-		y = 0;
-		while (y < WIDTH)
-		{
-			my_mlx_pixel_put(x, y, flr);
-			y++;
-		}
-		x++;
-	}
-	mlx_put_image_to_window(cub()->mlx_ptr, cub()->win_ptr, cub()->img->img_bg,0, 0);
+	mlx_put_image_to_window(cub()->mlx, cub()->win, cub()->bg->img, 0, 0);
 }
 
 int	start()
 {
-	draw_bkgnd(create_trgb(cub()->cei, 255), create_trgb(cub()->flo, 255));
+
 	return (draw_textures());
 }
 

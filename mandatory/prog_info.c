@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 16:20:09 by bbento-e          #+#    #+#             */
-/*   Updated: 2024/05/31 16:54:45 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/06 18:19:46 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,21 @@ bool check_attr(char c)
 						  || !cub()->west || !cub()->flo || !cub()->cei))
 		return (false);
 	return (true);
+}
+
+bool is_map(char *str)
+{
+	int i;
+	static bool var;
+
+	i = 0;
+	if (!var && str)
+	{
+		ign_spaces(str, i);
+			if (str[i] == '1' || str[i] == '0')
+				var = true;
+	}
+	return (var);
 }
 
 void flag_change()
