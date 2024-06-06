@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 18:31:28 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/05 18:53:38 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/06 14:59:37 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,13 @@
 
 typedef struct s_img
 {
-	void	*img_bg;
-	void	*img_n;
-	void	*img_s;
-	void	*img_e;
-	void	*img_w;
+	char	*addr;
+	void	*img;
+	int		bpp;
+	int		llen;
+	int		endian;
+	int		width;
+	int		height;
 }			t_img;
 
 typedef struct s_cubed
@@ -42,16 +44,19 @@ typedef struct s_cubed
 	int 	line_no;
 	int 	*flo;
 	int 	*cei;
-	int 	color;
 	void	*mlx_ptr;
 	void	*win_ptr;
-	t_img 	*img;
 	char	*north;
 	char	*south;
 	char	*east;
 	char	*west;
 	char	**map;
 	char	**map_dup;
+	t_img 	bg;
+	t_img 	no;
+	t_img 	so;
+	t_img 	ea;
+	t_img 	ws;
 }			t_cubed;
 // ------- VARIABLE_STRUCT -------
 t_cubed		*cub(void);
@@ -88,6 +93,7 @@ void		flag_change();
 
 // ------- UTILS -------
 int			path_len(char *str);
+int			create_trgb(int *rgb, int t);
 int			ign_spaces(char *str, int i);
 int			ign_map_spaces(char *str, int i);
 int			check_overflow(char *str, int target);
