@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 18:59:12 by bbento-e          #+#    #+#             */
-/*   Updated: 2024/06/06 17:16:48 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/06 19:27:41 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,25 +50,17 @@ int	start()
 
 int	draw_textures()
 {
-	cub()->fd = open(cub()->north, O_RDONLY);
-	if (cub()->fd < 0)
+	cub()->bg->img = mlx_new_image(cub()->mlx, WIDTH, HEIGHT);
+	cub()->no->img = mlx_xpm_file_to_image(cub()->mlx,
+		cub()->north, &cub()->no->width, &cub()->no->height);
+	cub()->so->img = mlx_xpm_file_to_image(cub()->mlx,
+		cub()->south, &cub()->so->width, &cub()->so->height);
+	cub()->ea->img = mlx_xpm_file_to_image(cub()->mlx,
+		cub()->east, &cub()->ea->width, &cub()->ea->height);
+	cub()->ws->img = mlx_xpm_file_to_image(cub()->mlx,
+		cub()->west, &cub()->ws->width, &cub()->ws->height);
+
+	if (!cub()->no->img || !cub()->so->img || !cub()->ea->img || !cub()->ws->img)
 		return (file_err_msg('T', 0));
-	else
-		close(cub()->fd);
-	cub()->fd = open(cub()->south, O_RDONLY);
-	if (cub()->fd < 0)
-		return (file_err_msg('T', 0));
-	else
-		close(cub()->fd);
-	cub()->fd = open(cub()->east, O_RDONLY);
-	if (cub()->fd < 0)
-		return (file_err_msg('T', 0));
-	else
-		close(cub()->fd);
-	cub()->fd = open(cub()->west, O_RDONLY);
-	if (cub()->fd < 0)
-		return (file_err_msg('T', 0));
-	else
-		close(cub()->fd);
-	return (1);
+	return (0);
 }

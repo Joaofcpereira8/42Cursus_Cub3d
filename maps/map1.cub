@@ -1,7 +1,7 @@
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
+NO ./textures/bmw.xpm
+SO ./textures/ferrari.xpm
+WE ./textures/mclaren.xpm
+EA ./textures/porsche.xpm
 
 F 220,100,010
 C 225,1,180

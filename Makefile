@@ -29,10 +29,10 @@ ENDBL   = \033[25m
 # FLAGS AND VARIABLES
 NAME = cub3D
 
-CC = cc -g
+CC = cc
 RM = rm -rf
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 MFLAGS = -lX11 -lXext
 
 LIBFT = ./libft/libft.a

@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 18:50:20 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/06 18:15:20 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/06 19:27:01 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	map_settings(char *file)
 		{
 			if (cub()->north)
 				return (file_err_msg('t', cub()->fd));
-			cub()->north = get_path(temp);
+			cub()->north = ft_strtrim(get_path(temp), "\n");
 			if (!cub()->north)
 			{
 				free(temp);
@@ -35,7 +35,7 @@ int	map_settings(char *file)
 		{
 			if (cub()->south)
 				return (file_err_msg('t', cub()->fd));
-			cub()->south = get_path(temp);
+			cub()->south = ft_strtrim(get_path(temp), "\n");
 			if (!cub()->south)
 			{
 				free(temp);
@@ -47,7 +47,7 @@ int	map_settings(char *file)
 		{
 			if (cub()->east)
 				return (file_err_msg('t', cub()->fd));
-			cub()->east = get_path(temp);
+			cub()->east = ft_strtrim(get_path(temp), "\n");
 			if (!cub()->east)
 			{
 				free(temp);
@@ -59,7 +59,7 @@ int	map_settings(char *file)
 		{
 			if (cub()->west)
 				return (file_err_msg('t', cub()->fd));
-			cub()->west = get_path(temp);
+			cub()->west = ft_strtrim(get_path(temp), "\n");
 			if (!cub()->west)
 			{
 				free(temp);

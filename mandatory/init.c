@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 18:02:03 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/06 17:15:16 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/06 19:09:51 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@ void	cub_init(void)
 {
 	cub()->win = 0;
 	cub()->bg = malloc(sizeof(t_img));
+	cub()->no = malloc(sizeof(t_img));
+	cub()->so = malloc(sizeof(t_img));
+	cub()->ea = malloc(sizeof(t_img));
+	cub()->ws = malloc(sizeof(t_img));
 	cub()->bg->addr = NULL;
 	cub()->bg->img = NULL;
 	cub()->bg->bpp = 0;
