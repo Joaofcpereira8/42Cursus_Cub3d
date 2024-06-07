@@ -18,10 +18,10 @@ int	width_x(void)
 	int		y;
 	int		i;
 
-	i = 0;
-	y = 0;
+	y = cub()->lin_cnt;
+	i = cub()->lin_cnt;
 	cub()->map_dup = ft_calloc(cub()->y + 1, sizeof(char *));
-	while (y <= cub()->y)
+	while (y > 5)
 	{
 		temp = cub()->map[i];
 		cub()->map_dup[y] = ft_strtrim(temp, "\n");
@@ -29,8 +29,8 @@ int	width_x(void)
 			break ;
 		if (cub()->x <= 0)
 			return (-1);
-		y++;
-		i++;
+		y--;
+		i--;
 	}
 	return (0);
 }
@@ -41,11 +41,11 @@ int	height_y(void)
 	int		i;
 	int		comp;
 
-	i = 0;
+	i = 6;
 	cub()->x = (int)ft_strlen(cub()->map[i]);
 	if (cub()->x == 0)
 		return (-1);
-	while (1)
+	while (i <= cub()->lin_cnt)
 	{
 		line = cub()->map[i];
 		if (!line)
@@ -61,10 +61,13 @@ int	height_y(void)
 
 void	floodfill(int x, int y)
 {
-	if (!cub()->map_dup[y][x] || cub()->map_dup[y][x] == '1'
-		|| cub()->map_dup[y][x] == 'X')
+	if (x < 0 || x >= cub()->x || y < 0 || y >= cub()->y)
 		return ;
-	else if (cub()->map_dup[y][x] == ' ')
+	if (!cub()->map_dup[y][x])
+		return ;
+	if (cub()->map_dup[y][x] == '1' || cub()->map_dup[y][x] == 'X')
+		return ;
+	if (cub()->map_dup[y][x] == ' ')
 		return flag_change();
 	else
 	{
@@ -94,7 +97,34 @@ int	wall_check()
 		}
 		y++;
 	}
-	return cub()->flagfill;
+	return (cub()->flagfill);
+}
+
+int	verifs(void)
+{
+	int	temp;
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < cub()->y)
+	{
+		x = 0;
+		if (cub()->map_dup[0][0] == ' ')
+		{
+			while (cub()->map_dup[y][x] == ' ')
+				x++;
+		}
+		temp = ft_strlen(cub()->map_dup[y]) - 1;
+		if ((cub()->map_dup[y][x] != '1' || cub()->map_dup[y][x] != ' ')
+			&& (cub()->map_dup[y][temp] != '1'|| cub()->map_dup[y][temp] != '1'))
+		{
+			printf("ERRRRROOOOO\n");
+			return -1;
+		}
+		y++;
+	}
+	return (0);
 }
 
 int	map_verif(void)
@@ -103,12 +133,14 @@ int	map_verif(void)
 		return (file_err_msg('y', 0));
 	if (width_x() == -1)
 		return (file_err_msg('x', 0));
-	if (wall_check() == -1)
-		return (file_err_msg('d', 0));
+//	if (verifs() == -1)
+//		return -1;
+//	if (wall_check() == -1)
+//		return (file_err_msg('d', 0));
 
 	printf("\n"); // DEBUG
 	int i = -1; // DEBUG
-	while (++i < cub()->line_no) // DEBUG
+	while (++i < cub()->y) // DEBUG
 		printf("%s\n", cub()->map_dup[i]); // DEBUG
 	return (0);
 }

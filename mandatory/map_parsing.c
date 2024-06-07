@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 18:50:20 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/06 19:27:01 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/07 17:53:06 by jofilipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	map_settings(char *file)
 		{
 			if (cub()->north)
 				return (file_err_msg('t', cub()->fd));
-			cub()->north = ft_strtrim(get_path(temp), "\n");
+			cub()->north = get_path(temp);
 			if (!cub()->north)
 			{
 				free(temp);
@@ -35,7 +35,7 @@ int	map_settings(char *file)
 		{
 			if (cub()->south)
 				return (file_err_msg('t', cub()->fd));
-			cub()->south = ft_strtrim(get_path(temp), "\n");
+			cub()->south = get_path(temp);
 			if (!cub()->south)
 			{
 				free(temp);
@@ -47,7 +47,7 @@ int	map_settings(char *file)
 		{
 			if (cub()->east)
 				return (file_err_msg('t', cub()->fd));
-			cub()->east = ft_strtrim(get_path(temp), "\n");
+			cub()->east = get_path(temp);
 			if (!cub()->east)
 			{
 				free(temp);
@@ -59,7 +59,7 @@ int	map_settings(char *file)
 		{
 			if (cub()->west)
 				return (file_err_msg('t', cub()->fd));
-			cub()->west = ft_strtrim(get_path(temp), "\n");
+			cub()->west = get_path(temp);
 			if (!cub()->west)
 			{
 				free(temp);
@@ -99,7 +99,10 @@ int	map_settings(char *file)
 		}
 		else
 			if (ign_spaces(temp, 0) <= 0)
+			{
+				free(temp);
 				return (file_err_msg('A', cub()->fd));
+			}
 		free(temp);
 	}
 	if (!check_attr('A') && is_map(NULL))
@@ -146,9 +149,10 @@ int	*get_value(char *str)
 
 char	*get_path(char *str)
 {
-	int		i;
-	int		len;
+	int			i;
+	int			len;
 	char	*res;
+	char	*aux;
 
 	res = NULL;
 	if (!str)
@@ -160,90 +164,84 @@ char	*get_path(char *str)
 	len = path_len(str + i);
 	if (len == -1)
 		return (0);
-	res = ft_substr(str, i, len + 1);
-	if (!res)
-		return (NULL);
+	aux = ft_substr(str, i, len + 1);
+	res = ft_strtrim(aux, "\n");
+	free(aux);
 	return (res);
 }
 
-int	count_map_lines(char *file)
+int	count_lines(char *file)
 {
-	int		count;
-	char	*line;
-	char	*trimmed;
+	char	*temp;
+	int		total;
+	int		fd;
 
-	count = 0;
-	cub()->temp_fd = open(file, O_RDONLY);
-	while ((line = get_next_line(cub()->temp_fd)) != NULL)
+	total = 0;
+	fd = open(file, O_RDONLY);
+	while ((temp = get_next_line(fd)) != NULL)
 	{
-		trimmed = line;
-		while (*trimmed == ' ' || *trimmed == '\t')
-			trimmed++;
-		if (*trimmed == '1')
-			count++;
-		free(line);
+		if (temp[0] != '\n' && temp[0] != '\0' && temp[0] != '\t')
+			total++;
+		free(temp);
 	}
-	close(cub()->temp_fd);
-	cub()->line_no = count;
-	return (count);
-}
-
-void	read_map_lines(char *frst_line, int line_count)
-{
-	char	*line;
-	int		line_index;
-	char	*trimmed;
-
-	cub()->map = malloc(sizeof(char *) * (line_count + 1));
-	if (!cub()->map)
-		return ;
-	line_index = 0;
-	cub()->map[line_index++] = frst_line;
-	printf("\n\n%s", frst_line); // DEBUG
-	while ((line = get_next_line(cub()->fd)) != NULL)
-	{
-		if (*line != '\n')
-		{
-			trimmed = line;
-			printf("%s", trimmed); // DEBUG
-			cub()->map[line_index++] = ft_strdup(trimmed);
-			free(trimmed);
-		}
-		else
-			free(line);
-	}
-	cub()->map[line_index] = NULL;
+	close(fd);
+	return (total);
 }
 
 int	map_configure(char *file)
 {
 	char	*line;
 	char	*trimmed;
-	int		map_lines;
+	char	*temp;
+	int		i;
+	int		total_lines;
 
-	map_lines = count_map_lines(file);
+	i = 0;
+	cub()->lin_cnt = count_lines(file) - 6;
+	total_lines = count_lines(file);
+	cub()->map = malloc(sizeof(char*) * (total_lines + 1));
+	if (!cub()->map)
+		return (-1);
 	cub()->fd = open(file, O_RDONLY);
 	while ((line = get_next_line(cub()->fd)) != NULL)
 	{
 		trimmed = line;
+		if (*trimmed == '\n')
+		{
+			free(trimmed);
+			continue ;
+		}
 		while (*trimmed == ' ' || *trimmed == '\t')
 			trimmed++;
-		if (*trimmed == '1')
+		if (ft_isascii(*trimmed) == 1)
 		{
-			read_map_lines(line, map_lines);
-			break;
+			temp = ft_strdup(line);
+			cub()->map[i] = ft_strtrim(temp, "\n");
+			i++;
+			free(temp);
 		}
 		free(line);
 	}
 	close(cub()->fd);
+	cub()->map[i] = NULL;
 	return (0);
 }
 
 int	map_par(char *file)
 {
+	int j = -1;
+	if (map_configure(file) == -1)
+		return (-1);
+	if (!cub()->map)
+		return -1;
+	else
+	{
+		while (cub()->map[++j])
+			printf("%s\n", cub()->map[j]);
+	}
 	if (map_settings(file) == -1)
 		return (-1);
-	map_configure(file);
-	map_verif();
+	if (map_verif() == -1)
+		return (-1);
 	return (0);
 }

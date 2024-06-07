@@ -41,6 +41,8 @@ void	free_struct(void)
 		free(cub()->cei);
 	if (cub()->flo)
 		free(cub()->flo);
-	free_arr(cub()->map);
-	free_arr(cub()->map_dup);
+	if (cub()->map)
+		free_arr(cub()->map);
+	if (cub()->map_dup)
+		free_arr(cub()->map_dup);
 }

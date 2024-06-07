@@ -17,6 +17,8 @@ int	file_verif(char *file)
 	int	i;
 
 	cub()->fd = open(file, O_RDONLY);
+	if (cub()->fd < 0)
+		return (file_err_msg('a', cub()->fd));
 	i = ft_strlen(file) - 1;
 	while (file[i] != '.')
 		i--;

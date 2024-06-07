@@ -39,6 +39,7 @@ typedef struct s_cubed
 	int		x;
 	int		y;
 	int		fd;
+	int		lin_cnt;
 	int		temp_fd;
 	int		flagfill;
 	int 	line_no;
@@ -58,6 +59,7 @@ typedef struct s_cubed
 	t_img 	*ea;
 	t_img 	*ws;
 }			t_cubed;
+
 // ------- VARIABLE_STRUCT -------
 t_cubed		*cub(void);
 
@@ -86,6 +88,7 @@ int			map_settings(char *file);
 int			count_map_lines(char *file);
 void		read_map_lines(char *frst_line, int line_count);
 int			map_configure(char *file);
+int			count_lines(char *file);
 
 // ------- MAP_VERIFICATION -------
 int			map_verif(void);
