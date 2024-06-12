@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/24 15:15:54 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/06 19:22:39 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/12 15:45:04 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -170,11 +170,16 @@ int	map_verif(void)
 		while (cub()->map_dup[++j])
 			printf("%s\n", cub()->map_dup[j]);
 	}
-	if (verifs() == -1)
-		return (-1);
+/*	if (verifs() == -1)
+		return (-1);*/
 	if (wall_check() == -1)
 		return (file_err_msg('d', 0));
 	j = -1;
+
+	// Precisamos de verificar a posicao do player
+	cub()->posi = 'N';
+	// ------------- temp -------------
+
 	if (!cub()->map_dup)
 		return -1;
 	else

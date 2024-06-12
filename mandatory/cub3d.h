@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 18:31:28 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/06 18:46:05 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/12 16:56:17 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@
 
 # define HEIGHT 995
 # define WIDTH 1920
+# define IMG_H 100
+# define IMG_W 100
 
 typedef struct s_img
 {
@@ -47,6 +49,7 @@ typedef struct s_cubed
 	int 	*cei;
 	void	*mlx;
 	void	*win;
+	char	posi;
 	char	*north;
 	char	*south;
 	char	*east;
@@ -74,8 +77,8 @@ int			file_verif(char *file);
 void		draw_bkgnd(int ceil, int flr);
 
 // ------- ERRORS -------
-int			file_err_msg(char c, int fd);
 int			args_error(int c);
+int			file_err_msg(char c, int fd);
 
 // ------- INIT -------
 void		cub_init(void);
@@ -84,19 +87,20 @@ void		cub_init(void);
 int			map_par(char *file);
 char		*get_path(char *str);
 int			*get_value(char *str);
+int			count_lines(char *file);
 int			map_settings(char *file);
+int			map_configure(char *file);
 int			count_map_lines(char *file);
 void		read_map_lines(char *frst_line, int line_count);
-int			map_configure(char *file);
-int			count_lines(char *file);
 
 // ------- MAP_VERIFICATION -------
 int			map_verif(void);
 
 // ------- PROGRAM INFO -------
-bool		check_attr(char c);
-bool		is_map(char *str);
+void		plyr_dir();
 void		flag_change();
+bool		is_map(char *str);
+bool		check_attr(char c);
 
 // ------- UTILS -------
 int			path_len(char *str);
@@ -106,7 +110,7 @@ int			ign_map_spaces(char *str, int i);
 int			check_overflow(char *str, int target);
 
 // ------- FREES -------
-void		free_arr(char **arr);
 void		free_struct(void);
+void		free_arr(char **arr);
 
 #endif

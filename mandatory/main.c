@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 18:31:13 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/06 19:13:41 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/12 15:48:42 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	cub_loop()
 	mlx_destroy_image(cub()->mlx, cub()->bg->img);
 	cub()->bg->img = mlx_new_image(cub()->mlx, WIDTH, HEIGHT);
 	draw_bkgnd(create_trgb(cub()->cei, 255), create_trgb(cub()->flo, 255));
+
 	return (0);
 }
 
@@ -31,18 +32,18 @@ int	main(int argc, char **argv)
 			free_struct();
 			return (-1);
 		}
-//		cub_init();
-//		cub()->mlx = mlx_init();
-//		if (draw_textures() == -1)
-//			return (-1);
-//		cub()->win = mlx_new_window(cub()->mlx, WIDTH, HEIGHT, "cub3d");
-//		cub()->bg->img = mlx_new_image(cub()->mlx, WIDTH, HEIGHT);
-//
-//		cub()->bg->addr = mlx_get_data_addr(cub()->bg->img, &cub()->bg->bpp, &cub()->bg->llen, &cub()->bg->endian);
-//		draw_bkgnd(create_trgb(cub()->cei, 255), create_trgb(cub()->flo, 255));
-//
-//		mlx_loop_hook(cub()->mlx, cub_loop, NULL);
-//		mlx_loop(cub()->mlx);
+		cub_init();
+		cub()->mlx = mlx_init();
+		if (draw_textures() == -1)
+			return (-1);
+		cub()->win = mlx_new_window(cub()->mlx, WIDTH, HEIGHT, "cub3d");
+		cub()->bg->img = mlx_new_image(cub()->mlx, WIDTH, HEIGHT);
+
+		cub()->bg->addr = mlx_get_data_addr(cub()->bg->img, &cub()->bg->bpp, &cub()->bg->llen, &cub()->bg->endian);
+		draw_bkgnd(create_trgb(cub()->cei, 255), create_trgb(cub()->flo, 255));
+
+		mlx_loop_hook(cub()->mlx, cub_loop, NULL);
+		mlx_loop(cub()->mlx);
 		free_struct();
 	}
 	else

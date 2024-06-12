@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 16:20:09 by bbento-e          #+#    #+#             */
-/*   Updated: 2024/06/06 18:19:46 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/12 15:53:13 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,4 +43,24 @@ bool is_map(char *str)
 void flag_change()
 {
 	cub()->flagfill = -1;
+}
+
+void	plyr_dir()
+{
+	if (cub()->posi == 'N')
+	{
+
+	}
+	else if (cub()->posi == 'S')
+	{
+
+	}
+	else if (cub()->posi == 'E')
+	{
+
+	}
+	else if (cub()->posi == 'W')
+	{
+
+	}
 }
