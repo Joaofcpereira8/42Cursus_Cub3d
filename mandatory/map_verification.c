@@ -15,20 +15,21 @@
 int	width_x(void)
 {
 	char	*temp;
+	char	*mem_temp;
 	int		y;
 	int		i;
 
-	y = cub()->lin_cnt;
-	i = cub()->lin_cnt;
-	cub()->map_dup = ft_calloc(cub()->y + 1, sizeof(char *));
-	while (y > 5)
+	y = cub()->lin_cnt - 1;
+	i = cub()->lin_cnt + 5;
+	cub()->map_dup = ft_calloc(cub()->lin_cnt + 1, sizeof(char *));
+	while (y >= 0)
 	{
 		temp = cub()->map[i];
-		cub()->map_dup[y] = ft_strtrim(temp, "\n");
+		mem_temp = ft_strtrim(temp, "\n");
+		cub()->map_dup[y] = ft_strdup(mem_temp);
 		if (!cub()->map_dup[y])
-			break ;
-		if (cub()->x <= 0)
 			return (-1);
+		free(mem_temp);
 		y--;
 		i--;
 	}
@@ -42,19 +43,23 @@ int	height_y(void)
 	int		comp;
 
 	i = 6;
+	cub()->y = 0;
 	cub()->x = (int)ft_strlen(cub()->map[i]);
 	if (cub()->x == 0)
 		return (-1);
-	while (i <= cub()->lin_cnt)
+	while (cub()->map[i])
 	{
 		line = cub()->map[i];
-		if (!line)
-			break ;
 		comp = ft_strlen(line);
 		if (comp > cub()->x)
 			cub()->x = comp;
 		cub()->y++;
 		i++;
+	}
+	if (cub()->y != cub()->lin_cnt)
+	{
+		printf("Error\nLines do not match\n");
+		return (-1);
 	}
 	return (0);
 }
@@ -105,6 +110,7 @@ int	verifs(void)
 	int	temp;
 	int	x;
 	int	y;
+	int	z;
 
 	y = 0;
 	while (y < cub()->y)
@@ -116,11 +122,34 @@ int	verifs(void)
 				x++;
 		}
 		temp = ft_strlen(cub()->map_dup[y]) - 1;
-		if ((cub()->map_dup[y][x] != '1' || cub()->map_dup[y][x] != ' ')
-			&& (cub()->map_dup[y][temp] != '1'|| cub()->map_dup[y][temp] != '1'))
+		if ((cub()->map_dup[y][x] != '1' && cub()->map_dup[y][x] != ' ')
+			&& (cub()->map_dup[y][temp] != ' ' && cub()->map_dup[y][temp] != '1'))
 		{
 			printf("ERRRRROOOOO\n");
 			return -1;
+		}
+		z = x;
+		z++;
+		while (cub()->map_dup[y][z])
+		{
+			while (cub()->map_dup[y][z] != ' ' || cub()->map_dup[y][z] != '\0')
+			{
+				if (cub()->map_dup[y][z] == '0' || cub()->map_dup[y][z] == '1' || cub()->map_dup[y][z] == 'N'
+					|| cub()->map_dup[y][z] == 'E' || cub()->map_dup[y][z] == 'S' || cub()->map_dup[y][z] == 'W')
+					z++;
+				else
+				{
+					printf("Error\nMap is not valid\n");
+					return (-1);
+				}
+			}
+			if (cub()->map_dup[y][z - 1] == '0' && cub()->map_dup[y][z] == '\0')
+			{
+				printf("Error\nMap is not valid\n");
+				return (-1);
+			}
+			while (cub()->map_dup[y][z] == ' ')
+				z++;
 		}
 		y++;
 	}
@@ -133,14 +162,25 @@ int	map_verif(void)
 		return (file_err_msg('y', 0));
 	if (width_x() == -1)
 		return (file_err_msg('x', 0));
-//	if (verifs() == -1)
-//		return -1;
-//	if (wall_check() == -1)
-//		return (file_err_msg('d', 0));
-
-	printf("\n"); // DEBUG
-	int i = -1; // DEBUG
-	while (++i < cub()->y) // DEBUG
-		printf("%s\n", cub()->map_dup[i]); // DEBUG
+	int j = -1;
+	if (!cub()->map_dup)
+		return -1;
+	else
+	{
+		while (cub()->map_dup[++j])
+			printf("%s\n", cub()->map_dup[j]);
+	}
+	if (verifs() == -1)
+		return (-1);
+	if (wall_check() == -1)
+		return (file_err_msg('d', 0));
+	j = -1;
+	if (!cub()->map_dup)
+		return -1;
+	else
+	{
+		while (cub()->map_dup[++j])
+			printf("%s\n", cub()->map_dup[j]);
+	}
 	return (0);
 }

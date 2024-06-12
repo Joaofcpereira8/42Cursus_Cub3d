@@ -194,12 +194,16 @@ int	map_configure(char *file)
 	char	*trimmed;
 	char	*temp;
 	int		i;
-	int		total_lines;
 
 	i = 0;
 	cub()->lin_cnt = count_lines(file) - 6;
-	total_lines = count_lines(file);
-	cub()->map = malloc(sizeof(char*) * (total_lines + 1));
+	if (cub()->lin_cnt < 3)
+	{
+		printf("Error\nInvalid map\n");
+		return (-1);
+	}
+	cub()->line_no = count_lines(file);
+	cub()->map = malloc(sizeof(char*) * (cub()->line_no + 1));
 	if (!cub()->map)
 		return (-1);
 	cub()->fd = open(file, O_RDONLY);
