@@ -24,6 +24,7 @@
 # define WIDTH 1920
 # define IMG_H 100
 # define IMG_W 100
+# define FOV 0.75
 
 typedef struct s_img
 {
@@ -38,29 +39,33 @@ typedef struct s_img
 
 typedef struct s_cubed
 {
-	int		x;
-	int		y;
-	int		fd;
-	int		lin_cnt;
-	int		plr_cnt;
-	int		flagfill;
-	int 	line_no;
-	int 	*flo;
-	int 	*cei;
-	void	*mlx;
-	void	*win;
-	char	posi;
-	char	*north;
-	char	*south;
-	char	*east;
-	char	*west;
-	char	**map;
-	char	**map_dup;
-	t_img 	*bg;
-	t_img 	*no;
-	t_img 	*so;
-	t_img 	*ea;
-	t_img 	*ws;
+	int			x;
+	int			y;
+	double		dirx;
+	double		diry;
+	double		camx;
+	double		camy;
+	int			fd;
+	int			lin_cnt;
+	int			plr_cnt;
+	int			flagfill;
+	int 		line_no;
+	int 		*flo;
+	int 		*cei;
+	void		*mlx;
+	void		*win;
+	char		posi;
+	char		*north;
+	char		*south;
+	char		*east;
+	char		*west;
+	char		**map;
+	char		**map_dup;
+	t_img 		*bg;
+	t_img 		*no;
+	t_img 		*so;
+	t_img 		*ea;
+	t_img 		*ws;
 }			t_cubed;
 
 // ------- VARIABLE_STRUCT -------
@@ -96,8 +101,10 @@ void		read_map_lines(char *frst_line, int line_count);
 // ------- MAP_VERIFICATION -------
 int			map_verif(void);
 
-// ------- PROGRAM INFO -------
+// ------- PLAYER -------
 void		plyr_dir();
+
+// ------- PROGRAM INFO -------
 void		flag_change();
 bool		is_map(char *str);
 bool		check_attr(char c);

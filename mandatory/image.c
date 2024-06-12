@@ -15,6 +15,7 @@
 int	draw_textures()
 {
 	cub()->bg->img = mlx_new_image(cub()->mlx, WIDTH, HEIGHT);
+	cub()->bg->addr = mlx_get_data_addr(cub()->bg->img, &cub()->bg->bpp, &cub()->bg->llen, &cub()->bg->endian);
 	cub()->no->img = mlx_xpm_file_to_image(cub()->mlx,
 										   cub()->north, &cub()->no->width, &cub()->no->height);
 	cub()->no->addr = mlx_get_data_addr(cub()->no->img, &cub()->no->bpp,

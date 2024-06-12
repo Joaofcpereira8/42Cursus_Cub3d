@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 16:20:09 by bbento-e          #+#    #+#             */
-/*   Updated: 2024/06/12 15:53:13 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/12 19:23:31 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,22 +45,34 @@ void flag_change()
 	cub()->flagfill = -1;
 }
 
+void	set_coords(double dx, double dy, double cx, double cy)
+{
+	cub()->dirx = dx;
+	cub()->diry = dy;
+	cub()->camx = cx;
+	cub()->camy = cy;
+}
+
 void	plyr_dir()
 {
 	if (cub()->posi == 'N')
 	{
-
+		set_coords(0, -1, FOV, 0);
+		return ;
 	}
 	else if (cub()->posi == 'S')
 	{
-
+		set_coords(0, 1, -FOV, 0);
+		return ;
 	}
 	else if (cub()->posi == 'E')
 	{
-
+		set_coords(1, 0, 0, FOV);
+		return ;
 	}
 	else if (cub()->posi == 'W')
 	{
-
+		set_coords(-1, 0, 0, -FOV);
+		return ;
 	}
 }
