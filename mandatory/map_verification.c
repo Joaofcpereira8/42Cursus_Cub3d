@@ -105,6 +105,36 @@ int	wall_check()
 	return (cub()->flagfill);
 }
 
+int	plr_pos_verif(int x, int y)
+{
+	if (cub()->map_dup[y][x] == 'N')
+	{
+		cub()->posi = 'N';
+		cub()->plr_cnt++;
+	}
+	if (cub()->map_dup[y][x] == 'S')
+	{
+		cub()->posi = 'S';
+		cub()->plr_cnt++;
+	}
+	if (cub()->map_dup[y][x] == 'E')
+	{
+		cub()->posi = 'E';
+		cub()->plr_cnt++;
+	}
+	if (cub()->map_dup[y][x] == 'W')
+	{
+		cub()->posi = 'W';
+		cub()->plr_cnt++;
+	}
+	if (cub()->plr_cnt > 1)
+	{
+		printf("Error\nMore than one player in map\n");
+		return (-1);
+	}
+	return (0);
+}
+
 int	verifs(void)
 {
 	int	temp;
@@ -113,10 +143,11 @@ int	verifs(void)
 	int	z;
 
 	y = 0;
+	cub()->plr_cnt = 0;
 	while (y < cub()->y)
 	{
 		x = 0;
-		if (cub()->map_dup[0][0] == ' ')
+		if (cub()->map_dup[y][x] == ' ')
 		{
 			while (cub()->map_dup[y][x] == ' ')
 				x++;
@@ -132,7 +163,7 @@ int	verifs(void)
 		z++;
 		while (cub()->map_dup[y][z])
 		{
-			while (cub()->map_dup[y][z] != ' ' || cub()->map_dup[y][z] != '\0')
+			while (cub()->map_dup[y][z] != ' ' && cub()->map_dup[y][z] != '\0')
 			{
 				if (cub()->map_dup[y][z] == '0' || cub()->map_dup[y][z] == '1' || cub()->map_dup[y][z] == 'N'
 					|| cub()->map_dup[y][z] == 'E' || cub()->map_dup[y][z] == 'S' || cub()->map_dup[y][z] == 'W')
@@ -142,6 +173,8 @@ int	verifs(void)
 					printf("Error\nMap is not valid\n");
 					return (-1);
 				}
+				if (plr_pos_verif(z, y) == -1)
+					return (-1);
 			}
 			if (cub()->map_dup[y][z - 1] == '0' && cub()->map_dup[y][z] == '\0')
 			{
@@ -152,6 +185,11 @@ int	verifs(void)
 				z++;
 		}
 		y++;
+	}
+	if (cub()->plr_cnt < 1)
+	{
+		printf("Error\nPlayer does not exist in map\n");
+		return (-1);
 	}
 	return (0);
 }
@@ -170,16 +208,12 @@ int	map_verif(void)
 		while (cub()->map_dup[++j])
 			printf("%s\n", cub()->map_dup[j]);
 	}
-/*	if (verifs() == -1)
-		return (-1);*/
+	if (verifs() == -1)
+		return (-1);
+	printf("%c\n", cub()->posi);
 	if (wall_check() == -1)
 		return (file_err_msg('d', 0));
 	j = -1;
-
-	// Precisamos de verificar a posicao do player
-	cub()->posi = 'N';
-	// ------------- temp -------------
-
 	if (!cub()->map_dup)
 		return -1;
 	else

@@ -32,18 +32,18 @@ int	main(int argc, char **argv)
 			free_struct();
 			return (-1);
 		}
-		cub_init();
-		cub()->mlx = mlx_init();
-		if (draw_textures() == -1)
-			return (-1);
-		cub()->win = mlx_new_window(cub()->mlx, WIDTH, HEIGHT, "cub3d");
-		cub()->bg->img = mlx_new_image(cub()->mlx, WIDTH, HEIGHT);
-
-		cub()->bg->addr = mlx_get_data_addr(cub()->bg->img, &cub()->bg->bpp, &cub()->bg->llen, &cub()->bg->endian);
-		draw_bkgnd(create_trgb(cub()->cei, 255), create_trgb(cub()->flo, 255));
-
-		mlx_loop_hook(cub()->mlx, cub_loop, NULL);
-		mlx_loop(cub()->mlx);
+//		cub_init();
+//		cub()->mlx = mlx_init();
+//		if (draw_textures() == -1)
+//			return (-1);
+//		cub()->win = mlx_new_window(cub()->mlx, WIDTH, HEIGHT, "cub3d");
+//		cub()->bg->img = mlx_new_image(cub()->mlx, WIDTH, HEIGHT);
+//
+//		cub()->bg->addr = mlx_get_data_addr(cub()->bg->img, &cub()->bg->bpp, &cub()->bg->llen, &cub()->bg->endian);
+//		draw_bkgnd(create_trgb(cub()->cei, 255), create_trgb(cub()->flo, 255));
+//
+//		mlx_loop_hook(cub()->mlx, cub_loop, NULL);
+//		mlx_loop(cub()->mlx);
 		free_struct();
 	}
 	else

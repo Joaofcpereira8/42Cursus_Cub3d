@@ -106,7 +106,10 @@ int	map_settings(char *file)
 		free(temp);
 	}
 	if (!check_attr('A') && is_map(NULL))
+	{
+		free(temp);
 		return (file_err_msg('A', cub()->fd));
+	}
 	free(temp);
 	close(cub()->fd);
 	return (0);

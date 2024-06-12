@@ -42,7 +42,7 @@ typedef struct s_cubed
 	int		y;
 	int		fd;
 	int		lin_cnt;
-	int		temp_fd;
+	int		plr_cnt;
 	int		flagfill;
 	int 	line_no;
 	int 	*flo;
