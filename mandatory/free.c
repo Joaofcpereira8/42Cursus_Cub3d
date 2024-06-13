@@ -45,4 +45,5 @@ void	free_struct(void)
 		free_arr(cub()->map);
 	if (cub()->map_dup)
 		free_arr(cub()->map_dup);
+	exit(0);
 }
