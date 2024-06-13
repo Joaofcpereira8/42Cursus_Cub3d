@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 18:31:28 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/13 14:42:58 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/13 17:57:09 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,15 @@ typedef struct s_cubed
 {
 	int			x;
 	int			y;
+	int			hit;
+	int			rright;
+	int			rleft;
 	double		dirx;
 	double		diry;
 	double		rayx;
 	double		rayy;
+	double		dist_right;
+	double		dist_left;
 	double		plx;
 	double		ply;
 	double		mapx;
@@ -85,10 +90,8 @@ t_cubed		*cub(void);
 
 // ------- START GAME -------
 int	start();
+int	cub_loop();
 int	draw_textures();
-
-// ------- FILE_VERIFICATION -------
-int			file_verif(char *file);
 
 // ------- DRAW -------
 t_img		*img_picker(char type);
@@ -101,6 +104,10 @@ int			file_err_msg(char c, int fd);
 // ------- INIT -------
 void		cub_init(void);
 
+// ------- VERIFICATIONS -------
+int			map_verif(void);
+int			file_verif(char *file);
+
 // ------- PARSER -------
 int			map_par(char *file);
 char		*get_path(char *str);
@@ -111,14 +118,16 @@ int			map_configure(char *file);
 int			count_map_lines(char *file);
 void		read_map_lines(char *frst_line, int line_count);
 
-// ------- MAP_VERIFICATION -------
-int			map_verif(void);
-
 // ------- PLAYER -------
 void		plyr_dir();
 
+// ------- MOVEMENT -------
+int       key_hook(int key);
+
 // ------- RAYCAST -------
 void		ray();
+void		dda();
+void		hit_reg();
 
 // ------- PROGRAM INFO -------
 void		flag_change();

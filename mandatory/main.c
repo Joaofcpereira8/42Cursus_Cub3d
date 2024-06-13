@@ -6,18 +6,28 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 18:31:13 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/12 19:24:44 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/13 15:46:24 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	dda()
+{
+	cub()->wcnt = 0;
+	while (cub()->wcnt < WIDTH)
+	{
+		ray();
+
+	}
+}
 
 int	cub_loop()
 {
 	mlx_destroy_image(cub()->mlx, cub()->bg->img);
 	cub()->bg->img = mlx_new_image(cub()->mlx, WIDTH, HEIGHT);
 	draw_bkgnd(create_trgb(cub()->cei, 255), create_trgb(cub()->flo, 255));
-
+	dda();
 	return (0);
 }
 
