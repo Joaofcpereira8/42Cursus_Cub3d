@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 18:31:28 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/13 17:57:09 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/13 18:50:21 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,16 +45,21 @@ typedef struct s_cubed
 	int			hit;
 	int			rright;
 	int			rleft;
+	int			mapx;
+	int			mapy;
+	double		line_h;
+	double		line_w;
 	double		dirx;
 	double		diry;
 	double		rayx;
 	double		rayy;
 	double		dist_right;
 	double		dist_left;
+	double		perpend_wl;
+	double		begn_draw;
+	double		end_draw;
 	double		plx;
 	double		ply;
-	double		mapx;
-	double		mapy;
 	double		delta_x;
 	double		delta_y;
 	double		camx;
@@ -127,7 +132,9 @@ int       key_hook(int key);
 // ------- RAYCAST -------
 void		ray();
 void		dda();
+void		ray_dir();
 void		hit_reg();
+void		ray_calc();
 
 // ------- PROGRAM INFO -------
 void		flag_change();

@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 11:50:54 by bbento-e          #+#    #+#             */
-/*   Updated: 2024/06/13 17:55:46 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/13 18:49:54 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,16 +57,46 @@ void	ray_dir()
 	}
 }
 
+void	ray_calc()
+{
+	if (cub()->ori == 'V')
+		cub()->perpend_wl = cub()->dist_right - cub()->delta_x;
+	else
+		cub()->perpend_wl = cub()->dist_left - cub()->delta_y;
+	if (cub()->perpend_wl)
+		cub()->line_h = (int)(HEIGHT / cub()->perpend_wl);
+	else
+		cub()->line_h = HEIGHT;
+	cub()->begn_draw = -cub()->line_h / 2 + HEIGHT / 2;
+	if (cub()->begn_draw < 0)
+		cub()->begn_draw = 0;
+	cub()->end_draw = cub()->line_h / 2 + HEIGHT / 2;
+	if (cub()->end_draw >= HEIGHT)
+		cub()->end_draw = HEIGHT - 1;
+}
+
 void	hit_reg()
 {
 	while (!cub()->hit)
 	{
+		// Compare side distances to determine which side the ray hits first
 		if (cub()->dist_right < cub()->dist_left)
 		{
+			// The ray hits a vertical grid line first
 			cub()->dist_right += cub()->dist_right;
 			cub()->mapx += cub()->rright;
-			cub()->ori = ' ';
+			cub()->ori = 'V'; // Vertical hit
 		}
+		else
+		{
+			// The ray hits a horizontal grid line first
+			cub()->dist_right += cub()->dist_right;
+			cub()->mapy += cub()->rleft;
+			cub()->ori = 'H'; // Horizontal hit
+		}
+		// Check if the current grid cell is a wall
+		if (cub()->map_dup[cub()->mapx][cub()->mapy] == '1')
+			cub()->hit = 1;
 	}
 }
 
@@ -91,7 +121,7 @@ t_img *img_picker(char type)
 
 void	asgn_texture()
 {
-	if (cub()->ori == 'V')
+	if (cub()->ori == 'H')
 	{
 		if (cub()->rayy >= 0)
 			img_picker('N');
