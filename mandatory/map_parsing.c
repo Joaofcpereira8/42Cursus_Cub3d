@@ -234,6 +234,45 @@ int	map_configure(char *file)
 	return (0);
 }
 
+int	textures_verif(void)
+{
+	int	i;
+
+	i = ft_strlen(cub()->north);
+	while (cub()->north[i] != '.')
+		i--;
+	if (ft_strncmp(cub()->north + i, ".xpm", 5) != 0)
+	{
+		printf("Error\nNorth texture not available\n");
+		return (-1);
+	}
+	i = ft_strlen(cub()->south);
+	while (cub()->south[i] != '.')
+		i--;
+	if (ft_strncmp(cub()->south + i, ".xpm", 5) != 0)
+	{
+		printf("Error\nSouth texture not available\n");
+		return (-1);
+	}
+	i = ft_strlen(cub()->east);
+	while (cub()->east[i] != '.')
+		i--;
+	if (ft_strncmp(cub()->east + i, ".xpm", 5) != 0)
+	{
+		printf("Error\nEast texture not available\n");
+		return (-1);
+	}
+	i = ft_strlen(cub()->west);
+	while (cub()->west[i] != '.')
+		i--;
+	if (ft_strncmp(cub()->west + i, ".xpm", 5) != 0)
+	{
+		printf("Error\nWest texture not available\n");
+		return (-1);
+	}
+	return (0);
+}
+
 int	map_par(char *file)
 {
 	int j = -1;
@@ -247,6 +286,8 @@ int	map_par(char *file)
 			printf("%s\n", cub()->map[j]);
 	}
 	if (map_settings(file) == -1)
+		return (-1);
+	if (textures_verif() == -1)
 		return (-1);
 	if (map_verif() == -1)
 		return (-1);

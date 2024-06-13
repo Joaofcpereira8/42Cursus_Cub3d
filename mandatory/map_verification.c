@@ -110,6 +110,7 @@ int	plr_pos_verif(int x, int y)
 	if (cub()->map_dup[y][x] == 'N')
 	{
 		cub()->posi = 'N';
+		cub()->
 		cub()->plr_cnt++;
 	}
 	if (cub()->map_dup[y][x] == 'S')
@@ -132,6 +133,7 @@ int	plr_pos_verif(int x, int y)
 		printf("Error\nMore than one player in map\n");
 		return (-1);
 	}
+
 	return (0);
 }
 
@@ -160,7 +162,7 @@ int	verifs(void)
 			return -1;
 		}
 		z = x;
-		z++;
+		//z++;
 		while (cub()->map_dup[y][z])
 		{
 			while (cub()->map_dup[y][z] != ' ' && cub()->map_dup[y][z] != '\0')
