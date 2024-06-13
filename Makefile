@@ -50,6 +50,7 @@ SRCS =	mandatory/main.c \
 		mandatory/start.c \
 		mandatory/prog_info.c \
 		mandatory/image.c \
+		mandatory/calcs.c \
 
 OBJS = $(SRCS:%.c=%.o)
 

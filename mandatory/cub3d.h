@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 18:31:28 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/12 16:56:17 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/13 14:42:58 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,13 @@
 # include "../libft/libft.h"
 # include "../minilibx-linux/mlx.h"
 # include <fcntl.h>
+# include <math.h>
 # include <X11/X.h>
 # include <stdbool.h>
 # include <X11/keysym.h>
 
 # define HEIGHT 995
-# define WIDTH 1920
+# define WIDTH 1920.0
 # define IMG_H 100
 # define IMG_W 100
 # define FOV 0.75
@@ -43,9 +44,19 @@ typedef struct s_cubed
 	int			y;
 	double		dirx;
 	double		diry;
+	double		rayx;
+	double		rayy;
+	double		plx;
+	double		ply;
+	double		mapx;
+	double		mapy;
+	double		delta_x;
+	double		delta_y;
 	double		camx;
 	double		camy;
 	int			fd;
+	int			wallflag;
+	int			wcnt;
 	int			lin_cnt;
 	int			plr_cnt;
 	int			flagfill;
@@ -55,6 +66,7 @@ typedef struct s_cubed
 	void		*mlx;
 	void		*win;
 	char		posi;
+	char		ori;
 	char		*north;
 	char		*south;
 	char		*east;
@@ -79,6 +91,7 @@ int	draw_textures();
 int			file_verif(char *file);
 
 // ------- DRAW -------
+t_img		*img_picker(char type);
 void		draw_bkgnd(int ceil, int flr);
 
 // ------- ERRORS -------
@@ -103,6 +116,9 @@ int			map_verif(void);
 
 // ------- PLAYER -------
 void		plyr_dir();
+
+// ------- RAYCAST -------
+void		ray();
 
 // ------- PROGRAM INFO -------
 void		flag_change();

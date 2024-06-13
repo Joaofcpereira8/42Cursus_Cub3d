@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/12 15:46:09 by bbento-e          #+#    #+#             */
-/*   Updated: 2024/06/12 15:46:47 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/13 14:32:29 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 int	draw_textures()
 {
 	cub()->bg->img = mlx_new_image(cub()->mlx, WIDTH, HEIGHT);
-	cub()->bg->addr = mlx_get_data_addr(cub()->bg->img, &cub()->bg->bpp, &cub()->bg->llen, &cub()->bg->endian);
+	cub()->bg->addr = mlx_get_data_addr(cub()->bg->img, &cub()->bg->bpp,
+										&cub()->bg->llen, &cub()->bg->endian);
 	cub()->no->img = mlx_xpm_file_to_image(cub()->mlx,
 										   cub()->north, &cub()->no->width, &cub()->no->height);
 	cub()->no->addr = mlx_get_data_addr(cub()->no->img, &cub()->no->bpp,
