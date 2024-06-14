@@ -119,7 +119,7 @@ t_img *img_picker(char type)
 	return (img_picker(img));
 }
 
-void	asgn_texture()
+void	asgn_txtr()
 {
 	if (cub()->ori == 'H')
 	{

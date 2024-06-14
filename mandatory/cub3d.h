@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 18:31:28 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/13 18:50:21 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/14 15:07:10 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ int	cub_loop();
 int	draw_textures();
 
 // ------- DRAW -------
+void		asgn_txtr();
 t_img		*img_picker(char type);
 void		draw_bkgnd(int ceil, int flr);
 
