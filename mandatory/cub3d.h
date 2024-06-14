@@ -151,5 +151,6 @@ int			check_overflow(char *str, int target);
 // ------- FREES -------
 void		free_struct(void);
 void		free_arr(char **arr);
+void		free_mlx(void);
 
 #endif

@@ -12,10 +12,23 @@
 
 #include "cub3d.h"
 
+//void	moves_plr(int key)
+//{
+//	if (key == XK_w &&)
+//}
+//
+//int	check_moves(int x, int y)
+//{
+//	if (cub()->map)
+//}
+
 int	key_hook(int key)
 {
 	if (key == XK_Escape)
+	{
+		free_mlx();
 		free_struct();
+	}
 	else if (key == XK_w || key == XK_a || key == XK_s || key == XK_d)
 	{
 		//moves_plr(key);

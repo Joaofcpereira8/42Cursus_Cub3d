@@ -47,3 +47,20 @@ void	free_struct(void)
 		free_arr(cub()->map_dup);
 	exit(0);
 }
+
+void	free_mlx(void)
+{
+	mlx_destroy_image(cub()->mlx, cub()->no->img);
+	mlx_destroy_image(cub()->mlx, cub()->so->img);
+	mlx_destroy_image(cub()->mlx, cub()->ea->img);
+	mlx_destroy_image(cub()->mlx, cub()->ws->img);
+	mlx_destroy_image(cub()->mlx, cub()->bg->img);
+	free(cub()->no);
+	free(cub()->so);
+	free(cub()->ea);
+	free(cub()->ws);
+	free(cub()->bg);
+	mlx_destroy_window(cub()->mlx, cub()->win);
+	mlx_destroy_display(cub()->mlx);
+	free(cub()->mlx);
+}

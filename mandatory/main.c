@@ -52,6 +52,7 @@ int	main(int argc, char **argv)
 		mlx_key_hook(cub()->win, key_hook, &cub);
 		mlx_loop_hook(cub()->mlx, cub_loop, NULL);
 		mlx_loop(cub()->mlx);
+		free_mlx();
 		free_struct();
 	}
 	else
