@@ -55,7 +55,8 @@ int	main(int argc, char **argv)
 		cub()->win = mlx_new_window(cub()->mlx, WIDTH, HEIGHT, "cub3d");
 		draw_bkgnd(create_trgb(cub()->cei, 255), create_trgb(cub()->flo, 255));
 		plyr_dir();
-		mlx_key_hook(cub()->win, key_hook, &cub);
+		mlx_loop_hook(cub()->win, key_hook, &cub);
+		//mlx_hook(cub()->win, KeyRelease, KeyReleaseMask, key_release, cub);
 		mlx_loop_hook(cub()->mlx, cub_loop, NULL);
 		mlx_loop(cub()->mlx);
 		free_mlx();

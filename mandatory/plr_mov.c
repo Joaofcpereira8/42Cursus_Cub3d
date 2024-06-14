@@ -12,15 +12,13 @@
 
 #include "cub3d.h"
 
-//void	moves_plr(int key)
-//{
-//	if (key == XK_w &&)
-//}
-//
-//int	check_moves(int x, int y)
-//{
-//	if (cub()->map)
-//}
+void	moves_plr(int key)
+{
+	if (key == XK_w)
+	{
+
+	}
+}
 
 int	key_hook(int key)
 {
@@ -31,10 +29,10 @@ int	key_hook(int key)
 	}
 	else if (key == XK_w || key == XK_a || key == XK_s || key == XK_d)
 	{
+		printf("ITS WORKING!!!!!\n");
 		//moves_plr(key);
 	}
 	else
 		return (-1);
-	printf("ITS WORKING!!!!!\n");
 	return (0);
 }
