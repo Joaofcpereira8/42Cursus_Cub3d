@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 18:31:13 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/14 15:16:06 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/14 15:36:25 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void	dda()
 		hit_reg();
 		ray_calc();
 		asgn_txtr();
+		wall_e();
 		cub()->wcnt++;
 	}
 }
@@ -32,7 +33,7 @@ int	cub_loop()
 	mlx_destroy_image(cub()->mlx, cub()->bg->img);
 	cub()->bg->img = mlx_new_image(cub()->mlx, WIDTH, HEIGHT);
 	draw_bkgnd(create_trgb(cub()->cei, 255), create_trgb(cub()->flo, 255));
-	//dda();
+	// dda();
 	return (0);
 }
 

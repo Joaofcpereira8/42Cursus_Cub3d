@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 18:31:28 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/14 15:07:10 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/14 15:33:12 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,14 @@ typedef struct s_cubed
 	int			rleft;
 	int			mapx;
 	int			mapy;
+	int			imgx;
+	int			imgy;
+	double		imgstp;
+	double		imgpos;
 	double		line_h;
 	double		line_w;
+	double		wallx;
+	double		wally;
 	double		dirx;
 	double		diry;
 	double		rayx;
@@ -99,7 +105,6 @@ int	cub_loop();
 int	draw_textures();
 
 // ------- DRAW -------
-void		asgn_txtr();
 t_img		*img_picker(char type);
 void		draw_bkgnd(int ceil, int flr);
 
@@ -133,9 +138,11 @@ int       key_hook(int key);
 // ------- RAYCAST -------
 void		ray();
 void		dda();
+void		wall_e();
 void		ray_dir();
 void		hit_reg();
 void		ray_calc();
+void		asgn_txtr();
 
 // ------- PROGRAM INFO -------
 void		flag_change();

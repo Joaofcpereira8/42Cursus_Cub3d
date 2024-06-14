@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 11:50:54 by bbento-e          #+#    #+#             */
-/*   Updated: 2024/06/13 18:49:54 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/14 15:36:07 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,5 +134,39 @@ void	asgn_txtr()
 			img_picker('E');
 		else
 			img_picker('W');
+	}
+}
+
+void	wall_e()
+{
+	if (cub()->ori == 'V')
+	{
+		cub()->wallx = cub()->ply + cub()->perpend_wl * cub()->rayy;
+		cub()->wallx -= floor(cub()->wallx);
+	}
+	else
+	{
+		cub()->wallx = cub()->plx + cub()->perpend_wl * cub()->rayx;
+		cub()->wallx -= floor(cub()->wallx);
+	}
+}
+
+void	draw(int x)
+{
+	// int color;
+	int	y;
+
+	(void)x;
+	cub()->imgx = (int)(cub()->wallx * IMG_W);
+	cub()->imgx = IMG_W - cub()->imgx - 1;
+	cub()->imgstp = 1.0 * IMG_W / cub()->line_h;
+	cub()->imgpos = (cub()->begn_draw - HEIGHT / 2 + cub()->line_h / 2) * cub()->imgstp;
+	y = cub()->begn_draw;
+	while (y < cub()->end_draw)
+	{
+		cub()->imgy = (int)cub()->imgpos & (IMG_H - 1);
+		cub()->imgpos += cub()->imgstp;
+		// if ()
+		y++;
 	}
 }
