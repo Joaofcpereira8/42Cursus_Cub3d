@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 18:59:12 by bbento-e          #+#    #+#             */
-/*   Updated: 2024/06/07 13:47:19 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/17 19:02:44 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,4 @@ void draw_bkgnd(int ceil, int flr)
 		x++;
 	}
 	mlx_put_image_to_window(cub()->mlx, cub()->win, cub()->bg->img, 0, 0);
-}
-
-int	start()
-{
-
-	return (draw_textures());
 }

@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 18:50:20 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/07 17:53:06 by jofilipe         ###   ########.fr       */
+/*   Updated: 2024/06/17 19:48:27 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -223,7 +223,7 @@ int	map_configure(char *file)
 		if (ft_isascii(*trimmed) == 1)
 		{
 			temp = ft_strdup(line);
-			cub()->map[i] = ft_strtrim(temp, "\n");
+			cub()->map[i] = ft_strtrim(temp, "\n"); // NORMINETTE FDP
 			i++;
 			free(temp);
 		}

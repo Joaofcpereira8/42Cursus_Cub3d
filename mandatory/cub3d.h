@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 18:31:28 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/14 15:33:12 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/17 19:25:52 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,38 +49,34 @@ typedef struct s_cubed
 	int			mapy;
 	int			imgx;
 	int			imgy;
-	double		imgstp;
-	double		imgpos;
-	double		line_h;
-	double		line_w;
-	double		wallx;
-	double		wally;
-	double		dirx;
-	double		diry;
-	double		rayx;
-	double		rayy;
-	double		dist_right;
-	double		dist_left;
-	double		perpend_wl;
-	double		begn_draw;
-	double		end_draw;
-	double		plx;
-	double		ply;
-	double		delta_x;
-	double		delta_y;
-	double		camx;
-	double		camy;
+	int			line_h;
+	int			wallx;
+	int			dirx;
+	int			diry;
+	int			begn_draw;
+	int			end_draw;
 	int			fd;
 	int			wallflag;
 	int			wcnt;
 	int			lin_cnt;
 	int			plr_cnt;
 	int			flagfill;
-	int 		line_no;
-	int 		*flo;
-	int 		*cei;
-	void		*mlx;
-	void		*win;
+	int			line_no;
+	int			*flo;
+	int			*cei;
+	double		imgstp;
+	double		imgpos;
+	double		rayx;
+	double		rayy;
+	double		dist_right;
+	double		dist_left;
+	double		perpend_wl;
+	double		plx;
+	double		ply;
+	double		delta_x;
+	double		delta_y;
+	double		camx;
+	double		camy;
 	char		posi;
 	char		ori;
 	char		*north;
@@ -89,24 +85,27 @@ typedef struct s_cubed
 	char		*west;
 	char		**map;
 	char		**map_dup;
-	t_img 		*bg;
-	t_img 		*no;
-	t_img 		*so;
-	t_img 		*ea;
-	t_img 		*ws;
+	void		*mlx;
+	void		*win;
+	t_img		*bg;
+	t_img		*no;
+	t_img		*so;
+	t_img		*ea;
+	t_img		*ws;
 }			t_cubed;
 
 // ------- VARIABLE_STRUCT -------
 t_cubed		*cub(void);
 
 // ------- START GAME -------
-int	start();
-int	cub_loop();
-int	draw_textures();
+int			start(void);
+int			cub_loop(void);
+int			draw_textures(void);
 
 // ------- DRAW -------
 t_img		*img_picker(char type);
 void		draw_bkgnd(int ceil, int flr);
+void		my_mlx_pixel_put(int x, int y, int color);
 
 // ------- ERRORS -------
 int			args_error(int c);
@@ -130,23 +129,25 @@ int			count_map_lines(char *file);
 void		read_map_lines(char *frst_line, int line_count);
 
 // ------- PLAYER -------
-void		plyr_dir();
+void		plyr_dir(void);
 
 // ------- MOVEMENT -------
-int       key_hook(int key);
+int			key_hook(int key);
 
 // ------- RAYCAST -------
-void		ray();
-void		dda();
-void		wall_e();
-void		ray_dir();
-void		hit_reg();
-void		ray_calc();
-void		asgn_txtr();
+void		ray(void);
+void		dda(void);
+void		draw(int x);
+void		wall_e(void);
+void		ray_dir(void);
+void		hit_reg(void);
+void		ray_calc(void);
+void		asgn_txtr(void);
+t_img		*img_picker(char type);
 
 // ------- PROGRAM INFO -------
-void		flag_change();
 bool		is_map(char *str);
+void		flag_change(void);
 bool		check_attr(char c);
 
 // ------- UTILS -------
@@ -157,8 +158,8 @@ int			ign_map_spaces(char *str, int i);
 int			check_overflow(char *str, int target);
 
 // ------- FREES -------
+void		free_mlx(void);
 void		free_struct(void);
 void		free_arr(char **arr);
-void		free_mlx(void);
 
 #endif

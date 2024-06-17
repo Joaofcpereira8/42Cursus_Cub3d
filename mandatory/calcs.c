@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 11:50:54 by bbento-e          #+#    #+#             */
-/*   Updated: 2024/06/14 15:36:07 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/17 20:08:33 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,7 +95,7 @@ void	hit_reg()
 			cub()->ori = 'H'; // Horizontal hit
 		}
 		// Check if the current grid cell is a wall
-		if (cub()->map_dup[cub()->mapx][cub()->mapy] == '1')
+		if (cub()->map_dup[cub()->mapy][cub()->mapx] == '1')
 			cub()->hit = 1;
 	}
 }
@@ -151,12 +151,23 @@ void	wall_e()
 	}
 }
 
+int ft_get_pickle(int x, int y)
+{
+	t_img	*img;
+	int		aux;
+	img = img_picker('P');
+	aux = (*(int *)((img->addr + (y * img->llen) + (x * img->bpp / 8))));
+
+	mlx_destroy_image(cub()->mlx, img->img);
+	free(img);
+	return (aux);
+}
+
 void	draw(int x)
 {
-	// int color;
 	int	y;
+	int	color;
 
-	(void)x;
 	cub()->imgx = (int)(cub()->wallx * IMG_W);
 	cub()->imgx = IMG_W - cub()->imgx - 1;
 	cub()->imgstp = 1.0 * IMG_W / cub()->line_h;
@@ -166,7 +177,11 @@ void	draw(int x)
 	{
 		cub()->imgy = (int)cub()->imgpos & (IMG_H - 1);
 		cub()->imgpos += cub()->imgstp;
-		// if ()
+		if (x >= 0 && y >= 0 && cub()->imgx >= 0 && cub()->imgy >= 0)
+		{
+			color = ft_get_pickle(cub()->imgx, cub()->imgy);
+			my_mlx_pixel_put(x, y, color);
+		}
 		y++;
 	}
 }
