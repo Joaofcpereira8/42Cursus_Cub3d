@@ -168,11 +168,19 @@ int	verifs(void)
 			return -1;
 		}
 		z = x;
-		//z++;
 		while (cub()->map_dup[y][z])
 		{
-			while (cub()->map_dup[y][z] != ' ' && cub()->map_dup[y][z] != '\0')
+			while (cub()->map_dup[y][z] != '\0')
 			{
+				if (plr_pos_verif(z, y) == -1)
+					return (-1);
+				if ((cub()->map_dup[y][z] == '0' && !cub()->map_dup[y + 1]) || (cub()->map_dup[y][z] == '0' && cub()->map_dup[y + 1][z] == ' '))
+				{
+					printf("Error\nMap is not valid\n");
+					return (-1);
+				}
+				while (cub()->map_dup[y][z] == ' ')
+					z++;
 				if (cub()->map_dup[y][z] == '0' || cub()->map_dup[y][z] == '1' || cub()->map_dup[y][z] == 'N'
 					|| cub()->map_dup[y][z] == 'E' || cub()->map_dup[y][z] == 'S' || cub()->map_dup[y][z] == 'W')
 					z++;
@@ -181,16 +189,12 @@ int	verifs(void)
 					printf("Error\nMap is not valid\n");
 					return (-1);
 				}
-				if (plr_pos_verif(z, y) == -1)
-					return (-1);
 			}
 			if (cub()->map_dup[y][z - 1] == '0' && cub()->map_dup[y][z] == '\0')
 			{
 				printf("Error\nMap is not valid\n");
 				return (-1);
 			}
-			while (cub()->map_dup[y][z] == ' ')
-				z++;
 		}
 		y++;
 	}
