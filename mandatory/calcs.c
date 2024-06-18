@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 11:50:54 by bbento-e          #+#    #+#             */
-/*   Updated: 2024/06/17 20:08:33 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/18 12:05:53 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,13 @@ void	ray_dir(void)
 	if (cub()->rayx < 0)
 	{
 		cub()->rright = -1; // The ray is moving left
-		cub()->dist_right = (cub()->plx - cub()->mapx) * cub()->dist_right;
+		cub()->dst_rght = (cub()->plx - cub()->mapx) * cub()->dst_rght;
 	}
 	else
 	{
 		cub()->rright = 1; // The ray is moving right
-		cub()->dist_right = (cub()->mapx + 1.0 - cub()->plx) * cub()->dist_right;
+		cub()->dst_rght = (cub()->mapx + 1.0 - cub()->plx) * cub()->dst_rght;
 	}
-
 	// Determine the step direction and initial side distance for the y-axis
 	if (cub()->rayy < 0)
 	{
@@ -60,7 +59,7 @@ void	ray_dir(void)
 void	ray_calc(void)
 {
 	if (cub()->ori == 'V')
-		cub()->perpend_wl = cub()->dist_right - cub()->delta_x;
+		cub()->perpend_wl = cub()->dst_rght - cub()->delta_x;
 	else
 		cub()->perpend_wl = cub()->dist_left - cub()->delta_y;
 	if (cub()->perpend_wl)
@@ -80,17 +79,17 @@ void	hit_reg(void)
 	while (!cub()->hit)
 	{
 		// Compare side distances to determine which side the ray hits first
-		if (cub()->dist_right < cub()->dist_left)
+		if (cub()->dst_rght < cub()->dist_left)
 		{
 			// The ray hits a vertical grid line first
-			cub()->dist_right += cub()->dist_right;
+			cub()->dst_rght += cub()->dst_rght;
 			cub()->mapx += cub()->rright;
 			cub()->ori = 'V'; // Vertical hit
 		}
 		else
 		{
 			// The ray hits a horizontal grid line first
-			cub()->dist_right += cub()->dist_right;
+			cub()->dst_rght += cub()->dst_rght;
 			cub()->mapy += cub()->rleft;
 			cub()->ori = 'H'; // Horizontal hit
 		}

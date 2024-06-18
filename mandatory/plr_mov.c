@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 16:52:27 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/13 18:56:50 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/18 12:07:01 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	moves_plr(int key)
 {
 	if (key == XK_w)
 	{
-
+		// moves
 	}
 }
 

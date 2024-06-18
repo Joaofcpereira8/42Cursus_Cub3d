@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 18:50:20 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/18 11:46:15 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/18 12:03:45 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int	map_settings(char *file)
 	char	*temp;
 
 	cub()->fd = open(file, O_RDONLY);
-	while (((temp = get_next_line(cub()->fd)) != NULL) && !is_map(temp))
+	temp = get_next_line(cub()->fd);
+	while ((temp != NULL) && !is_map(temp))
 	{
 		if (ft_strncmp(temp, "NO", 2) == 0)
 		{
@@ -98,12 +99,15 @@ int	map_settings(char *file)
 			printf("%i\n", cub()->cei[2]); // DEBUG
 		}
 		else
+		{
 			if (ign_spaces(temp, 0) <= 0)
 			{
 				free(temp);
 				return (file_err_msg('A', cub()->fd));
 			}
+		}
 		free(temp);
+		temp = get_next_line(cub()->fd);
 	}
 	if (!check_attr('A') && is_map(NULL))
 	{
@@ -154,8 +158,8 @@ char	*get_path(char *str)
 {
 	int			i;
 	int			len;
-	char	*res;
-	char	*aux;
+	char		*res;
+	char		*aux;
 
 	res = NULL;
 	if (!str)
@@ -181,11 +185,13 @@ int	count_lines(char *file)
 
 	total = 0;
 	fd = open(file, O_RDONLY);
-	while ((temp = get_next_line(fd)) != NULL)
+	temp = get_next_line(fd);
+	while (temp != NULL)
 	{
 		if (temp[0] != '\n' && temp[0] != '\0' && temp[0] != '\t')
 			total++;
 		free(temp);
+		temp = get_next_line(fd);
 	}
 	close(fd);
 	return (total);
@@ -206,11 +212,12 @@ int	map_configure(char *file)
 		return (-1);
 	}
 	cub()->line_no = count_lines(file);
-	cub()->map = malloc(sizeof(char*) * (cub()->line_no + 1));
+	cub()->map = malloc(sizeof(char *) * (cub()->line_no + 1));
 	if (!cub()->map)
 		return (-1);
 	cub()->fd = open(file, O_RDONLY);
-	while ((line = get_next_line(cub()->fd)) != NULL)
+	line = get_next_line(cub()->fd);
+	while (line != NULL)
 	{
 		trimmed = line;
 		if (*trimmed == '\n')
@@ -228,7 +235,9 @@ int	map_configure(char *file)
 			free(temp);
 		}
 		free(line);
+		line = get_next_line(cub()->fd);
 	}
+	free(line);
 	close(cub()->fd);
 	cub()->map[i] = NULL;
 	return (0);

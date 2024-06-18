@@ -68,7 +68,7 @@ typedef struct s_cubed
 	double		imgpos;
 	double		rayx;
 	double		rayy;
-	double		dist_right;
+	double		dst_rght;
 	double		dist_left;
 	double		perpend_wl;
 	double		plx;

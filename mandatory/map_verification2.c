@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 00:33:43 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/18 00:33:44 by jofilipe         ###   ########.fr       */
+/*   Updated: 2024/06/18 12:05:04 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,13 @@ int	verifs(void)
 
 int	map_verif(void)
 {
+	int	j;
+
 	if (height_y() == -1)
 		return (file_err_msg('y', 0));
 	if (width_x() == -1)
 		return (file_err_msg('x', 0));
-	int j = -1;
+	j = -1;
 	if (!cub()->mp_dp)
 		return (-1);
 	else
@@ -108,4 +110,3 @@ int	map_verif(void)
 	}
 	return (0);
 }
-

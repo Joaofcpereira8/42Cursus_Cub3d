@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 00:31:25 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/18 00:31:26 by jofilipe         ###   ########.fr       */
+/*   Updated: 2024/06/18 12:06:26 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,8 @@ void	draw(int x)
 	cub()->imgx = (int)(cub()->wallx * IMG_W);
 	cub()->imgx = IMG_W - cub()->imgx - 1;
 	cub()->imgstp = 1.0 * IMG_W / cub()->line_h;
-	cub()->imgpos = (cub()->begn_draw - HEIGHT / 2 + cub()->line_h / 2) * cub()->imgstp;
+	cub()->imgpos = (cub()->begn_draw - HEIGHT / 2
+		+ cub()->line_h / 2) * cub()->imgstp;
 	y = cub()->begn_draw;
 	while (y < cub()->end_draw)
 	{
