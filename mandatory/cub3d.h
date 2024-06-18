@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 18:31:28 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/17 19:25:52 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/18 17:55:09 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ typedef struct s_cubed
 	int			line_no;
 	int			*flo;
 	int			*cei;
+	double			plx;
+	double			ply;
 	double		imgstp;
 	double		imgpos;
 	double		rayx;
@@ -71,8 +73,6 @@ typedef struct s_cubed
 	double		dst_rght;
 	double		dist_left;
 	double		perpend_wl;
-	double		plx;
-	double		ply;
 	double		delta_x;
 	double		delta_y;
 	double		camx;
@@ -88,6 +88,7 @@ typedef struct s_cubed
 	void		*mlx;
 	void		*win;
 	t_img		*bg;
+	t_img		*cr;
 	t_img		*no;
 	t_img		*so;
 	t_img		*ea;

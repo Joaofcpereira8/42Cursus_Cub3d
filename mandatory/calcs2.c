@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 00:31:25 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/18 12:06:26 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/18 18:41:02 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ void	draw(int x)
 		cub()->imgpos += cub()->imgstp;
 		if (x >= 0 && y >= 0 && cub()->imgx >= 0 && cub()->imgy >= 0)
 		{
+			printf("drawing");
 			color = ft_get_pickle(cub()->imgx, cub()->imgy);
 			my_mlx_pixel_put(x, y, color);
 		}

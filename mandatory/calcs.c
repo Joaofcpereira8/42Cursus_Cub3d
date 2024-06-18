@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 11:50:54 by bbento-e          #+#    #+#             */
-/*   Updated: 2024/06/18 12:05:53 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/18 18:50:39 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	ray(void)
 	cub()->camx = 2 * cub()->wcnt / WIDTH - 1;
 	cub()->rayx = cub()->dirx + cub()->plx * cub()->camx;
 	cub()->rayy = cub()->diry + cub()->ply * cub()->camx;
-	cub()->mapx = cub()->plx;
-	cub()->mapy = cub()->ply;
+	cub()->mapx = (int)cub()->plx;
+	cub()->mapy = (int)cub()->ply;
 	if (cub()->rayx == 0)
 		cub()->delta_x = 1e30;
 	else
@@ -76,25 +76,25 @@ void	ray_calc(void)
 
 void	hit_reg(void)
 {
-	while (!cub()->hit)
+	while (cub()->hit == 0)
 	{
 		// Compare side distances to determine which side the ray hits first
 		if (cub()->dst_rght < cub()->dist_left)
 		{
 			// The ray hits a vertical grid line first
-			cub()->dst_rght += cub()->dst_rght;
+			cub()->dst_rght += cub()->delta_x;
 			cub()->mapx += cub()->rright;
 			cub()->ori = 'V'; // Vertical hit
 		}
 		else
 		{
 			// The ray hits a horizontal grid line first
-			cub()->dst_rght += cub()->dst_rght;
+			cub()->dst_rght += cub()->delta_y;
 			cub()->mapy += cub()->rleft;
 			cub()->ori = 'H'; // Horizontal hit
 		}
 		// Check if the current grid cell is a wall
-		if (cub()->mp_dp[cub()->mapy][cub()->mapx] == '1')
+		if ((cub()->mp_dp[(cub()->mapy)][(cub()->mapx)]) == '1')
 			cub()->hit = 1;
 	}
 }
