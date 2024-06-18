@@ -50,15 +50,30 @@ void	free_struct(void)
 
 void	free_mlx(void)
 {
-	mlx_destroy_image(cub()->mlx, cub()->no->img);
-	mlx_destroy_image(cub()->mlx, cub()->so->img);
-	mlx_destroy_image(cub()->mlx, cub()->ea->img);
-	mlx_destroy_image(cub()->mlx, cub()->ws->img);
-	mlx_destroy_image(cub()->mlx, cub()->bg->img);
+	if (cub()->no->img)
+	{
+		mlx_destroy_image(cub()->mlx, cub()->no->img);
+	}
 	free(cub()->no);
+	if (cub()->so->img)
+	{
+		mlx_destroy_image(cub()->mlx, cub()->so->img);
+	}
 	free(cub()->so);
+	if (cub()->ea->img)
+	{
+		mlx_destroy_image(cub()->mlx, cub()->ea->img);
+	}
 	free(cub()->ea);
+	if (cub()->ws->img)
+	{
+		mlx_destroy_image(cub()->mlx, cub()->ws->img);
+	}
 	free(cub()->ws);
+	if (cub()->bg->img)
+	{
+		mlx_destroy_image(cub()->mlx, cub()->bg->img);
+	}
 	free(cub()->bg);
 	mlx_destroy_window(cub()->mlx, cub()->win);
 	mlx_destroy_display(cub()->mlx);

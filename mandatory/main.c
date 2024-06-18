@@ -53,9 +53,12 @@ int	main(int argc, char **argv)
 		}
 		cub_init();
 		cub()->mlx = mlx_init();
-		if (draw_textures() == -1)
-			return (-1);
 		cub()->win = mlx_new_window(cub()->mlx, WIDTH, HEIGHT, "cub3d");
+		if (draw_textures() == -1)
+		{
+			free_mlx();
+			free_struct();
+		}
 		draw_bkgnd(create_trgb(cub()->cei, 255), create_trgb(cub()->flo, 255));
 		plyr_dir();
 		/*mlx_hook(cub()->win, DestroyNotify,

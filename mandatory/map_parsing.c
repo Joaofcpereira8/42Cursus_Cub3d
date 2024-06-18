@@ -23,7 +23,10 @@ int	map_settings(char *file)
 		if (ft_strncmp(temp, "NO", 2) == 0)
 		{
 			if (cub()->north)
+			{
+				free(temp);
 				return (file_err_msg('t', cub()->fd));
+			}
 			cub()->north = get_path(temp);
 			if (!cub()->north)
 			{
@@ -35,7 +38,10 @@ int	map_settings(char *file)
 		else if (ft_strncmp(temp, "SO", 2) == 0)
 		{
 			if (cub()->south)
+			{
+				free(temp);
 				return (file_err_msg('t', cub()->fd));
+			}
 			cub()->south = get_path(temp);
 			if (!cub()->south)
 			{
@@ -47,7 +53,10 @@ int	map_settings(char *file)
 		else if (ft_strncmp(temp, "EA", 2) == 0)
 		{
 			if (cub()->east)
+			{
+				free(temp);
 				return (file_err_msg('t', cub()->fd));
+			}
 			cub()->east = get_path(temp);
 			if (!cub()->east)
 			{
@@ -59,7 +68,10 @@ int	map_settings(char *file)
 		else if (ft_strncmp(temp, "WE", 2) == 0)
 		{
 			if (cub()->west)
+			{
+				free(temp);
 				return (file_err_msg('t', cub()->fd));
+			}
 			cub()->west = get_path(temp);
 			if (!cub()->west)
 			{
@@ -71,7 +83,10 @@ int	map_settings(char *file)
 		else if (ft_strncmp(temp, "F", 1) == 0)
 		{
 			if (cub()->flo)
+			{
+				free(temp);
 				return (file_err_msg('c', cub()->fd));
+			}
 			cub()->flo = get_value(temp);
 			if (!cub()->flo)
 			{
@@ -86,7 +101,10 @@ int	map_settings(char *file)
 		else if (ft_strncmp(temp, "C", 1) == 0)
 		{
 			if (cub()->cei)
+			{
+				free(temp);
 				return (file_err_msg('c', cub()->fd));
+			}
 			cub()->cei = get_value(temp);
 			if (!cub()->cei)
 			{

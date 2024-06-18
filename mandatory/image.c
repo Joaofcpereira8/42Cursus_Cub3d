@@ -23,8 +23,8 @@ int	draw_textures(void)
 			cub()->east, &cub()->ea->width, &cub()->ea->height);
 	(cub()->ws->img) = mlx_xpm_file_to_image(cub()->mlx,
 			cub()->west, &cub()->ws->width, &cub()->ws->height);
-	if (!cub()->no->img || !cub()->so->img
-		|| !cub()->ea->img || !cub()->ws->img)
+	if (cub()->no->img == NULL || cub()->so->img == NULL
+		|| cub()->ea->img == NULL || cub()->ws->img == NULL)
 		return (file_err_msg('T', 0));
 	(cub()->no->addr) = mlx_get_data_addr(cub()->no->img, &cub()->no->bpp,
 			&cub()->no->llen, &cub()->no->endian);
