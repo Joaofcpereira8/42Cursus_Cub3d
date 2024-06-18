@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 18:31:28 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/18 17:55:09 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/18 19:02:42 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ typedef struct s_cubed
 	int			imgx;
 	int			imgy;
 	int			line_h;
-	int			wallx;
+	double		wallx;
 	int			dirx;
 	int			diry;
 	int			begn_draw;
@@ -64,8 +64,8 @@ typedef struct s_cubed
 	int			line_no;
 	int			*flo;
 	int			*cei;
-	double			plx;
-	double			ply;
+	float		plx;
+	float		ply;
 	double		imgstp;
 	double		imgpos;
 	double		rayx;
@@ -79,6 +79,7 @@ typedef struct s_cubed
 	double		camy;
 	char		posi;
 	char		ori;
+	char		ipick;
 	char		*north;
 	char		*south;
 	char		*east;
@@ -104,7 +105,7 @@ int			cub_loop(void);
 int			draw_textures(void);
 
 // ------- DRAW -------
-t_img		*img_picker(char type);
+void img_picker(char type);
 void		draw_bkgnd(int ceil, int flr);
 void		my_mlx_pixel_put(int x, int y, int color);
 
@@ -148,7 +149,7 @@ void		ray_dir(void);
 void		hit_reg(void);
 void		ray_calc(void);
 void		asgn_txtr(void);
-t_img		*img_picker(char type);
+void img_picker(char type);
 
 // ------- PROGRAM INFO -------
 bool		is_map(char *str);

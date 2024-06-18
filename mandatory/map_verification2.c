@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 00:33:43 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/18 12:05:04 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/18 19:03:37 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,6 +125,7 @@ int	map_verif(void)
 		while (cub()->mp_dp[++j])
 			printf("%s\n", cub()->mp_dp[j]);
 	}
+	free_arr(cub()->mp_dp);
 	if (height_y() == -1)
 		return (file_err_msg('y', 0));
 	if (width_x() == -1)

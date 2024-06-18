@@ -14,7 +14,7 @@
 
 void	ray(void)
 {
-	cub()->camx = 2 * cub()->wcnt / WIDTH - 1;
+	cub()->camx = 2 * cub()->wcnt / (double)WIDTH - 1;
 	cub()->rayx = cub()->dirx + cub()->plx * cub()->camx;
 	cub()->rayy = cub()->diry + cub()->ply * cub()->camx;
 	cub()->mapx = (int)cub()->plx;
@@ -27,7 +27,7 @@ void	ray(void)
 		cub()->delta_y = 1e30;
 	else
 		cub()->delta_y = fabs(1 / cub()->rayy);
-	cub()->wallflag = 0;
+	cub()->hit = 0;
 }
 
 void	ray_dir(void)
@@ -36,23 +36,23 @@ void	ray_dir(void)
 	if (cub()->rayx < 0)
 	{
 		cub()->rright = -1; // The ray is moving left
-		cub()->dst_rght = (cub()->plx - cub()->mapx) * cub()->dst_rght;
+		cub()->dst_rght = (cub()->plx - cub()->mapx) * cub()->delta_x;
 	}
 	else
 	{
 		cub()->rright = 1; // The ray is moving right
-		cub()->dst_rght = (cub()->mapx + 1.0 - cub()->plx) * cub()->dst_rght;
+		cub()->dst_rght = (cub()->mapx + 1.0 - cub()->plx) * cub()->delta_x;
 	}
 	// Determine the step direction and initial side distance for the y-axis
 	if (cub()->rayy < 0)
 	{
 		cub()->rleft = -1; // The ray is moving up
-		cub()->dist_left = (cub()->ply - cub()->mapy) * cub()->dist_left;
+		cub()->dist_left = (cub()->ply - cub()->mapy) * cub()->delta_y;
 	}
 	else
 	{
 		cub()->rleft = 1; // The ray is moving down
-		cub()->dist_left = (cub()->mapy + 1.0 - cub()->ply) * cub()->dist_left;
+		cub()->dist_left = (cub()->mapy + 1.0 - cub()->ply) * cub()->delta_y;
 	}
 }
 

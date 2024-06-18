@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 18:02:03 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/18 18:33:34 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/18 19:11:00 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	cub_init(void)
 	cub()->imgy = 0;
 	cub()->imgstp = 0;
 	cub()->imgpos = 0;
+	cub()->ori = 'V';
 /*	cub()->mapx = 0;
 	cub()->mapy = 0;
 	cub()->line_h = 0;

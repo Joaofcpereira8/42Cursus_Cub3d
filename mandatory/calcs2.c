@@ -6,29 +6,22 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 00:31:25 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/18 18:41:02 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/18 19:49:09 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_img	*img_picker(char type)
+void img_picker(char type)
 {
-	static char	img;
-
-	if (type == 'N' || type == 'S' || type == 'E' || type == 'W')
-	{
-		img = type;
-		if (type == 'N')
-			return (cub()->no);
-		else if (type == 'S')
-			return (cub()->so);
-		else if (type == 'E')
-			return (cub()->ea);
-		else
-			return (cub()->ws);
-	}
-	return (img_picker(img));
+	if (type == 'N')
+		(cub()->cr = cub()->no);
+	else if (type == 'S')
+		(cub()->cr = cub()->so);
+	else if (type == 'E')
+		(cub()->cr = cub()->ea);
+	else
+		(cub()->cr = cub()->ws);
 }
 
 void	asgn_txtr(void)
@@ -56,24 +49,18 @@ void	wall_e(void)
 		cub()->wallx = cub()->ply + cub()->perpend_wl * cub()->rayy;
 		cub()->wallx -= floor(cub()->wallx);
 	}
-	else
+	if (cub()->ori == 'H')
 	{
 		cub()->wallx = cub()->plx + cub()->perpend_wl * cub()->rayx;
 		cub()->wallx -= floor(cub()->wallx);
 	}
 }
 
-int	ft_get_pickle(int x, int y)
+int ft_get_pickle(int x, int y)
 {
-	t_img	*img;
-	int		aux;
-
-	img = img_picker('P');
-	aux = (*(int *)((img->addr + (y * img->llen) + (x * img->bpp / 8))));
-	mlx_destroy_image(cub()->mlx, img->img);
-	free(img);
-	return (aux);
+	return (*(int *)((cub()->cr->addr + (y * cub()->cr->llen) + (x * (cub()->cr->bpp / 8)))));
 }
+
 
 void	draw(int x)
 {
@@ -92,7 +79,6 @@ void	draw(int x)
 		cub()->imgpos += cub()->imgstp;
 		if (x >= 0 && y >= 0 && cub()->imgx >= 0 && cub()->imgy >= 0)
 		{
-			printf("drawing");
 			color = ft_get_pickle(cub()->imgx, cub()->imgy);
 			my_mlx_pixel_put(x, y, color);
 		}
