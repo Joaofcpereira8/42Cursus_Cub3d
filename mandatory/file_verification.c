@@ -29,4 +29,3 @@ int	file_verif(char *file)
 	close(cub()->fd);
 	return (0);
 }
-

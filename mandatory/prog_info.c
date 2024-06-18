@@ -12,35 +12,35 @@
 
 #include "cub3d.h"
 
-bool check_attr(char c)
+bool	check_attr(char c)
 {
 	if (c == 'T' && (!cub()->north || !cub()->south || !cub()->east
-					 || !cub()->west))
+			|| !cub()->west))
 		return (false);
 	else if (c == 'C' && (!cub()->flo || !cub()->cei))
 		return (false);
 	else if (c == 'A' && (!cub()->north || !cub()->south || !cub()->east
-						  || !cub()->west || !cub()->flo || !cub()->cei))
+			|| !cub()->west || !cub()->flo || !cub()->cei))
 		return (false);
 	return (true);
 }
 
-bool is_map(char *str)
+bool	is_map(char *str)
 {
-	int i;
-	static bool var;
+	int			i;
+	static bool	var;
 
 	i = 0;
 	if (!var && str)
 	{
 		ign_spaces(str, i);
-			if (str[i] == '1' || str[i] == '0')
-				var = true;
+		if (str[i] == '1' || str[i] == '0')
+			var = true;
 	}
 	return (var);
 }
 
-void flag_change()
+void	flag_change(void)
 {
 	cub()->flagfill = -1;
 }
@@ -53,7 +53,7 @@ void	set_coords(double dx, double dy, double cx, double cy)
 	cub()->camy = cy;
 }
 
-void	plyr_dir()
+void	plyr_dir(void)
 {
 	if (cub()->posi == 'N')
 	{

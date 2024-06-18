@@ -21,13 +21,13 @@ int	width_x(void)
 
 	y = cub()->lin_cnt - 1;
 	i = cub()->lin_cnt + 5;
-	cub()->map_dup = ft_calloc(cub()->lin_cnt + 1, sizeof(char *));
+	cub()->mp_dp = ft_calloc(cub()->lin_cnt + 1, sizeof(char *));
 	while (y >= 0)
 	{
 		temp = cub()->map[i];
 		mem_temp = ft_strtrim(temp, "\n");
-		cub()->map_dup[y] = ft_strdup(mem_temp);
-		if (!cub()->map_dup[y])
+		cub()->mp_dp[y] = ft_strdup(mem_temp);
+		if (!cub()->mp_dp[y])
 			return (-1);
 		free(mem_temp);
 		y--;
@@ -68,15 +68,15 @@ void	floodfill(int x, int y)
 {
 	if (x < 0 || x >= cub()->x || y < 0 || y >= cub()->y)
 		return ;
-	if (!cub()->map_dup[y][x])
+	if (!cub()->mp_dp[y][x])
 		return ;
-	if (cub()->map_dup[y][x] == '1' || cub()->map_dup[y][x] == 'X')
+	if (cub()->mp_dp[y][x] == '1' || cub()->mp_dp[y][x] == 'X')
 		return ;
-	if (cub()->map_dup[y][x] == ' ')
-		return flag_change();
+	if (cub()->mp_dp[y][x] == ' ')
+		return (flag_change());
 	else
 	{
-		cub()->map_dup[y][x] = 'X';
+		cub()->mp_dp[y][x] = 'X';
 		floodfill((x + 1), y);
 		floodfill((x - 1), y);
 		floodfill(x, (y + 1));
@@ -84,19 +84,20 @@ void	floodfill(int x, int y)
 	}
 }
 
-int	wall_check()
+int	wall_check(void)
 {
 	int	y;
 	int	x;
 
 	y = 0;
-	while (cub()->map_dup[y])
+	while (cub()->mp_dp[y])
 	{
 		x = 0;
-		while (cub()->map_dup[y][x])
+		while (cub()->mp_dp[y][x])
 		{
-			if (cub()->map_dup[y][x] == '0' || cub()->map_dup[y][x] == 'N' || cub()->map_dup[y][x] == 'S'
-				|| cub()->map_dup[y][x] == 'E' || cub()->map_dup[y][x] == 'W')
+			if (cub()->mp_dp[y][x] == '0' || cub()->mp_dp[y][x] == 'N'
+				|| cub()->mp_dp[y][x] == 'S' || cub()->mp_dp[y][x] == 'E'
+				|| cub()->mp_dp[y][x] == 'W')
 				floodfill(x, y);
 			x++;
 		}
@@ -107,28 +108,28 @@ int	wall_check()
 
 int	plr_pos_verif(int x, int y)
 {
-	if (cub()->map_dup[y][x] == 'N')
+	if (cub()->mp_dp[y][x] == 'N')
 	{
 		cub()->posi = 'N';
 		cub()->plx = x;
 		cub()->ply = y;
 		cub()->plr_cnt++;
 	}
-	if (cub()->map_dup[y][x] == 'S')
+	if (cub()->mp_dp[y][x] == 'S')
 	{
 		cub()->posi = 'S';
 		cub()->plx = x;
 		cub()->ply = y;
 		cub()->plr_cnt++;
 	}
-	if (cub()->map_dup[y][x] == 'E')
+	if (cub()->mp_dp[y][x] == 'E')
 	{
 		cub()->posi = 'E';
 		cub()->plx = x;
 		cub()->ply = y;
 		cub()->plr_cnt++;
 	}
-	if (cub()->map_dup[y][x] == 'W')
+	if (cub()->mp_dp[y][x] == 'W')
 	{
 		cub()->posi = 'W';
 		cub()->plx = x;
@@ -139,99 +140,6 @@ int	plr_pos_verif(int x, int y)
 	{
 		printf("Error\nMore than one player in map\n");
 		return (-1);
-	}
-	return (0);
-}
-
-int	verifs(void)
-{
-	int	temp;
-	int	x;
-	int	y;
-	int	z;
-
-	y = 0;
-	cub()->plr_cnt = 0;
-	while (y < cub()->y)
-	{
-		x = 0;
-		if (cub()->map_dup[y][x] == ' ')
-		{
-			while (cub()->map_dup[y][x] == ' ')
-				x++;
-		}
-		temp = ft_strlen(cub()->map_dup[y]) - 1;
-		if ((cub()->map_dup[y][x] != '1' && cub()->map_dup[y][x] != ' ')
-			&& (cub()->map_dup[y][temp] != ' ' && cub()->map_dup[y][temp] != '1'))
-		{
-			printf("ERRRRROOOOO\n");
-			return -1;
-		}
-		z = x;
-		while (cub()->map_dup[y][z])
-		{
-			while (cub()->map_dup[y][z] != '\0')
-			{
-				if (plr_pos_verif(z, y) == -1)
-					return (-1);
-				if ((cub()->map_dup[y][z] == '0' && !cub()->map_dup[y + 1]) || (cub()->map_dup[y][z] == '0' && cub()->map_dup[y + 1][z] == ' '))
-				{
-					printf("Error\nMap is not valid\n");
-					return (-1);
-				}
-				while (cub()->map_dup[y][z] == ' ')
-					z++;
-				if (cub()->map_dup[y][z] == '0' || cub()->map_dup[y][z] == '1' || cub()->map_dup[y][z] == 'N'
-					|| cub()->map_dup[y][z] == 'E' || cub()->map_dup[y][z] == 'S' || cub()->map_dup[y][z] == 'W')
-					z++;
-				else
-				{
-					printf("Error\nMap is not valid\n");
-					return (-1);
-				}
-			}
-			if (cub()->map_dup[y][z - 1] == '0' && cub()->map_dup[y][z] == '\0')
-			{
-				printf("Error\nMap is not valid\n");
-				return (-1);
-			}
-		}
-		y++;
-	}
-	if (cub()->plr_cnt < 1)
-	{
-		printf("Error\nPlayer does not exist in map\n");
-		return (-1);
-	}
-	return (0);
-}
-
-int	map_verif(void)
-{
-	if (height_y() == -1)
-		return (file_err_msg('y', 0));
-	if (width_x() == -1)
-		return (file_err_msg('x', 0));
-	int j = -1;
-	if (!cub()->map_dup)
-		return -1;
-	else
-	{
-		while (cub()->map_dup[++j])
-			printf("%s\n", cub()->map_dup[j]);
-	}
-	if (verifs() == -1)
-		return (-1);
-	printf("%c\n", cub()->posi);
-	if (wall_check() == -1)
-		return (file_err_msg('d', 0));
-	j = -1;
-	if (!cub()->map_dup)
-		return -1;
-	else
-	{
-		while (cub()->map_dup[++j])
-			printf("%s\n", cub()->map_dup[j]);
 	}
 	return (0);
 }

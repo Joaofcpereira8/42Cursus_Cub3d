@@ -84,7 +84,7 @@ typedef struct s_cubed
 	char		*east;
 	char		*west;
 	char		**map;
-	char		**map_dup;
+	char		**mp_dp;
 	void		*mlx;
 	void		*win;
 	t_img		*bg;
@@ -115,8 +115,12 @@ int			file_err_msg(char c, int fd);
 void		cub_init(void);
 
 // ------- VERIFICATIONS -------
+int			width_x(void);
+int			height_y(void);
 int			map_verif(void);
+int			wall_check(void);
 int			file_verif(char *file);
+int			plr_pos_verif(int x, int y);
 
 // ------- PARSER -------
 int			map_par(char *file);

@@ -20,7 +20,7 @@ void	my_mlx_pixel_put(int x, int y, int color)
 	*(unsigned int *)dst = color;
 }
 
-void draw_bkgnd(int ceil, int flr)
+void	draw_bkgnd(int ceil, int flr)
 {
 	int	x;
 	int	y;

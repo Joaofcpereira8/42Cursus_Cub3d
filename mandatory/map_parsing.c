@@ -275,16 +275,8 @@ int	textures_verif(void)
 
 int	map_par(char *file)
 {
-	int j = -1;
 	if (map_configure(file) == -1)
 		return (-1);
-	if (!cub()->map)
-		return -1;
-	else
-	{
-		while (cub()->map[++j])
-			printf("%s\n", cub()->map[j]);
-	}
 	if (map_settings(file) == -1)
 		return (-1);
 	if (textures_verif() == -1)
