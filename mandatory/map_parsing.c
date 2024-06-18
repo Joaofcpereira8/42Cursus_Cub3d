@@ -216,9 +216,14 @@ int	map_configure(char *file)
 	if (!cub()->map)
 		return (-1);
 	cub()->fd = open(file, O_RDONLY);
-	// line = get_next_line(cub()->fd);
-	while ((line = get_next_line(cub()->fd)) != NULL)
+	while (1)
 	{
+		line = get_next_line(cub()->fd);
+		if (!line)
+		{
+			free(line);
+			break ;
+		}
 		trimmed = line;
 		if (*trimmed == '\n')
 		{
@@ -236,7 +241,6 @@ int	map_configure(char *file)
 		}
 		free(line);
 	}
-	free(line);
 	close(cub()->fd);
 	cub()->map[i] = NULL;
 	return (0);

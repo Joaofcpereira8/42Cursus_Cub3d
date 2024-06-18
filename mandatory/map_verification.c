@@ -93,6 +93,16 @@ int	wall_check(void)
 	while (cub()->mp_dp[y])
 	{
 		x = 0;
+		if (y == 0)
+		{
+			while (cub()->mp_dp[0][x] != '\0') {
+				if (cub()->mp_dp[y][x] == '1' || cub()->mp_dp[y][x] == ' ')
+					x++;
+				else
+					return (-1);
+			}
+		}
+		x = 0;
 		while (cub()->mp_dp[y][x])
 		{
 			if (cub()->mp_dp[y][x] == '0' || cub()->mp_dp[y][x] == 'N'
