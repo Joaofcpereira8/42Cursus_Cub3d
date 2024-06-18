@@ -41,6 +41,7 @@ MINILIBX = ./minilibx-linux/libmlx.a
 SRCS =	mandatory/main.c \
 		mandatory/errors.c \
 		mandatory/map_verification.c \
+		mandatory/map_verification2.c \
 		mandatory/file_verification.c \
 		mandatory/variable_struct.c \
 		mandatory/init.c \
@@ -51,6 +52,7 @@ SRCS =	mandatory/main.c \
 		mandatory/prog_info.c \
 		mandatory/image.c \
 		mandatory/calcs.c \
+		mandatory/calcs2.c \
 		mandatory/plr_mov.c \
 
 OBJS = $(SRCS:%.c=%.o)

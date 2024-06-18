@@ -12,11 +12,11 @@
 
 #include "cub3d.h"
 
-int file_err_msg(char c, int fd)
+int	file_err_msg(char c, int fd)
 {
 	if (c == 'a')
 		ft_putstr_fd("Error\nMap format is wrong. Use [executable]"
-					 " maps/[map_name].cub!\n", 2);
+			" maps/[map_name].cub!\n", 2);
 	else if (c == 'b')
 		ft_putstr_fd("Error\nFile not found. Use [path]/[mapname].cub\n", 2);
 	else if (c == 'c')
@@ -29,10 +29,10 @@ int file_err_msg(char c, int fd)
 		ft_putstr_fd("Error\nTexture file not found.\n", 2);
 	else if (c == 'A')
 		ft_putstr_fd("Error\nThe attribution of values failed."
-					 "Please check your file.\n", 2);
+			"Please check your file.\n", 2);
 	if (fd)
 		close(fd);
-	return(-1);
+	return (-1);
 }
 
 int	args_error(int c)

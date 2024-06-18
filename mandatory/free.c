@@ -14,7 +14,7 @@
 
 void	free_arr(char **arr)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	if (!arr)
@@ -43,8 +43,8 @@ void	free_struct(void)
 		free(cub()->flo);
 	if (cub()->map)
 		free_arr(cub()->map);
-	if (cub()->map_dup)
-		free_arr(cub()->map_dup);
+	if (cub()->mp_dp)
+		free_arr(cub()->mp_dp);
 	exit(0);
 }
 
