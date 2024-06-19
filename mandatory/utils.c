@@ -19,13 +19,6 @@ int	ign_spaces(char *str, int i)
 	return (i);
 }
 
-int	ign_map_spaces(char *str, int i)
-{
-	while (str[i] && str[i] == ' ')
-		i++;
-	return (i);
-}
-
 int	check_overflow(char *str, int target)
 {
 	int	i;
@@ -73,4 +66,11 @@ int	create_trgb(int *rgb, int t)
 	g = rgb[1];
 	b = rgb[2];
 	return (t << 24 | r << 16 | g << 8 | b);
+}
+
+int press_x(void)
+{
+	free_mlx();
+	free_struct();
+	return (0);
 }

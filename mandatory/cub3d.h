@@ -25,7 +25,7 @@
 # define WIDTH 1920.0
 # define IMG_H 100
 # define IMG_W 100
-# define FOV 0.75
+# define FOV 0.66
 
 typedef struct s_img
 {
@@ -149,7 +149,7 @@ void		ray_dir(void);
 void		hit_reg(void);
 void		ray_calc(void);
 void		asgn_txtr(void);
-void img_picker(char type);
+void		img_picker(char type);
 
 // ------- PROGRAM INFO -------
 bool		is_map(char *str);
@@ -157,10 +157,10 @@ void		flag_change(void);
 bool		check_attr(char c);
 
 // ------- UTILS -------
+int press_x(void);
 int			path_len(char *str);
 int			create_trgb(int *rgb, int t);
 int			ign_spaces(char *str, int i);
-int			ign_map_spaces(char *str, int i);
 int			check_overflow(char *str, int target);
 
 // ------- FREES -------
