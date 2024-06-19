@@ -64,6 +64,12 @@ typedef struct s_cubed
 	int			line_no;
 	int			*flo;
 	int			*cei;
+	int			plr_up;
+	int			plr_dn;
+	int			plr_lf;
+	int			plr_rg;
+	int			plr_lk_l;
+	int			plr_lk_r;
 	float		plx;
 	float		ply;
 	double		imgstp;
@@ -105,7 +111,7 @@ int			cub_loop(void);
 int			draw_textures(void);
 
 // ------- DRAW -------
-void img_picker(char type);
+void		img_picker(char type);
 void		draw_bkgnd(int ceil, int flr);
 void		my_mlx_pixel_put(int x, int y, int color);
 
@@ -139,6 +145,11 @@ void		plyr_dir(void);
 
 // ------- MOVEMENT -------
 int			key_hook(int key);
+void		ver_movi(int flag);
+void		hor_movi(int flag);
+int			plr_movement(void);
+int			key_dehook(int key);
+void		plr_rotate(int flag);
 
 // ------- RAYCAST -------
 void		ray(void);
@@ -157,7 +168,7 @@ void		flag_change(void);
 bool		check_attr(char c);
 
 // ------- UTILS -------
-int press_x(void);
+int			press_x(void);
 int			path_len(char *str);
 int			create_trgb(int *rgb, int t);
 int			ign_spaces(char *str, int i);
