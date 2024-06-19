@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 18:31:13 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/18 19:50:51 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/19 15:06:59 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 void	dda(void)
 {
+	draw_bkgnd(create_trgb(cub()->cei, 255), create_trgb(cub()->flo, 255));
 	cub()->wcnt = 0;
 	while (cub()->wcnt < WIDTH)
 	{
@@ -26,7 +27,7 @@ void	dda(void)
 		draw(cub()->wcnt);
 		cub()->wcnt++;
 	}
-	mlx_put_image_to_window(cub()->mlx, cub()->win, cub()->cr->img, 0, 0);
+	mlx_put_image_to_window(cub()->mlx, cub()->win, cub()->bg->img, 0, 0);
 }
 
 int	cub_loop(void)
@@ -65,7 +66,7 @@ int	main(int argc, char **argv)
 			free_mlx();
 			free_struct();
 		}
-		draw_bkgnd(create_trgb(cub()->cei, 255), create_trgb(cub()->flo, 255));
+		//draw_bkgnd(create_trgb(cub()->cei, 255), create_trgb(cub()->flo, 255));
 		plyr_dir();
 		cub_loop();
 		mlx_hook(cub()->win, KeyPress, KeyPressMask, key_hook, &cub);

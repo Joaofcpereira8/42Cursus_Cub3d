@@ -6,39 +6,27 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 00:31:25 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/18 19:49:09 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/19 14:38:47 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-void img_picker(char type)
-{
-	if (type == 'N')
-		(cub()->cr = cub()->no);
-	else if (type == 'S')
-		(cub()->cr = cub()->so);
-	else if (type == 'E')
-		(cub()->cr = cub()->ea);
-	else
-		(cub()->cr = cub()->ws);
-}
 
 void	asgn_txtr(void)
 {
 	if (cub()->ori == 'H')
 	{
 		if (cub()->rayy >= 0)
-			img_picker('N');
+			(cub()->cr = cub()->no);
 		else
-			img_picker('S');
+			(cub()->cr = cub()->so);
 	}
 	else
 	{
 		if (cub()->rayx < 0)
-			img_picker('E');
+			(cub()->cr = cub()->ea);
 		else
-			img_picker('W');
+			(cub()->cr = cub()->ws);
 	}
 }
 
@@ -58,7 +46,7 @@ void	wall_e(void)
 
 int ft_get_pickle(int x, int y)
 {
-	return (*(int *)((cub()->cr->addr + (y * cub()->cr->llen) + (x * (cub()->cr->bpp / 8)))));
+	return (*(unsigned int *)((cub()->cr->addr + (y * cub()->cr->llen) + (x * cub()->cr->bpp / 8))));
 }
 
 
