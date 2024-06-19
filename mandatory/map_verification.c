@@ -95,13 +95,8 @@ int	wall_check(void)
 		x = 0;
 		if (y == 0)
 		{
-			while (cub()->mp_dp[0][x] != '\0')
-			{
-				if (cub()->mp_dp[y][x] == '1' || cub()->mp_dp[y][x] == ' ')
-					x++;
-				else
-					return (-1);
-			}
+			if (walls_verif(x) == -1)
+				return (-1);
 		}
 		x = 0;
 		while (cub()->mp_dp[y][x])
@@ -133,20 +128,7 @@ int	plr_pos_verif(int x, int y)
 		cub()->ply = y + 0.5;
 		cub()->plr_cnt++;
 	}
-	if (cub()->mp_dp[y][x] == 'E')
-	{
-		cub()->posi = 'E';
-		cub()->plx = x + 0.5;
-		cub()->ply = y + 0.5;
-		cub()->plr_cnt++;
-	}
-	if (cub()->mp_dp[y][x] == 'W')
-	{
-		cub()->posi = 'W';
-		cub()->plx = x + 0.5;
-		cub()->ply = y + 0.5;
-		cub()->plr_cnt++;
-	}
+	plr_pos_verif2(x, y);
 	if (cub()->plr_cnt > 1)
 	{
 		printf("Error\nMore than one player in map\n");

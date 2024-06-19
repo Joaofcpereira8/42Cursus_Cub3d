@@ -43,3 +43,33 @@ int	ceiling_text(char *temp)
 	}
 	return (0);
 }
+
+int	walls_verif(int x)
+{
+	while (cub()->mp_dp[0][x] != '\0')
+	{
+		if (cub()->mp_dp[0][x] == '1' || cub()->mp_dp[0][x] == ' ')
+			x++;
+		else
+			return (-1);
+	}
+	return (0);
+}
+
+void	plr_pos_verif2(int x, int y)
+{
+	if (cub()->mp_dp[y][x] == 'E')
+	{
+		cub()->posi = 'E';
+		cub()->plx = x + 0.5;
+		cub()->ply = y + 0.5;
+		cub()->plr_cnt++;
+	}
+	if (cub()->mp_dp[y][x] == 'W')
+	{
+		cub()->posi = 'W';
+		cub()->plx = x + 0.5;
+		cub()->ply = y + 0.5;
+		cub()->plr_cnt++;
+	}
+}

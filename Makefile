@@ -46,6 +46,7 @@ SRCS =	mandatory/main.c \
 		mandatory/variable_struct.c \
 		mandatory/init.c \
 		mandatory/map_parsing.c \
+		mandatory/map_parsing2.c \
 		mandatory/map_utils.c \
 		mandatory/map_utils2.c \
 		mandatory/utils.c \

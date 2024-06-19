@@ -46,7 +46,8 @@ void	wall_e(void)
 
 int	ft_get_pickle(int x, int y)
 {
-	return (*(int *)((cub()->cr->addr + (y * cub()->cr->llen) + (x * cub()->cr->bpp / 8))));
+	return (*(int *)((cub()->cr->addr + (y * cub()->cr->llen)
+			+ (x * cub()->cr->bpp / 8))));
 }
 
 void	draw(int x)

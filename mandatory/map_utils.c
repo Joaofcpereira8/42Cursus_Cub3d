@@ -82,25 +82,21 @@ int	get_textures(char *temp)
 	{
 		if (north_text(temp) == -1)
 			return (-1);
-		return (0);
 	}
 	else if (ft_strncmp(temp, "SO", 2) == 0)
 	{
 		if (south_text(temp) == -1)
 			return (-1);
-		return (0);
 	}
 	else if (ft_strncmp(temp, "EA", 2) == 0)
 	{
 		if (east_text(temp) == -1)
 			return (-1);
-		return (0);
 	}
 	else if (ft_strncmp(temp, "WE", 2) == 0)
 	{
 		if (west_text(temp) == -1)
 			return (-1);
-		return (0);
 	}
 	return (0);
 }

@@ -129,10 +129,12 @@ int			map_verif(void);
 int			wall_check(void);
 int			file_verif(char *file);
 int			plr_pos_verif(int x, int y);
+void		plr_pos_verif2(int x, int y);
 
 // ------- PARSER -------
 int			map_par(char *file);
 char		*get_path(char *str);
+int			textures_verif(void);
 int			*get_value(char *str);
 int			count_lines(char *file);
 int			map_settings(char *file);
@@ -175,6 +177,7 @@ bool		check_attr(char c);
 
 // ------- UTILS -------
 int			press_x(void);
+int			walls_verif(int x);
 int			path_len(char *str);
 int			create_trgb(int *rgb, int t);
 int			ign_spaces(char *str, int i);
