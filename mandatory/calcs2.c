@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 00:31:25 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/19 14:38:47 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/19 17:23:25 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	wall_e(void)
 
 int ft_get_pickle(int x, int y)
 {
-	return (*(unsigned int *)((cub()->cr->addr + (y * cub()->cr->llen) + (x * cub()->cr->bpp / 8))));
+	return (*(int *)((cub()->cr->addr + (y * cub()->cr->llen) + (x * cub()->cr->bpp / DIVB))));
 }
 
 
@@ -55,7 +55,7 @@ void	draw(int x)
 	int	y;
 	int	color;
 
-	cub()->imgx = (int)(cub()->wallx * IMG_W);
+	cub()->imgx = (int)(cub()->wallx * (double)IMG_W);
 	cub()->imgx = IMG_W - cub()->imgx - 1;
 	cub()->imgstp = 1.0 * IMG_W / cub()->line_h;
 	cub()->imgpos = (cub()->begn_draw - HEIGHT / 2

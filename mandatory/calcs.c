@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/13 11:50:54 by bbento-e          #+#    #+#             */
-/*   Updated: 2024/06/18 18:50:39 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/19 15:33:34 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 void	ray(void)
 {
 	cub()->camx = 2 * cub()->wcnt / (double)WIDTH - 1;
-	cub()->rayx = cub()->dirx + cub()->plx * cub()->camx;
-	cub()->rayy = cub()->diry + cub()->ply * cub()->camx;
+	cub()->rayx = cub()->dirx + cub()->pln_x * cub()->camx;
+	cub()->rayy = cub()->diry + cub()->pln_y * cub()->camx;
 	cub()->mapx = (int)cub()->plx;
 	cub()->mapy = (int)cub()->ply;
 	if (cub()->rayx == 0)
 		cub()->delta_x = 1e30;
 	else
-		cub()->delta_x = fabs(1 / cub()->rayy);
+		cub()->delta_x = fabs(1 / cub()->rayx);
 	if (cub()->rayy == 0)
 		cub()->delta_y = 1e30;
 	else
@@ -47,12 +47,12 @@ void	ray_dir(void)
 	if (cub()->rayy < 0)
 	{
 		cub()->rleft = -1; // The ray is moving up
-		cub()->dist_left = (cub()->ply - cub()->mapy) * cub()->delta_y;
+		cub()->dst_left = (cub()->ply - cub()->mapy) * cub()->delta_y;
 	}
 	else
 	{
 		cub()->rleft = 1; // The ray is moving down
-		cub()->dist_left = (cub()->mapy + 1.0 - cub()->ply) * cub()->delta_y;
+		cub()->dst_left = (cub()->mapy + 1.0 - cub()->ply) * cub()->delta_y;
 	}
 }
 
@@ -61,7 +61,7 @@ void	ray_calc(void)
 	if (cub()->ori == 'V')
 		cub()->perpend_wl = cub()->dst_rght - cub()->delta_x;
 	else
-		cub()->perpend_wl = cub()->dist_left - cub()->delta_y;
+		cub()->perpend_wl = cub()->dst_left - cub()->delta_y;
 	if (cub()->perpend_wl)
 		cub()->line_h = (int)(HEIGHT / cub()->perpend_wl);
 	else
@@ -79,7 +79,7 @@ void	hit_reg(void)
 	while (cub()->hit == 0)
 	{
 		// Compare side distances to determine which side the ray hits first
-		if (cub()->dst_rght < cub()->dist_left)
+		if (cub()->dst_rght < cub()->dst_left)
 		{
 			// The ray hits a vertical grid line first
 			cub()->dst_rght += cub()->delta_x;
@@ -89,7 +89,7 @@ void	hit_reg(void)
 		else
 		{
 			// The ray hits a horizontal grid line first
-			cub()->dst_rght += cub()->delta_y;
+			cub()->dst_left += cub()->delta_y;
 			cub()->mapy += cub()->rleft;
 			cub()->ori = 'H'; // Horizontal hit
 		}

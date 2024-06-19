@@ -49,8 +49,8 @@ void	set_coords(double dx, double dy, double cx, double cy)
 {
 	cub()->dirx = dx;
 	cub()->diry = dy;
-	cub()->camx = cx;
-	cub()->camy = cy;
+	cub()->pln_x = cx;
+	cub()->pln_y = cy;
 }
 
 void	plyr_dir(void)

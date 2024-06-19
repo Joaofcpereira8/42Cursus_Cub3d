@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 18:31:28 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/18 19:02:42 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/19 17:30:51 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define IMG_H 100
 # define IMG_W 100
 # define FOV 0.66
+# define DIVB 8
 
 typedef struct s_img
 {
@@ -50,13 +51,11 @@ typedef struct s_cubed
 	int			imgx;
 	int			imgy;
 	int			line_h;
-	double		wallx;
-	int			dirx;
-	int			diry;
+	double 		dirx;
+	double		diry;
 	int			begn_draw;
 	int			end_draw;
 	int			fd;
-	int			wallflag;
 	int			wcnt;
 	int			lin_cnt;
 	int			plr_cnt;
@@ -72,15 +71,18 @@ typedef struct s_cubed
 	int			plr_lk_r;
 	float		plx;
 	float		ply;
+	double		wallx;
+	double		pln_x;
+	double		pln_y;
 	double		imgstp;
 	double		imgpos;
 	double		rayx;
 	double		rayy;
 	double		dst_rght;
-	double		dist_left;
-	double		perpend_wl;
+	double		dst_left;
 	double		delta_x;
 	double		delta_y;
+	double		perpend_wl;
 	double		camx;
 	double		camy;
 	char		posi;

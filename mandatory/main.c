@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 18:31:13 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/19 15:06:59 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/19 17:33:42 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,14 +36,7 @@ int	cub_loop(void)
 		return (0);
 	mlx_destroy_image(cub()->mlx, cub()->bg->img);
 	(cub()->bg->img) = mlx_new_image(cub()->mlx, WIDTH, HEIGHT);
-	//draw_bkgnd(create_trgb(cub()->cei, 255), create_trgb(cub()->flo, 255));
-
-	// drawing current image
-/*	mlx_destroy_image(cub()->mlx, cub()->cr->img);
-	cub()->cr->img = mlx_new_image(cub()->mlx, WIDTH, HEIGHT);*/
-
 	dda();
-	// mlx_put_image_to_window(cub()->mlx, cub()->win, cub()->bg->img, 0, 0);
 	return (0);
 }
 
@@ -66,13 +59,12 @@ int	main(int argc, char **argv)
 			free_mlx();
 			free_struct();
 		}
-		//draw_bkgnd(create_trgb(cub()->cei, 255), create_trgb(cub()->flo, 255));
 		plyr_dir();
-		cub_loop();
-		mlx_hook(cub()->win, KeyPress, KeyPressMask, key_hook, &cub);
-		mlx_hook(cub()->win, KeyRelease, KeyReleaseMask, key_dehook, &cub);
-		mlx_hook(cub()->win, DestroyNotify, ButtonPressMask, press_x, cub());
-		mlx_loop_hook(cub()->mlx, cub_loop, cub());
+		dda();
+		mlx_hook(cub()->win, KeyPress, KeyPressMask, key_hook, (cub()));
+		mlx_hook(cub()->win, KeyRelease, KeyReleaseMask, key_dehook, (cub()));
+		mlx_hook(cub()->win, DestroyNotify, ButtonPressMask, press_x, (cub()));
+		mlx_loop_hook(cub()->mlx, cub_loop, (cub()));
 		mlx_loop(cub()->mlx);
 	}
 	else

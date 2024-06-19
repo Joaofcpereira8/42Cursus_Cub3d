@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/19 14:57:52 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/19 14:57:52 by jofilipe         ###   ########.fr       */
+/*   Updated: 2024/06/19 16:00:00 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	hor_movi(int flag)
 	}
 	else
 	{
-		if (cub()->mp_dp[(int)(cub()->ply - cub()->plx * 0.2)]
+		if (cub()->mp_dp[(int)(cub()->ply - cub()->dirx * 0.2)]
 			[(int) cub()->plx] != '1')
 			cub()->ply -= cub()->dirx * 0.2;
 		if (cub()->mp_dp[(int)cub()->ply]
@@ -47,8 +47,8 @@ void	plr_rotate(int flag)
 	temp_y = cub()->dirx * sin(angle) + cub()->diry * cos(angle);
 	cub()->dirx = temp_x;
 	cub()->diry = temp_y;
-	temp_x = cub()->camx * cos(angle) - cub()->camy * sin(angle);
-	temp_y = cub()->camx * sin(angle) + cub()->camy * cos(angle);
-	cub()->camx = temp_x;
-	cub()->camy = temp_y;
+	temp_x = cub()->pln_x * cos(angle) - cub()->pln_y * sin(angle);
+	temp_y = cub()->pln_x * sin(angle) + cub()->pln_y * cos(angle);
+	cub()->pln_x = temp_x;
+	cub()->pln_y = temp_y;
 }

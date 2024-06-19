@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 18:02:03 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/18 19:11:00 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/19 16:43:36 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,63 @@
 
 void	cub_init(void)
 {
+	cub()->mlx = 0;
 	cub()->win = 0;
 	cub()->bg = malloc(sizeof(t_img));
+	cub()->cr = malloc(sizeof(t_img));
 	cub()->no = malloc(sizeof(t_img));
 	cub()->so = malloc(sizeof(t_img));
 	cub()->ea = malloc(sizeof(t_img));
 	cub()->ws = malloc(sizeof(t_img));
+
 	cub()->bg->addr = NULL;
 	cub()->bg->img = NULL;
 	cub()->bg->bpp = 0;
 	cub()->bg->llen = 0;
 	cub()->bg->endian = 0;
-	cub()->bg->width = 0;
-	cub()->bg->height = 0;
+	cub()->bg->width = IMG_W;
+	cub()->bg->width = IMG_H;
+
+	cub()->cr->addr = NULL;
+	cub()->cr->img = NULL;
+	cub()->cr->bpp = 0;
+	cub()->cr->llen = 0;
+	cub()->cr->endian = 0;
+	cub()->cr->width = IMG_W;
+	cub()->cr->width = IMG_H;
+
+	cub()->no->addr = NULL;
+	cub()->no->img = NULL;
+	cub()->no->bpp = 0;
+	cub()->no->llen = 0;
+	cub()->no->endian = 0;
+	cub()->no->width = IMG_W;
+	cub()->no->width = IMG_H;
+
+	cub()->so->addr = NULL;
+	cub()->so->img = NULL;
+	cub()->so->bpp = 0;
+	cub()->so->llen = 0;
+	cub()->so->endian = 0;
+	cub()->so->width = IMG_W;
+	cub()->so->width = IMG_H;
+
+	cub()->ea->addr = NULL;
+	cub()->ea->img = NULL;
+	cub()->ea->bpp = 0;
+	cub()->ea->llen = 0;
+	cub()->ea->endian = 0;
+	cub()->ea->width = IMG_W;
+	cub()->ea->width = IMG_H;
+
+	cub()->ws->addr = NULL;
+	cub()->ws->img = NULL;
+	cub()->ws->bpp = 0;
+	cub()->ws->llen = 0;
+	cub()->ws->endian = 0;
+	cub()->ws->width = IMG_W;
+	cub()->ws->height = IMG_H;
+
 	cub()->hit = 0;
 	cub()->rright = 0;
 	cub()->rleft = 0;
@@ -35,7 +79,7 @@ void	cub_init(void)
 	cub()->imgstp = 0;
 	cub()->imgpos = 0;
 	cub()->ori = 'V';
-/*	cub()->mapx = 0;
+	cub()->mapx = 0;
 	cub()->mapy = 0;
 	cub()->line_h = 0;
 	cub()->wallx = 0;
@@ -43,13 +87,15 @@ void	cub_init(void)
 	cub()->diry = 0;
 	cub()->begn_draw = 0;
 	cub()->end_draw = 0;
-	cub()->fd = 0;
 	cub()->wcnt = 0;
-	cub()->lin_cnt = 0;
-	cub()->plr_cnt = 0;
-	cub()->flagfill = 0;
-	cub()->line_no = 0;
-	cub()->plx = 0;
-	cub(	)->ply = 0;
- */
+	cub()->pln_x = 0;
+	cub()->pln_y = 0;
+	cub()->camx = 0;
+	cub()->rayx = 0;
+	cub()->rayy = 0;
+	cub()->dst_rght = 0;
+	cub()->dst_left = 0;
+	cub()->delta_x = 0;
+	cub()->delta_y = 0;
+	cub()->perpend_wl = 0;
 }

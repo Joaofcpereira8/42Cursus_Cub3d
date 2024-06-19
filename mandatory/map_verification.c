@@ -122,29 +122,29 @@ int	plr_pos_verif(int x, int y)
 	if (cub()->mp_dp[y][x] == 'N')
 	{
 		cub()->posi = 'N';
-		cub()->plx = x;
-		cub()->ply = y;
+		cub()->plx = x + 0.5;
+		cub()->ply = y + 0.5;
 		cub()->plr_cnt++;
 	}
 	if (cub()->mp_dp[y][x] == 'S')
 	{
 		cub()->posi = 'S';
-		cub()->plx = x;
-		cub()->ply = y;
+		cub()->plx = x + 0.5;
+		cub()->ply = y + 0.5;
 		cub()->plr_cnt++;
 	}
 	if (cub()->mp_dp[y][x] == 'E')
 	{
 		cub()->posi = 'E';
-		cub()->plx = x;
-		cub()->ply = y;
+		cub()->plx = x + 0.5;
+		cub()->ply = y + 0.5;
 		cub()->plr_cnt++;
 	}
 	if (cub()->mp_dp[y][x] == 'W')
 	{
 		cub()->posi = 'W';
-		cub()->plx = x;
-		cub()->ply = y;
+		cub()->plx = x + 0.5;
+		cub()->ply = y + 0.5;
 		cub()->plr_cnt++;
 	}
 	if (cub()->plr_cnt > 1)
