@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 18:31:28 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/19 17:30:51 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/19 18:09:17 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,11 @@
 # include <stdbool.h>
 # include <X11/keysym.h>
 
-# define HEIGHT 995
+# define HEIGHT 995.0
 # define WIDTH 1920.0
-# define IMG_H 100
-# define IMG_W 100
-# define FOV 0.66
-# define DIVB 8
+# define IMG_H 128
+# define IMG_W 128
+# define FOV 0.8
 
 typedef struct s_img
 {

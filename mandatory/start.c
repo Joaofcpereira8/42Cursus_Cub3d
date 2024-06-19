@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 18:59:12 by bbento-e          #+#    #+#             */
-/*   Updated: 2024/06/19 17:31:29 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/19 18:07:32 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	my_mlx_pixel_put(int x, int y, int color)
 {
 	char	*dst;
 
-	dst = cub()->bg->addr + (y * cub()->bg->llen + x * (cub()->bg->bpp / DIVB));
+	dst = cub()->bg->addr + (y * cub()->bg->llen + x * (cub()->bg->bpp / 8));
 	*(int *)dst = color;
 }
 

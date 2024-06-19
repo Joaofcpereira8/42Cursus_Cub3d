@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/18 00:31:25 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/19 17:23:25 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/19 18:04:23 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	wall_e(void)
 
 int ft_get_pickle(int x, int y)
 {
-	return (*(int *)((cub()->cr->addr + (y * cub()->cr->llen) + (x * cub()->cr->bpp / DIVB))));
+	return (*(int *)((cub()->cr->addr + (y * cub()->cr->llen) + (x * cub()->cr->bpp / 8))));
 }
 
 
