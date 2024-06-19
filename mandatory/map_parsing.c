@@ -22,99 +22,33 @@ int	map_settings(char *file)
 	{
 		if (ft_strncmp(temp, "NO", 2) == 0)
 		{
-			if (cub()->north)
-			{
-				free(temp);
-				return (file_err_msg('t', cub()->fd));
-			}
-			cub()->north = get_path(temp);
-			if (!cub()->north)
-			{
-				free(temp);
-				return (file_err_msg('t', cub()->fd));
-			}
-			printf("North: %s\n", cub()->north); // DEBUG
+			if (north_text(temp) == -1)
+				return (-1);
 		}
 		else if (ft_strncmp(temp, "SO", 2) == 0)
 		{
-			if (cub()->south)
-			{
-				free(temp);
-				return (file_err_msg('t', cub()->fd));
-			}
-			cub()->south = get_path(temp);
-			if (!cub()->south)
-			{
-				free(temp);
-				return (file_err_msg('t', cub()->fd));
-			}
-			printf("South: %s\n", cub()->south); // DEBUG
+			if (south_text(temp) == -1)
+				return (-1);
 		}
 		else if (ft_strncmp(temp, "EA", 2) == 0)
 		{
-			if (cub()->east)
-			{
-				free(temp);
-				return (file_err_msg('t', cub()->fd));
-			}
-			cub()->east = get_path(temp);
-			if (!cub()->east)
-			{
-				free(temp);
-				return (file_err_msg('t', cub()->fd));
-			}
-			printf("East : %s\n", cub()->east); // DEBUG
+			if (east_text(temp) == -1)
+				return (-1);
 		}
 		else if (ft_strncmp(temp, "WE", 2) == 0)
 		{
-			if (cub()->west)
-			{
-				free(temp);
-				return (file_err_msg('t', cub()->fd));
-			}
-			cub()->west = get_path(temp);
-			if (!cub()->west)
-			{
-				free(temp);
-				return (file_err_msg('t', cub()->fd));
-			}
-			printf("West : %s\n", cub()->west); // DEBUG
+			if (west_text(temp) == -1)
+				return (-1);
 		}
 		else if (ft_strncmp(temp, "F", 1) == 0)
 		{
-			if (cub()->flo)
-			{
-				free(temp);
-				return (file_err_msg('c', cub()->fd));
-			}
-			cub()->flo = get_value(temp);
-			if (!cub()->flo)
-			{
-				free(temp);
-				return (file_err_msg('c', cub()->fd));
-			}
-			printf("Floor: "); // DEBUG
-			printf("%i ", cub()->flo[0]); // DEBUG
-			printf("%i ", cub()->flo[1]); // DEBUG
-			printf("%i\n", cub()->flo[2]); // DEBUG
+			if (floor_text(temp) == -1)
+				return (-1);
 		}
 		else if (ft_strncmp(temp, "C", 1) == 0)
 		{
-			if (cub()->cei)
-			{
-				free(temp);
-				return (file_err_msg('c', cub()->fd));
-			}
-			cub()->cei = get_value(temp);
-			if (!cub()->cei)
-			{
-				free(temp);
-				return (file_err_msg('c', cub()->fd));
-			}
-			printf("Ceiling: "); // DEBUG
-			printf("%i ", cub()->cei[0]); // DEBUG
-			printf("%i ", cub()->cei[1]); // DEBUG
-			printf("%i\n", cub()->cei[2]); // DEBUG
+			if (ceiling_text(temp) == -1)
+				return (-1);
 		}
 		else
 		{

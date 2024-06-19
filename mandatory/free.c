@@ -70,6 +70,11 @@ void	free_mlx(void)
 		mlx_destroy_image(cub()->mlx, cub()->ws->img);
 	}
 	free(cub()->ws);
+	free_mlx2();
+}
+
+void	free_mlx2(void)
+{
 	if (cub()->bg->img)
 	{
 		mlx_destroy_image(cub()->mlx, cub()->bg->img);

@@ -50,7 +50,7 @@ typedef struct s_cubed
 	int			imgx;
 	int			imgy;
 	int			line_h;
-	double 		dirx;
+	double		dirx;
 	double		diry;
 	int			begn_draw;
 	int			end_draw;
@@ -83,10 +83,8 @@ typedef struct s_cubed
 	double		delta_y;
 	double		perpend_wl;
 	double		camx;
-	double		camy;
 	char		posi;
 	char		ori;
-	char		ipick;
 	char		*north;
 	char		*south;
 	char		*east;
@@ -107,12 +105,11 @@ typedef struct s_cubed
 t_cubed		*cub(void);
 
 // ------- START GAME -------
-int			start(void);
+void		ttptg(void);
 int			cub_loop(void);
 int			draw_textures(void);
 
 // ------- DRAW -------
-void		img_picker(char type);
 void		draw_bkgnd(int ceil, int flr);
 void		my_mlx_pixel_put(int x, int y, int color);
 
@@ -122,6 +119,8 @@ int			file_err_msg(char c, int fd);
 
 // ------- INIT -------
 void		cub_init(void);
+void		cub_init2(void);
+void		cub_init3(void);
 
 // ------- VERIFICATIONS -------
 int			width_x(void);
@@ -138,8 +137,15 @@ int			*get_value(char *str);
 int			count_lines(char *file);
 int			map_settings(char *file);
 int			map_configure(char *file);
-int			count_map_lines(char *file);
-void		read_map_lines(char *frst_line, int line_count);
+
+// ------- MAP UTILS -------
+int			east_text(char *temp);
+int			west_text(char *temp);
+int			floor_text(char *temp);
+int			north_text(char *temp);
+int			south_text(char *temp);
+int			ceiling_text(char *temp);
+int			get_textures(char *temp);
 
 // ------- PLAYER -------
 void		plyr_dir(void);
@@ -161,7 +167,6 @@ void		ray_dir(void);
 void		hit_reg(void);
 void		ray_calc(void);
 void		asgn_txtr(void);
-void		img_picker(char type);
 
 // ------- PROGRAM INFO -------
 bool		is_map(char *str);
@@ -177,6 +182,7 @@ int			check_overflow(char *str, int target);
 
 // ------- FREES -------
 void		free_mlx(void);
+void		free_mlx2(void);
 void		free_struct(void);
 void		free_arr(char **arr);
 

@@ -17,12 +17,10 @@ void	cub_init(void)
 	cub()->mlx = 0;
 	cub()->win = 0;
 	cub()->bg = malloc(sizeof(t_img));
-	cub()->cr = malloc(sizeof(t_img));
 	cub()->no = malloc(sizeof(t_img));
 	cub()->so = malloc(sizeof(t_img));
 	cub()->ea = malloc(sizeof(t_img));
 	cub()->ws = malloc(sizeof(t_img));
-
 	cub()->bg->addr = NULL;
 	cub()->bg->img = NULL;
 	cub()->bg->bpp = 0;
@@ -30,49 +28,18 @@ void	cub_init(void)
 	cub()->bg->endian = 0;
 	cub()->bg->width = IMG_W;
 	cub()->bg->width = IMG_H;
-
-	cub()->cr->addr = NULL;
-	cub()->cr->img = NULL;
-	cub()->cr->bpp = 0;
-	cub()->cr->llen = 0;
-	cub()->cr->endian = 0;
-	cub()->cr->width = IMG_W;
-	cub()->cr->width = IMG_H;
-
 	cub()->no->addr = NULL;
 	cub()->no->img = NULL;
 	cub()->no->bpp = 0;
 	cub()->no->llen = 0;
 	cub()->no->endian = 0;
 	cub()->no->width = IMG_W;
-	cub()->no->width = IMG_H;
+	cub_init2();
+	cub_init3();
+}
 
-	cub()->so->addr = NULL;
-	cub()->so->img = NULL;
-	cub()->so->bpp = 0;
-	cub()->so->llen = 0;
-	cub()->so->endian = 0;
-	cub()->so->width = IMG_W;
-	cub()->so->width = IMG_H;
-
-	cub()->ea->addr = NULL;
-	cub()->ea->img = NULL;
-	cub()->ea->bpp = 0;
-	cub()->ea->llen = 0;
-	cub()->ea->endian = 0;
-	cub()->ea->width = IMG_W;
-	cub()->ea->width = IMG_H;
-
-	cub()->ws->addr = NULL;
-	cub()->ws->img = NULL;
-	cub()->ws->bpp = 0;
-	cub()->ws->llen = 0;
-	cub()->ws->endian = 0;
-	cub()->ws->width = IMG_W;
-	cub()->ws->height = IMG_H;
-
-	cub()->hit = 0;
-	cub()->rright = 0;
+void	cub_init2(void)
+{
 	cub()->rleft = 0;
 	cub()->imgx = 0;
 	cub()->imgy = 0;
@@ -98,4 +65,32 @@ void	cub_init(void)
 	cub()->delta_x = 0;
 	cub()->delta_y = 0;
 	cub()->perpend_wl = 0;
+}
+
+void	cub_init3(void)
+{
+	cub()->no->width = IMG_H;
+	cub()->so->addr = NULL;
+	cub()->so->img = NULL;
+	cub()->so->bpp = 0;
+	cub()->so->llen = 0;
+	cub()->so->endian = 0;
+	cub()->so->width = IMG_W;
+	cub()->so->width = IMG_H;
+	cub()->ea->addr = NULL;
+	cub()->ea->img = NULL;
+	cub()->ea->bpp = 0;
+	cub()->ea->llen = 0;
+	cub()->ea->endian = 0;
+	cub()->ea->width = IMG_W;
+	cub()->ea->width = IMG_H;
+	cub()->ws->addr = NULL;
+	cub()->ws->img = NULL;
+	cub()->ws->bpp = 0;
+	cub()->ws->llen = 0;
+	cub()->ws->endian = 0;
+	cub()->ws->width = IMG_W;
+	cub()->ws->height = IMG_H;
+	cub()->hit = 0;
+	cub()->rright = 0;
 }

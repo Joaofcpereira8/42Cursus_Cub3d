@@ -40,6 +40,24 @@ int	cub_loop(void)
 	return (0);
 }
 
+void	ttptg(void)
+{
+	cub()->mlx = mlx_init();
+	cub()->win = mlx_new_window(cub()->mlx, WIDTH, HEIGHT, "cub3d");
+	if (draw_textures() == -1)
+	{
+		free_mlx();
+		free_struct();
+	}
+	plyr_dir();
+	dda();
+	mlx_hook(cub()->win, KeyPress, KeyPressMask, key_hook, (cub()));
+	mlx_hook(cub()->win, KeyRelease, KeyReleaseMask, key_dehook, (cub()));
+	mlx_hook(cub()->win, DestroyNotify, ButtonPressMask, press_x, (cub()));
+	mlx_loop_hook(cub()->mlx, cub_loop, (cub()));
+	mlx_loop(cub()->mlx);
+}
+
 int	main(int argc, char **argv)
 {
 	if (argc == 2)
@@ -52,20 +70,7 @@ int	main(int argc, char **argv)
 			return (-1);
 		}
 		cub_init();
-		cub()->mlx = mlx_init();
-		cub()->win = mlx_new_window(cub()->mlx, WIDTH, HEIGHT, "cub3d");
-		if (draw_textures() == -1)
-		{
-			free_mlx();
-			free_struct();
-		}
-		plyr_dir();
-		dda();
-		mlx_hook(cub()->win, KeyPress, KeyPressMask, key_hook, (cub()));
-		mlx_hook(cub()->win, KeyRelease, KeyReleaseMask, key_dehook, (cub()));
-		mlx_hook(cub()->win, DestroyNotify, ButtonPressMask, press_x, (cub()));
-		mlx_loop_hook(cub()->mlx, cub_loop, (cub()));
-		mlx_loop(cub()->mlx);
+		ttptg();
 	}
 	else
 		args_error(-1);

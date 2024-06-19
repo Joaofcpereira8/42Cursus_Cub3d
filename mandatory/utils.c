@@ -68,7 +68,7 @@ int	create_trgb(int *rgb, int t)
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
-int press_x(void)
+int	press_x(void)
 {
 	free_mlx();
 	free_struct();

@@ -53,11 +53,8 @@ int	key_hook(int key)
 		free_struct();
 	}
 	else if (key == XK_w || key == XK_a || key == XK_s
-			|| key == XK_d || key == XK_Left || key == XK_Right)
-	{
-		printf("ITS WORKING!!!!!\n");
+		|| key == XK_d || key == XK_Left || key == XK_Right)
 		moves_plr_flag(key);
-	}
 	else
 		return (-1);
 	return (0);

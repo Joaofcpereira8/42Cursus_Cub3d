@@ -34,7 +34,7 @@ int	verifs(void)
 			else
 			{
 				x++;
-				continue;
+				continue ;
 			}
 		}
 		x++;
@@ -63,7 +63,8 @@ int	verifs(void)
 					return (-1);
 				if ((cub()->mp_dp[y][z] == '0' && !cub()->mp_dp[y + 1])
 					|| (cub()->mp_dp[y][z] == '0'
-					&& (cub()->mp_dp[y + 1][z] == ' ' || cub()->mp_dp[y + 1][z] == '\0')))
+					&& (cub()->mp_dp[y + 1][z] == ' '
+					|| cub()->mp_dp[y + 1][z] == '\0')))
 				{
 					printf("Error\nMap is not valid\n");
 					return (-1);
@@ -98,45 +99,18 @@ int	verifs(void)
 
 int	map_verif(void)
 {
-	int	j;
-
 	if (height_y() == -1)
 		return (file_err_msg('y', 0));
 	if (width_x() == -1)
 		return (file_err_msg('x', 0));
-	j = -1;
-	if (!cub()->mp_dp)
-		return (-1);
-	else
-	{
-		while (cub()->mp_dp[++j])
-			printf("%s\n", cub()->mp_dp[j]);
-	}
 	if (verifs() == -1)
 		return (-1);
-	printf("%c\n", cub()->posi);
 	if (wall_check() == -1)
 		return (file_err_msg('d', 0));
-	j = -1;
-	if (!cub()->mp_dp)
-		return (-1);
-	else
-	{
-		while (cub()->mp_dp[++j])
-			printf("%s\n", cub()->mp_dp[j]);
-	}
 	free_arr(cub()->mp_dp);
 	if (height_y() == -1)
 		return (file_err_msg('y', 0));
 	if (width_x() == -1)
 		return (file_err_msg('x', 0));
-	j = -1;
-	if (!cub()->mp_dp)
-		return (-1);
-	else
-	{
-		while (cub()->mp_dp[++j])
-			printf("%s\n", cub()->mp_dp[j]);
-	}
 	return (0);
 }
