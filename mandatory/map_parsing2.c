@@ -66,35 +66,55 @@ int	textures_verif(void)
 	int	i;
 
 	i = ft_strlen(cub()->north);
-	while (cub()->north[i] != '.')
+	while (i >= 0 && cub()->north[i] != '.')
 		i--;
+	if (i <= 0)
+	{
+		printf("Error\nNorth texture does not have file type\n");
+		return (-1);
+	}
 	if (ft_strncmp(cub()->north + i, ".xpm", 5) != 0)
 	{
-		printf("Error\nNorth texture not available\n");
+		printf("Error\nNorth texture does not exist\n");
 		return (-1);
 	}
 	i = ft_strlen(cub()->south);
-	while (cub()->south[i] != '.')
+	while (i >= 0 && cub()->south[i] != '.')
 		i--;
+	if (i <= 0)
+	{
+		printf("Error\nSouth texture does not have file type\n");
+		return (-1);
+	}
 	if (ft_strncmp(cub()->south + i, ".xpm", 5) != 0)
 	{
-		printf("Error\nSouth texture not available\n");
+		printf("Error\nSouth texture does not exist\n");
 		return (-1);
 	}
 	i = ft_strlen(cub()->east);
-	while (cub()->east[i] != '.')
+	while (i >= 0 && cub()->east[i] != '.')
 		i--;
+	if (i <= 0)
+	{
+		printf("Error\nEast texture does not have file type\n");
+		return (-1);
+	}
 	if (ft_strncmp(cub()->east + i, ".xpm", 5) != 0)
 	{
-		printf("Error\nEast texture not available\n");
+		printf("Error\nEast texture does not exist\n");
 		return (-1);
 	}
 	i = ft_strlen(cub()->west);
-	while (cub()->west[i] != '.')
+	while (i >= 0 && cub()->west[i] != '.')
 		i--;
+	if (i <= 0)
+	{
+		printf("Error\nWest texture does not have file type\n");
+		return (-1);
+	}
 	if (ft_strncmp(cub()->west + i, ".xpm", 5) != 0)
 	{
-		printf("Error\nWest texture not available\n");
+		printf("Error\nWest texture does not exist\n");
 		return (-1);
 	}
 	return (0);

@@ -32,7 +32,7 @@ NAME = cub3D
 CC = cc
 RM = rm -rf
 
-CFLAGS = -Wall -Wextra -Werror -g -O3
+CFLAGS = -Wall -Wextra -Werror -g
 MFLAGS = -lX11 -lXext
 
 LIBFT = ./libft/libft.a

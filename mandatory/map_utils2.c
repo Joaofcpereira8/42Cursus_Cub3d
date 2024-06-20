@@ -44,14 +44,17 @@ int	ceiling_text(char *temp)
 	return (0);
 }
 
-int	walls_verif(int x)
+int	walls_verif(int y)
 {
-	while (cub()->mp_dp[0][x] != '\0')
+	while (cub()->mp_dp[y])
 	{
-		if (cub()->mp_dp[0][x] == '1' || cub()->mp_dp[0][x] == ' ')
-			x++;
-		else
-			return (-1);
+		if (cub()->mp_dp[y][0])
+		{
+			if (cub()->mp_dp[y][0] == '1' || cub()->mp_dp[y][0] == ' ')
+				y++;
+			else
+				return (-1);
+		}
 	}
 	return (0);
 }

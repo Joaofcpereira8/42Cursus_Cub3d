@@ -15,37 +15,41 @@
 int	map_settings(char *file)
 {
 	char	*temp;
+	char	*help;
 
 	cub()->fd = open(file, O_RDONLY);
 	temp = get_next_line(cub()->fd);
 	while ((temp != NULL) && !is_map(temp))
 	{
-		if (ft_strncmp(temp, "NO", 2) == 0)
+		help = temp;
+		while (*help == ' ')
+			help++;
+		if (ft_strncmp(help, "NO", 2) == 0)
 		{
 			if (north_text(temp) == -1)
 				return (-1);
 		}
-		else if (ft_strncmp(temp, "SO", 2) == 0)
+		else if (ft_strncmp(help, "SO", 2) == 0)
 		{
 			if (south_text(temp) == -1)
 				return (-1);
 		}
-		else if (ft_strncmp(temp, "EA", 2) == 0)
+		else if (ft_strncmp(help, "EA", 2) == 0)
 		{
 			if (east_text(temp) == -1)
 				return (-1);
 		}
-		else if (ft_strncmp(temp, "WE", 2) == 0)
+		else if (ft_strncmp(help, "WE", 2) == 0)
 		{
 			if (west_text(temp) == -1)
 				return (-1);
 		}
-		else if (ft_strncmp(temp, "F", 1) == 0)
+		else if (ft_strncmp(help, "F", 1) == 0)
 		{
 			if (floor_text(temp) == -1)
 				return (-1);
 		}
-		else if (ft_strncmp(temp, "C", 1) == 0)
+		else if (ft_strncmp(help, "C", 1) == 0)
 		{
 			if (ceiling_text(temp) == -1)
 				return (-1);
@@ -81,7 +85,7 @@ int	*get_value(char *str)
 	aux = NULL;
 	i = ign_spaces(str, 0) + 1;
 	i = ign_spaces(str, i);
-	if (check_overflow(str + i, 11) == -1)
+	if (check_overflow(str + i) == -1)
 		return (0);
 	res = malloc(sizeof(int) * 3);
 	temp = ft_strtrim(str + i, "\n");
@@ -123,6 +127,8 @@ char	*get_path(char *str)
 	len = path_len(str + i);
 	if (len == -1)
 		return (0);
+	if (len <= 10)
+		return (0);
 	aux = ft_substr(str, i, len + 1);
 	res = ft_strtrim(aux, "\n");
 	free(aux);
@@ -140,8 +146,13 @@ int	count_lines(char *file)
 	temp = get_next_line(fd);
 	while (temp != NULL)
 	{
-		if (temp[0] != '\n' && temp[0] != '\0' && temp[0] != '\t')
+		if (temp[0] != '\n' && temp[0] != '\0')
 			total++;
+		if (temp[0] == '\t')
+		{
+			free(temp);
+			return (-1);
+		}
 		free(temp);
 		temp = get_next_line(fd);
 	}

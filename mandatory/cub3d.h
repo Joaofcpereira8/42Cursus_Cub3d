@@ -177,16 +177,17 @@ bool		check_attr(char c);
 
 // ------- UTILS -------
 int			press_x(void);
-int			walls_verif(int x);
+int			walls_verif(int y);
 int			path_len(char *str);
 int			create_trgb(int *rgb, int t);
 int			ign_spaces(char *str, int i);
-int			check_overflow(char *str, int target);
+int			check_overflow(char *str);
 
 // ------- FREES -------
 void		free_mlx(void);
 void		free_mlx2(void);
 void		free_struct(void);
+void		free_some_mlx(void);
 void		free_arr(char **arr);
 
 #endif

@@ -24,9 +24,9 @@ int	verifs(void)
 	cub()->plr_cnt = 0;
 	while (cub()->mp_dp[0][x])
 	{
-		if (ft_isalnum(cub()->mp_dp[y][x]) == 1)
+		if (ft_isalnum(cub()->mp_dp[0][x]) == 1)
 		{
-			if (cub()->mp_dp[y][x] != '1')
+			if (cub()->mp_dp[0][x] != '1')
 			{
 				printf("Error\nWalls are incorrect\n");
 				return (-1);

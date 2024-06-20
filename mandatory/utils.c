@@ -19,7 +19,7 @@ int	ign_spaces(char *str, int i)
 	return (i);
 }
 
-int	check_overflow(char *str, int target)
+int	check_overflow(char *str)
 {
 	int	i;
 	int	n_quo;
@@ -28,11 +28,14 @@ int	check_overflow(char *str, int target)
 	n_quo = 0;
 	while (str && str[i])
 	{
+		while (str[i] == ' ')
+			i++;
 		if (str[i] == ',')
 			n_quo++;
-		if (i > target || (!ft_isdigit(str[i])
-				&& str[i] != ',' && str[i] != '\n'))
+		if ((!ft_isdigit(str[i]) && str[i] != ',' && str[i] != '\n'))
 			return (-1);
+		if (str[i] == ',' && str[i + 1] == ' ' && !ft_isdigit(str[i + 1]))
+			i++;
 		if (str[i] == ',' && (!ft_isdigit(str[i + 1]) || i == 0))
 			return (-1);
 		i++;

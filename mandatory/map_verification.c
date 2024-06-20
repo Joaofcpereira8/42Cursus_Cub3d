@@ -95,10 +95,9 @@ int	wall_check(void)
 		x = 0;
 		if (y == 0)
 		{
-			if (walls_verif(x) == -1)
+			if (walls_verif(y) == -1)
 				return (-1);
 		}
-		x = 0;
 		while (cub()->mp_dp[y][x])
 		{
 			if (cub()->mp_dp[y][x] == '0' || cub()->mp_dp[y][x] == 'N'
