@@ -12,25 +12,8 @@
 
 #include "cub3d.h"
 
-int	map_configure(char *file)
+int map_configure2(char *line, char *trimmed, char *temp, int i)
 {
-	char	*line;
-	char	*trimmed;
-	char	*temp;
-	int		i;
-
-	i = 0;
-	cub()->lin_cnt = count_lines(file) - 6;
-	if (cub()->lin_cnt < 3)
-	{
-		printf("Error\nInvalid map\n");
-		return (-1);
-	}
-	cub()->line_no = count_lines(file);
-	cub()->map = malloc(sizeof(char *) * (cub()->line_no + 1));
-	if (!cub()->map)
-		return (-1);
-	cub()->fd = open(file, O_RDONLY);
 	while (1)
 	{
 		line = get_next_line(cub()->fd);
@@ -56,6 +39,32 @@ int	map_configure(char *file)
 		}
 		free(line);
 	}
+	return (i);
+}
+
+int	map_configure(char *file)
+{
+	char	*line;
+	char	*trimmed;
+	char	*temp;
+	int		i;
+
+	line = NULL;
+	trimmed = NULL;
+	temp = NULL;
+	i = 0;
+	cub()->lin_cnt = count_lines(file) - 6;
+	if (cub()->lin_cnt < 3)
+	{
+		printf("Error\nInvalid map\n");
+		return (-1);
+	}
+	cub()->line_no = count_lines(file);
+	cub()->map = malloc(sizeof(char *) * (cub()->line_no + 1));
+	if (!cub()->map)
+		return (-1);
+	cub()->fd = open(file, O_RDONLY);
+	i = map_configure2(line, trimmed, temp, i);
 	close(cub()->fd);
 	cub()->map[i] = NULL;
 	return (0);

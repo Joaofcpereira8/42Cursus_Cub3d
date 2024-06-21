@@ -91,20 +91,8 @@ int	*get_value(char *str)
 	temp = ft_strtrim(str + i, "\n");
 	aux = ft_split(temp, ',');
 	i = 0;
-	while (aux && aux[i])
-	{
-		res[i] = ft_atoi(aux[i]);
-		while (res[i] == ' ')
-			i++;
-		if (i > 2 || res[i] > 255 || res[i] < 0)
-		{
-			free(res);
-			free(temp);
-			free_arr(aux);
-			return (NULL);
-		}
-		i++;
-	}
+	if (get_value2(res, temp, aux, i) == -1)
+		return (NULL);
 	free(temp);
 	free_arr(aux);
 	return (res);

@@ -76,3 +76,20 @@ void	plr_pos_verif2(int x, int y)
 		cub()->plr_cnt++;
 	}
 }
+
+int	get_value2(int *res, char *temp, char **aux, int i)
+{
+	while (aux && aux[i])
+	{
+		res[i] = ft_atoi(aux[i]);
+		while (res[i] == ' ')
+			i++;
+		if (i > 2 || res[i] > 255 || res[i] < 0)
+		{
+			partial_free(res, temp, aux);
+			return (-1);
+		}
+		i++;
+	}
+	return (0);
+}

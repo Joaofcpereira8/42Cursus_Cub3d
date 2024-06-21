@@ -85,26 +85,12 @@ void	free_mlx2(void)
 	free(cub()->mlx);
 }
 
-void	free_some_mlx(void)
+void	partial_free(int *res, char *temp, char **aux)
 {
-	if (cub()->no->img)
-	{
-		mlx_destroy_image(cub()->mlx, cub()->no->img);
-	}
-	free(cub()->no);
-	if (cub()->so->img)
-	{
-		mlx_destroy_image(cub()->mlx, cub()->so->img);
-	}
-	free(cub()->so);
-	if (cub()->ea->img)
-	{
-		mlx_destroy_image(cub()->mlx, cub()->ea->img);
-	}
-	free(cub()->ea);
-	if (cub()->ws->img)
-	{
-		mlx_destroy_image(cub()->mlx, cub()->ws->img);
-	}
-	free(cub()->ws);
+	if (res)
+		free(res);
+	if (temp)
+		free(temp);
+	if (aux)
+		free_arr(aux);
 }

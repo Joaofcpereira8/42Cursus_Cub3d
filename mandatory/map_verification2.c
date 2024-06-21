@@ -27,10 +27,7 @@ int	verifs(void)
 		if (ft_isalnum(cub()->mp_dp[0][x]) == 1)
 		{
 			if (cub()->mp_dp[0][x] != '1')
-			{
-				printf("Error\nWalls are incorrect\n");
-				return (-1);
-			}
+				return (file_err_msg('d', 0));
 			else
 			{
 				x++;
@@ -50,10 +47,7 @@ int	verifs(void)
 		temp = ft_strlen(cub()->mp_dp[y]) - 1;
 		if ((cub()->mp_dp[y][x] != '1' && cub()->mp_dp[y][x] != ' ')
 			&& (cub()->mp_dp[y][temp] != ' ' && cub()->mp_dp[y][temp] != '1'))
-		{
-			printf("Error\nWalls not closed\n");
-			return (-1);
-		}
+			return (file_err_msg('w', 0));
 		z = x;
 		while (cub()->mp_dp[y][z])
 		{
@@ -65,10 +59,7 @@ int	verifs(void)
 					|| (cub()->mp_dp[y][z] == '0'
 					&& (cub()->mp_dp[y + 1][z] == ' '
 					|| cub()->mp_dp[y + 1][z] == '\0')))
-				{
-					printf("Error\nMap is not valid\n");
-					return (-1);
-				}
+					return (file_err_msg('d', 0));
 				while (cub()->mp_dp[y][z] == ' ')
 					z++;
 				if (cub()->mp_dp[y][z] == '0' || cub()->mp_dp[y][z] == '1'
@@ -76,24 +67,15 @@ int	verifs(void)
 					|| cub()->mp_dp[y][z] == 'S' || cub()->mp_dp[y][z] == 'W')
 					z++;
 				else
-				{
-					printf("Error\nMap is not valid\n");
-					return (-1);
-				}
+					return (file_err_msg('d', 0));
 			}
 			if (cub()->mp_dp[y][z - 1] == '0' && cub()->mp_dp[y][z] == '\0')
-			{
-				printf("Error\nMap is not valid\n");
-				return (-1);
-			}
+				return (file_err_msg('d', 0));
 		}
 		y++;
 	}
 	if (cub()->plr_cnt < 1)
-	{
-		printf("Error\nPlayer does not exist in map\n");
-		return (-1);
-	}
+		return (file_err_msg('p', 0));
 	return (0);
 }
 

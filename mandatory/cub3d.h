@@ -107,7 +107,12 @@ t_cubed		*cub(void);
 // ------- START GAME -------
 void		ttptg(void);
 int			cub_loop(void);
+
+// ------- IMAGE -------
+int			get_address(void);
+int			get_address2(void);
 int			draw_textures(void);
+int			text_size(int width, int height);
 
 // ------- DRAW -------
 void		draw_bkgnd(int ceil, int flr);
@@ -179,15 +184,16 @@ bool		check_attr(char c);
 int			press_x(void);
 int			walls_verif(int y);
 int			path_len(char *str);
+int			check_overflow(char *str);
 int			create_trgb(int *rgb, int t);
 int			ign_spaces(char *str, int i);
-int			check_overflow(char *str);
+int			get_value2(int *res, char *temp, char **aux, int i);
 
 // ------- FREES -------
 void		free_mlx(void);
 void		free_mlx2(void);
 void		free_struct(void);
-void		free_some_mlx(void);
 void		free_arr(char **arr);
+void		partial_free(int *res, char *temp, char **aux);
 
 #endif

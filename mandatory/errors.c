@@ -25,6 +25,10 @@ int	file_err_msg(char c, int fd)
 		ft_putstr_fd("Error\nThe map you've designed is wrong.\n", 2);
 	else if (c == 't')
 		ft_putstr_fd("Error\nWrong texture attribution.\n", 2);
+	else if (c == 'p')
+		ft_putstr_fd("Error\nPlayer does not exist in map\n", 2);
+	else if (c == 'w')
+		ft_putstr_fd("Error\nWalls not closed\n", 2);
 	else if (c == 'T')
 		ft_putstr_fd("Error\nTexture file not found.\n", 2);
 	else if (c == 'A')
