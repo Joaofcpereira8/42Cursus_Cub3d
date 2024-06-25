@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 18:31:28 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/19 18:09:17 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/25 15:26:00 by jofilipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,9 @@ int			map_par(char *file);
 char		*get_path(char *str);
 int			textures_verif(void);
 int			*get_value(char *str);
+int			textures_verif2(void);
+int			textures_verif3(void);
+int			textures_verif4(void);
 int			count_lines(char *file);
 int			map_settings(char *file);
 int			map_configure(char *file);
@@ -151,8 +154,10 @@ int			west_text(char *temp);
 int			floor_text(char *temp);
 int			north_text(char *temp);
 int			south_text(char *temp);
+int			check_frst_wall(int x);
 int			ceiling_text(char *temp);
-int			get_textures(char *temp);
+int			jmp_and_verif(int y, int x);
+int			verif_inside_map(int y, int z);
 
 // ------- PLAYER -------
 void		plyr_dir(void);

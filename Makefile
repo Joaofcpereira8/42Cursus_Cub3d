@@ -6,7 +6,7 @@
 #    By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/05/21 15:23:36 by jofilipe          #+#    #+#              #
-#    Updated: 2024/05/21 18:33:37 by bbento-e         ###   ########.fr        #
+#    Updated: 2024/06/25 15:26:58 by jofilipe         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,8 +47,11 @@ SRCS =	mandatory/main.c \
 		mandatory/init.c \
 		mandatory/map_parsing.c \
 		mandatory/map_parsing2.c \
+		mandatory/map_parsing3.c \
+		mandatory/map_parsing4.c \
 		mandatory/map_utils.c \
 		mandatory/map_utils2.c \
+		mandatory/map_utils3.c \
 		mandatory/utils.c \
 		mandatory/free.c \
 		mandatory/start.c \

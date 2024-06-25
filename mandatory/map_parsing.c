@@ -6,74 +6,11 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 18:50:20 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/18 12:24:43 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/25 15:24:57 by jofilipe         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-int	map_settings(char *file)
-{
-	char	*temp;
-	char	*help;
-
-	cub()->fd = open(file, O_RDONLY);
-	temp = get_next_line(cub()->fd);
-	while ((temp != NULL) && !is_map(temp))
-	{
-		help = temp;
-		while (*help == ' ')
-			help++;
-		if (ft_strncmp(help, "NO", 2) == 0)
-		{
-			if (north_text(temp) == -1)
-				return (-1);
-		}
-		else if (ft_strncmp(help, "SO", 2) == 0)
-		{
-			if (south_text(temp) == -1)
-				return (-1);
-		}
-		else if (ft_strncmp(help, "EA", 2) == 0)
-		{
-			if (east_text(temp) == -1)
-				return (-1);
-		}
-		else if (ft_strncmp(help, "WE", 2) == 0)
-		{
-			if (west_text(temp) == -1)
-				return (-1);
-		}
-		else if (ft_strncmp(help, "F", 1) == 0)
-		{
-			if (floor_text(temp) == -1)
-				return (-1);
-		}
-		else if (ft_strncmp(help, "C", 1) == 0)
-		{
-			if (ceiling_text(temp) == -1)
-				return (-1);
-		}
-		else
-		{
-			if (ign_spaces(temp, 0) <= 0)
-			{
-				free(temp);
-				return (file_err_msg('A', cub()->fd));
-			}
-		}
-		free(temp);
-		temp = get_next_line(cub()->fd);
-	}
-	if (!check_attr('A') && is_map(NULL))
-	{
-		free(temp);
-		return (file_err_msg('A', cub()->fd));
-	}
-	free(temp);
-	close(cub()->fd);
-	return (0);
-}
 
 int	*get_value(char *str)
 {

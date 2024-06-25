@@ -32,7 +32,7 @@ int	file_err_msg(char c, int fd)
 	else if (c == 'T')
 		ft_putstr_fd("Error\nTexture file not found.\n", 2);
 	else if (c == 'A')
-		ft_putstr_fd("Error\nThe attribution of values failed."
+		ft_putstr_fd("Error\nThe attribution of values failed. "
 			"Please check your file.\n", 2);
 	if (fd)
 		close(fd);

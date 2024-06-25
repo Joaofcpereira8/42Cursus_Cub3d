@@ -14,7 +14,6 @@
 
 int	verifs(void)
 {
-	int	temp;
 	int	x;
 	int	y;
 	int	z;
@@ -22,55 +21,17 @@ int	verifs(void)
 	y = 0;
 	x = 0;
 	cub()->plr_cnt = 0;
-	while (cub()->mp_dp[0][x])
-	{
-		if (ft_isalnum(cub()->mp_dp[0][x]) == 1)
-		{
-			if (cub()->mp_dp[0][x] != '1')
-				return (file_err_msg('d', 0));
-			else
-			{
-				x++;
-				continue ;
-			}
-		}
-		x++;
-	}
+	if (check_frst_wall(x) == -1)
+		return (-1);
 	while (y < cub()->y)
 	{
-		x = 0;
-		if (cub()->mp_dp[y][x] == ' ')
-		{
-			while (cub()->mp_dp[y][x] == ' ')
-				x++;
-		}
-		temp = ft_strlen(cub()->mp_dp[y]) - 1;
-		if ((cub()->mp_dp[y][x] != '1' && cub()->mp_dp[y][x] != ' ')
-			&& (cub()->mp_dp[y][temp] != ' ' && cub()->mp_dp[y][temp] != '1'))
-			return (file_err_msg('w', 0));
+		if (jmp_and_verif(y, x) == -1)
+			return (-1);
 		z = x;
-		while (cub()->mp_dp[y][z])
+		if (cub()->mp_dp[y][z])
 		{
-			while (cub()->mp_dp[y][z] != '\0')
-			{
-				if (plr_pos_verif(z, y) == -1)
-					return (-1);
-				if ((cub()->mp_dp[y][z] == '0' && !cub()->mp_dp[y + 1])
-					|| (cub()->mp_dp[y][z] == '0'
-					&& (cub()->mp_dp[y + 1][z] == ' '
-					|| cub()->mp_dp[y + 1][z] == '\0')))
-					return (file_err_msg('d', 0));
-				while (cub()->mp_dp[y][z] == ' ')
-					z++;
-				if (cub()->mp_dp[y][z] == '0' || cub()->mp_dp[y][z] == '1'
-					|| cub()->mp_dp[y][z] == 'N' || cub()->mp_dp[y][z] == 'E'
-					|| cub()->mp_dp[y][z] == 'S' || cub()->mp_dp[y][z] == 'W')
-					z++;
-				else
-					return (file_err_msg('d', 0));
-			}
-			if (cub()->mp_dp[y][z - 1] == '0' && cub()->mp_dp[y][z] == '\0')
-				return (file_err_msg('d', 0));
+			if (verif_inside_map(y, z) == -1)
+				return (-1);
 		}
 		y++;
 	}
