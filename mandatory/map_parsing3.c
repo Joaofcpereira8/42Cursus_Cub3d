@@ -68,7 +68,6 @@ int	map_settings(char *file)
 	{
 		if (process_line(temp, fd) == -1)
 		{
-			free(temp);
 			close(fd);
 			return (-1);
 		}
