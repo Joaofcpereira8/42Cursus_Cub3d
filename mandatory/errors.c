@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 14:13:46 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/05/29 16:36:46 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/28 17:57:47 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,6 @@ int	file_err_msg(char c, int fd)
 
 int	args_error(int c)
 {
-	ft_putstr_fd("Invalid arguments! Use ./cub3D maps/[usable_map]", 2);
+	ft_putstr_fd("Invalid arguments! Use ./cub3D maps/[usable_map]\n", 2);
 	return (c);
 }
