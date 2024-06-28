@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 15:26:31 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/28 18:10:34 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/28 18:16:29 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,12 +102,10 @@ int	map_to_var(char *file)
 {
 	char	*line;
 	int		i;
-	int		j;
 	int		fd;
 	int		lines_num;
 
 	i = 0;
-	j = -1;
 	fd = open(file, O_RDONLY);
 	lines_num = count_all_lines(file);
 	if (lines_num <= 0)
