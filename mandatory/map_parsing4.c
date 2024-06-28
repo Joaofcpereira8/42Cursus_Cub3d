@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 15:26:31 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/28 16:56:41 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/28 17:30:22 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,16 @@ int	nline_bet_map(void)
 {
 	int	i;
 	int	j;
+	int	flag;
 
 	i = 0;
 	j = 0;
+	flag = 0;
 	while (cub()->map_verif[i])
 	{
-		if (isnt_map(cub()->map_verif[i]))
+		if (isnt_map(cub()->map_verif[i]) || flag == 1)
 		{
+			flag = 1;
 			if (cub()->map_verif[i][j] == '\n')
 			{
 				while (cub()->map_verif[i - 1][j])
