@@ -3,13 +3,8 @@ SO ./textures/ferrari.xpm
 WE ./textures/porsche.xpm
 EA ./textures/mclaren.xpm
 
-
 F 50,50,50
 C 135,206,235
-
-
-
-
 
         1111111111111111111111111
         1000000000110000000000001
