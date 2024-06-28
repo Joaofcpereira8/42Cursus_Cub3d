@@ -72,3 +72,28 @@ int	verif_inside_map(int y, int z)
 		return (file_err_msg('d', 0));
 	return (0);
 }
+
+int	count_all_lines(char *file)
+{
+	char	*temp;
+	int		total;
+	int		fd;
+
+	total = 0;
+	fd = open(file, O_RDONLY);
+	temp = get_next_line(fd);
+	while (temp != NULL)
+	{
+		if (*temp)
+			total++;
+		if (temp[0] == '\t')
+		{
+			free(temp);
+			return (-1);
+		}
+		free(temp);
+		temp = get_next_line(fd);
+	}
+	close(fd);
+	return (total);
+}

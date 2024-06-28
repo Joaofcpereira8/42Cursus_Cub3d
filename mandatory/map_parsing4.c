@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 15:26:31 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/28 17:30:22 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/28 17:35:27 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,14 +76,14 @@ int	nline_bet_map(void)
 	int	flag;
 
 	i = 0;
-	j = 0;
 	flag = 0;
 	while (cub()->map_verif[i])
 	{
+		j = 0;
 		if (isnt_map(cub()->map_verif[i]) || flag == 1)
 		{
 			flag = 1;
-			if (cub()->map_verif[i][j] == '\n')
+			if (cub()->map_verif[i][j] && cub()->map_verif[i][j] == '\n')
 			{
 				while (cub()->map_verif[i - 1][j])
 				{
@@ -107,7 +107,7 @@ int	map_to_var(char *file)
 
 	i = 0;
 	fd = open(file, O_RDONLY);
-	lines_num = count_lines(file);
+	lines_num = count_all_lines(file);
 	cub()->map_verif = malloc(sizeof(char *) * (lines_num + 1));
 	while (i < lines_num)
 	{
@@ -130,7 +130,7 @@ bool	isnt_map(char *str)
 	var = false;
 	if (str)
 	{
-		while (str[i] == ' ' || str[i] == '\t')
+		while (str[i] && (str[i] == ' ' || str[i] == '\t'))
 			i++;
 		if (str[i] == '1' || str[i] == '0')
 			var = true;

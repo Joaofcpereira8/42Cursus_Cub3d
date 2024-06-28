@@ -149,6 +149,7 @@ int			map_to_var(char *file);
 int			count_lines(char *file);
 int			map_settings(char *file);
 int			map_configure(char *file);
+int			count_all_lines(char *file);
 
 // ------- MAP UTILS -------
 int			east_text(char *temp);
