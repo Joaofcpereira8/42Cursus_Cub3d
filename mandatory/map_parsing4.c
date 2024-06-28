@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 15:26:31 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/28 17:35:27 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/28 18:10:34 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,19 +102,23 @@ int	map_to_var(char *file)
 {
 	char	*line;
 	int		i;
+	int		j;
 	int		fd;
 	int		lines_num;
 
 	i = 0;
+	j = -1;
 	fd = open(file, O_RDONLY);
 	lines_num = count_all_lines(file);
+	if (lines_num <= 0)
+		return (file_err_msg('d', fd));
 	cub()->map_verif = malloc(sizeof(char *) * (lines_num + 1));
 	while (i < lines_num)
 	{
 		line = get_next_line(fd);
 		cub()->map_verif[i] = ft_strdup(line);
-		i++;
 		free(line);
+		i++;
 	}
 	close(fd);
 	cub()->map_verif[i] = NULL;
