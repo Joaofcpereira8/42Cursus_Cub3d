@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 18:31:28 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/25 15:26:00 by jofilipe         ###   ########.fr       */
+/*   Updated: 2024/06/28 16:53:18 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,6 @@ typedef struct s_cubed
 	int			imgx;
 	int			imgy;
 	int			line_h;
-	double		dirx;
-	double		diry;
 	int			begn_draw;
 	int			end_draw;
 	int			fd;
@@ -70,6 +68,8 @@ typedef struct s_cubed
 	int			plr_lk_r;
 	float		plx;
 	float		ply;
+	double		dirx;
+	double		diry;
 	double		wallx;
 	double		pln_x;
 	double		pln_y;
@@ -91,6 +91,7 @@ typedef struct s_cubed
 	char		*west;
 	char		**map;
 	char		**mp_dp;
+	char		**map_verif;
 	void		*mlx;
 	void		*win;
 	t_img		*bg;
@@ -144,6 +145,7 @@ int			*get_value(char *str);
 int			textures_verif2(void);
 int			textures_verif3(void);
 int			textures_verif4(void);
+int			map_to_var(char *file);
 int			count_lines(char *file);
 int			map_settings(char *file);
 int			map_configure(char *file);
@@ -184,6 +186,7 @@ void		asgn_txtr(void);
 bool		is_map(char *str);
 void		flag_change(void);
 bool		check_attr(char c);
+bool		isnt_map(char *str);
 
 // ------- UTILS -------
 int			press_x(void);

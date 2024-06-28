@@ -6,7 +6,7 @@
 /*   By: bbento-e <bbento-e@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/22 15:41:55 by bbento-e          #+#    #+#             */
-/*   Updated: 2024/06/14 14:49:12 by bbento-e         ###   ########.fr       */
+/*   Updated: 2024/06/28 16:52:14 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@ void	free_struct(void)
 		free_arr(cub()->map);
 	if (cub()->mp_dp)
 		free_arr(cub()->mp_dp);
+	if (cub()->map_verif)
+		free_arr(cub()->map_verif);
 	exit(0);
 }
 

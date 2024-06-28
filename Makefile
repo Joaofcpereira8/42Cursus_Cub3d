@@ -27,7 +27,7 @@ BLINK   = \033[5m
 ENDBL   = \033[25m
 
 # FLAGS AND VARIABLES
-NAME = cub3d
+NAME = cub3D
 
 CC = cc
 RM = rm -rf

@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/21 18:50:20 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/25 15:24:57 by jofilipe         ###   ########.fr       */
+/*   Updated: 2024/06/28 16:53:35 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ int	count_lines(char *file)
 
 int	map_par(char *file)
 {
+	if (map_to_var(file) == -1)
+		return (-1);
 	if (map_configure(file) == -1)
 		return (-1);
 	if (map_settings(file) == -1)

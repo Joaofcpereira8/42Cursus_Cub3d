@@ -6,7 +6,7 @@
 /*   By: jofilipe <jofilipe@student.42porto.com>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/25 15:26:31 by jofilipe          #+#    #+#             */
-/*   Updated: 2024/06/25 15:27:25 by jofilipe         ###   ########.fr       */
+/*   Updated: 2024/06/28 16:56:41 by bbento-e         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,70 @@ int	map_configure(char *file)
 	close(cub()->fd);
 	cub()->map[i] = NULL;
 	return (0);
+}
+
+int	nline_bet_map(void)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (cub()->map_verif[i])
+	{
+		if (isnt_map(cub()->map_verif[i]))
+		{
+			if (cub()->map_verif[i][j] == '\n')
+			{
+				while (cub()->map_verif[i - 1][j])
+				{
+					if (cub()->map_verif[i - 1][j] == '0')
+						return (file_err_msg('d', 0));
+					j++;
+				}
+			}
+		}
+		i++;
+	}
+	return (0);
+}
+
+int	map_to_var(char *file)
+{
+	char	*line;
+	int		i;
+	int		fd;
+	int		lines_num;
+
+	i = 0;
+	fd = open(file, O_RDONLY);
+	lines_num = count_lines(file);
+	cub()->map_verif = malloc(sizeof(char *) * (lines_num + 1));
+	while (i < lines_num)
+	{
+		line = get_next_line(fd);
+		cub()->map_verif[i] = ft_strdup(line);
+		i++;
+		free(line);
+	}
+	close(fd);
+	cub()->map_verif[i] = NULL;
+	return (nline_bet_map());
+}
+
+bool	isnt_map(char *str)
+{
+	int		i;
+	bool	var;
+
+	i = 0;
+	var = false;
+	if (str)
+	{
+		while (str[i] == ' ' || str[i] == '\t')
+			i++;
+		if (str[i] == '1' || str[i] == '0')
+			var = true;
+	}
+	return (var);
 }
