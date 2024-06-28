@@ -12,14 +12,12 @@
 
 #include "cub3d.h"
 
-// Function to initialize and read the first line
 char	*init_and_read_first_line(char *file, int *fd)
 {
 	*fd = open(file, O_RDONLY);
 	return (get_next_line(*fd));
 }
 
-// Function to process a single line
 int	process_line(char *temp, int fd)
 {
 	char	*help;
@@ -41,10 +39,9 @@ int	process_line(char *temp, int fd)
 		return (ceiling_text(temp));
 	if (ign_spaces(temp, 0) <= 0)
 		return (file_err_msg('A', fd));
-	return (0); // Success
+	return (0);
 }
 
-// Function for final checks and cleanup
 int	final_checks_and_cleanup(char *temp, int fd)
 {
 	if (!check_attr('A') && is_map(NULL))
@@ -54,10 +51,9 @@ int	final_checks_and_cleanup(char *temp, int fd)
 	}
 	free(temp);
 	close(fd);
-	return (0); // Success
+	return (0);
 }
 
-// Refactored map_settings function
 int	map_settings(char *file)
 {
 	int		fd;

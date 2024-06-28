@@ -32,26 +32,24 @@ void	ray(void)
 
 void	ray_dir(void)
 {
-	// Determine the step direction and initial side distance for the x-axis
 	if (cub()->rayx < 0)
 	{
-		cub()->rright = -1; // The ray is moving left
+		cub()->rright = -1;
 		cub()->dst_rght = (cub()->plx - cub()->mapx) * cub()->delta_x;
 	}
 	else
 	{
-		cub()->rright = 1; // The ray is moving right
+		cub()->rright = 1;
 		cub()->dst_rght = (cub()->mapx + 1.0 - cub()->plx) * cub()->delta_x;
 	}
-	// Determine the step direction and initial side distance for the y-axis
 	if (cub()->rayy < 0)
 	{
-		cub()->rleft = -1; // The ray is moving up
+		cub()->rleft = -1;
 		cub()->dst_left = (cub()->ply - cub()->mapy) * cub()->delta_y;
 	}
 	else
 	{
-		cub()->rleft = 1; // The ray is moving down
+		cub()->rleft = 1;
 		cub()->dst_left = (cub()->mapy + 1.0 - cub()->ply) * cub()->delta_y;
 	}
 }
@@ -78,22 +76,18 @@ void	hit_reg(void)
 {
 	while (cub()->hit == 0)
 	{
-		// Compare side distances to determine which side the ray hits first
 		if (cub()->dst_rght < cub()->dst_left)
 		{
-			// The ray hits a vertical grid line first
 			cub()->dst_rght += cub()->delta_x;
 			cub()->mapx += cub()->rright;
-			cub()->ori = 'V'; // Vertical hit
+			cub()->ori = 'V';
 		}
 		else
 		{
-			// The ray hits a horizontal grid line first
 			cub()->dst_left += cub()->delta_y;
 			cub()->mapy += cub()->rleft;
-			cub()->ori = 'H'; // Horizontal hit
+			cub()->ori = 'H';
 		}
-		// Check if the current grid cell is a wall
 		if ((cub()->mp_dp[(cub()->mapy)][(cub()->mapx)]) == '1')
 			cub()->hit = 1;
 	}
